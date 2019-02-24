@@ -16,5 +16,18 @@ module.exports = {
             template: path.join(__dirname, './src/index.html'), //指定模板文件的路径
             filename: 'index.html' //设置生成的内存页面的名称
         })
-    ]
+    ],
+    module: { //配置所有第三方loader 模块
+        rules: [
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] }, //处理css文件的loader
+            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] }, //处理less文件的loader
+            { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] }, //处理scss文件的loader
+            { test: /\.(jpg|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=48194&name=[hash:8]-[name].[ext]' }, //处理图片路径的loader
+            //limit 给定的值是图片的大小  单位是 byte 如果我们引用的图片 大于或等于给定limit值 则不会被转为Base64格式的字符串
+            //如果大于给定的limit 则会被转为Base64的字符串
+            { test: /\.(ttf|eot|svg|woff|woff2|otf)$/, use: 'url-loader' }, //这是处理字体文件的loader
+            { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ } //这是配置babel 来转换高级的Es语法
+        ]
+
+    }
 }
