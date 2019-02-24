@@ -1,0 +1,19 @@
+html,
+body {
+    .box {
+        width: 220px;
+        height: 120px;
+        //默认情况下  webpack无法处理css文件中的 url地址 不管是 图片还是字体库，
+        //地址都处理不了
+        background: url(../images/git-1.png);
+        background-size: cover;
+    }
+    .box2 {
+        width: 220px;
+        height: 120px;
+        //默认情况下  webpack无法处理css文件中的 url地址 不管是 图片还是字体库，
+        //地址都处理不了
+        background: url(../images2/git-1.png);
+        background-size: cover;
+    }
+}
