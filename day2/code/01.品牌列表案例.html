@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+    <!-- 需要用到Jquery吗? -->
+</head>
+<body>
+    <div id="app">
+
+        
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">添加品牌</h3>
+              </div>
+              <div class="panel-body form-inline">
+                  <label>Id <input type="text" class="from-control" v-model="id"></label>
+                  <label>Name <input type="text" class="from-control" v-model="name"></label>
+                  <input type="button" value="添加" class="btn btn-primary" @click='add'>
+                  <label>搜索名称关键字 <input type="text" class="from-control" v-model="keywords"></label>
+              </div>
+        </div>
+        
+        
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Opeartion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 之前 v-for 都是直接从list中直接渲染出来 现在我们定义了一个search方法 同时吧 所有关键字通过传参的形式 传递给search方法 -->
+                <!-- 在search方法内部 通过执行for循环 把所有符合搜索关键字的数字保存到新的数组 -->
+                <tr v-for="item in search(keywords)" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.ctime}}</td>
+                    <td>
+                        <a href="" @click.prevent='del(item.id)'>删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <script src="lib/js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    {id:1,name:'奔驰',ctime: new Date() },
+                    {id:2,name:'宝马',ctime: new Date() }
+                  
+                ],
+                id:'',
+                name:'',
+                keywords:''
+
+            },
+            methods: {
+                add(){
+                   //console.log('ok'); 
+                   //分析 
+                   //1.获取id 和 name 直接从data中获取
+                   //2.组织出一个对象
+                   //3.把这个对象 调用 数组的相关方法 添加到当前data 中的 list 中
+                   var car = { id:this.id,name:this.name,ctime:new Date()};
+                   this.list.push(car);
+                   this.id = this.name = '';
+
+                },
+                del(id){
+                    //如何根据id 找到要删除的这一项的索引
+                    //2.如果找到索引 直接调用数组的splice方法
+                    // this.list.some((item,i)=>{
+                    //     if(item.id == id){
+                    //         this.list.splice(i,1);
+                    //         return true;
+                    //     }
+                    // });
+
+
+                   var index =  this.list.findIndex(item=>{
+                        if(item.id == id){
+                           
+                            return true;
+                        }
+                    })
+                    this.list.splice(index,1);
+                },
+                search(keywords){//根据关键字进行检索
+                    var newList = [];
+                    this.list.forEach(element => {
+                        if(element.name.indexOf(keywords)!=-1){
+                            console.log(element);
+                            newList.push(element)
+                        }
+                    });
+                        
+                    
+                     return newList;
+
+                    //注意 foreach some  filter findindex 都属于数组的新方法  都会对数组的每一项进行遍历 执行相关的操作
+                    //ES6 为字符串提供了新方法 叫做 string.prototype.includes('要包含的字符串')
+                    // return this.list.filter(item=>{
+                    //    if(item.name.includes(keywords)){
+                    //        return item
+                    //    }
+                    // })
+                    
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
