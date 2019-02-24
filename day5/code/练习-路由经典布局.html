@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./lib/js/vue.js"></script>
+    <script src="./lib/js/vue-router.js"></script>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .header {
+            height: 80px;
+            width: 100%;
+            font-size: 18px;
+            background-color: orange;
+        }
+        
+        .contionter {
+            display: flex;
+            height: 600px;
+            width: 100%;
+            font-size: 18px;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        h1 {
+            padding: 0;
+            margin: 0;
+            font-size: 16px
+        }
+        
+        .left {
+            background-color: lightgreen;
+            flex: 2
+        }
+        
+        .right {
+            background-color: lightpink;
+            flex: 8
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <router-view></router-view>
+        <div class="contionter">
+            <router-view name="left"></router-view>
+            <router-view name="right"></router-view>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    var header = {
+        template: '<h1 class="header">这是头部</h1>'
+    }
+    var leftBox = {
+        template: '<h1 class="left">这是左边</h1>'
+    }
+    var rightBox = {
+        template: '<h1 class="right">这是右边</h1>'
+    }
+    var router = new VueRouter({
+        routes: [{
+            path: '/',
+            components: {
+                default: header,
+                left: leftBox,
+                right: rightBox
+            }
+        }]
+    })
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {},
+
+        methods: {},
+        router
+
+    })
+</script>
+
+</html>

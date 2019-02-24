@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 分析 -->
+        <!-- 1.我们要监听到文本框数据的变化  这样才知道 什么时候去拼接一个 fullname -->
+        <!-- 2.如何监听到文本框的数据改变呢？？？？ -->
+        <input type="text" v-model="fristname">+
+        <input type="text" v-model="lastname">=
+        <input type="text" v-model="fullname">
+    </div>
+    <script src="lib/js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                fristname: '',
+                lastname: '',
+                fullname: ''
+            },
+            methods: {
+
+            },
+            watch: { //使用这个属性 ，可以监视data 中指定数据的变化 然后触发这个watch 中对应的方法
+                fristname: function(newVal, oldVel) {
+                    // console.log('监视到了 fristname 的变化')
+                    // this.fullname = this.fristname + '-' + this.lastname;
+                    // console.log(newVal + '----' + oldVel);
+                    this.fullname = newVal + '----' + this.lastname;
+                },
+                lastname: function(newVal) {
+                    this.fullname = this.fristname + '----' + newVal;
+                }
+
+            },
+        })
+    </script>
+</body>
+
+</html>

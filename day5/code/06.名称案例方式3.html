@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 分析 -->
+        <!-- 1.我们要监听到文本框数据的变化  这样才知道 什么时候去拼接一个 fullname -->
+        <!-- 2.如何监听到文本框的数据改变呢？？？？ -->
+        <input type="text" v-model="fristname">+
+        <input type="text" v-model="middlename">+
+        <input type="text" v-model="lastname">=
+        <input type="text" v-model="fullname">
+        <p>{{fullname}}</p>
+        <p>{{fullname}}</p>
+        <p>{{fullname}}</p>
+    </div>
+    <script src="lib/js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                fristname: '',
+                lastname: '',
+                middlename: ''
+            },
+            methods: {
+
+            },
+            computed: {
+                //在computed 可以定义一些属性  这些属性叫做 [计算属性] 计算属性的本质就是一个方法
+                //只不过 我们在使用这些 计算属性的时候 是把他们的名称 直接当做 属性来使用的 并不会把 计算属性 当做方法使用
+
+                //注意1:计算属性 在引用的时候一定不要加()去调用 直接把他 当做普通属性去使用就好了
+                //注意2:只要 计算属性 这个 function内部 所用到的 人和 data 中的数据发生了变化 就会立即重新计算 这个计算属性的值
+                //注意3:计算属性的求值结果会被缓存起来 方便下次直接使用 
+                //如果 计算属性方法中 ，所依赖的任何数据都没有发生过变化 则不会重新对 计算属性求值
+                'fullname': function() {
+                    console.log('ok');
+                    return this.fristname + '-' + this.middlename + '-' + this.lastname;
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

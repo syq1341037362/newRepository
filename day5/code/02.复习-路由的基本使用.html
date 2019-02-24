@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .myactive {
+            background-color: #160e7a;
+            color: #0080ff;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <router-view></router-view>
+    </div>
+    <script src="lib/js/vue.js"></script>
+    <script src="lib/js/vue-router.js"></script>
+    <script>
+        var login = {
+            template: '<h3>这个登录组件是 奔波霸 开发的</h3>'
+        }
+        var register = {
+            template: '<h3>这个注册组件是 霸波奔 开发的</h3>'
+        }
+
+        var router = new VueRouter({
+            routes: [{
+                path: "/",
+                redirect: '/login'
+            }, {
+                path: "/login",
+                component: login
+            }, {
+                path: "/register",
+                component: register
+            }, ],
+            linkActiveClass: 'myactive'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        })
+    </script>
+</body>
+
+</html>

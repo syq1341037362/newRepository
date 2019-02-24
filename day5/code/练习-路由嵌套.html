@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./lib/js/vue.js"></script>
+    <script src="./lib/js/vue-router.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+        
+        .my-enter,
+        .my-leave-to {
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        
+        .my-enter-active,
+        .my-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <router-link to="/account"></router-link>
+        <transition>
+            <router-view></router-view>
+        </transition>
+    </div>
+    <template id='tmpl'>
+        <div>
+            这是默认的组件account
+            <router-link to="/account/login">登录</router-link>
+            <router-link to="/account/register">注册</router-link>
+            <transition name ='my' mode="out-in">
+                    <router-view></router-view>
+            </transition>
+           
+        </div>
+    </template>
+
+</body>
+
+<script>
+    var account = {
+        template: '#tmpl'
+    }
+    var login = {
+        template: "<h3>登录</h3>"
+    }
+    var register = {
+        template: "<h3>注册</h3>"
+    }
+    var router = new VueRouter({
+        routes: [{
+                path: '/account',
+                component: account,
+                children: [{
+                    path: "login",
+                    component: login
+                }, {
+                    path: "register",
+                    component: register
+                }]
+            }
+
+        ]
+    })
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {
+            msg: '这是父组件的数据'
+        },
+
+        methods: {},
+        router
+
+    })
+</script>
+
+</html>
