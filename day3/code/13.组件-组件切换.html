@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <a href="" @click.prevent="flag=!flag">登录</a>
+        <a href="" @click.prevent="flag=!flag">注册</a>
+        <login v-if="flag"></login>
+        <register v-else="flag"></register>
+    </div>
+
+
+    <script src="lib/js/vue.js"></script>
+    <script>
+        //1.组件可以有自己的data 数据
+        //2.组件的data和实例的data 不太一样 实例的data可以为对象 组件的data必须是方法 且这个方法必须返回对象
+        Vue.component("login", {
+            template: "<h1>登录</h1>",
+        })
+        Vue.component("register", {
+            template: "<h1>注册</h1>",
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: true
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <!-- 自定义2组样式 来控制transition 内部的元素实现动画 -->
+    <style>
+        /* v-enter 这是一个时间点 是进入之前 元素的起始状态 此时还没有开始进入 */
+        /* v-leave-to  是动画离开之后 离开的终止状态 此时元素动画已经结束 */
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform:translateX(80px);
+        }
+        /* v-enter--active 入场动画时间段*/
+        /* v-enter--active 离场动画时间段*/
+        .v-enter-active,
+        .v-leave-active{
+            transition:  all 0.4s ease;
+        }
+        .my-enter,
+        .my-leave-to{
+            opacity: 0;
+            transform:translateY(80px);
+        }
+        /* my-enter--active 入场动画时间段*/
+        /* my-enter--active 离场动画时间段*/
+        .my-enter-active,
+        .my-leave-active{
+            transition:  all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="togggle" @click='flag = !flag'>
+        <!-- 点击显示h3 再点击隐藏h3 -->
+        <!-- 1.使用 transition  元素 把需要被动画控制的元素 包裹起来 -->
+        <transition>
+                <h3 v-if='flag'>这是一个h3</h3>
+        </transition>
+        <hr>
+        <input type="button" value="togggle2" @click='flag2 = !flag2'>
+        <!-- 点击显示h3 再点击隐藏h3 -->
+        <!-- 1.使用 transition  元素 把需要被动画控制的元素 包裹起来 -->
+        <transition name = 'my' >
+                <h6 v-if='flag2'>这是一个h6</h6>
+        </transition>
+        
+    </div>
+    <script src="lib/js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                flag : false,
+                flag2 : false
+            },
+            methods: {}
+        })
+    
+    </script>
+    
+</body>
+</html>

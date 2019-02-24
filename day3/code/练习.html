@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(180px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s ease;
+        }
+        /*  */
+        
+        .my-enter,
+        .my-leave-to {
+            opacity: 0;
+            transform: translateY(180px);
+        }
+        
+        .my-enter-active,
+        .my-leave-active {
+            transition: all 0.9s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="显示" @click="flag=!flag">
+        <transition>
+            <h2 v-if="flag">这是一个h2</h2>
+        </transition>
+        <hr>
+        <input type="button" value="显示" @click="flag2=!flag2">
+        <transition name="my">
+            <h4 v-if="flag2">这是一个h4</h4>
+        </transition>
+
+
+
+    </div>
+    <script src="lib/js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+
+            data: {
+                flag: false,
+                flag2: false
+            },
+            methods: {}
+        })
+
+        //git 命令
+
+        //添加
+        //$ git add 文件名      将改变的文件添加到暂存区
+        //$ git add . 将所有的改变文件添加到暂存区
+
+        //提交
+        //$ git commit -m "第一次提交"  将暂存区的文件提交到版本库 后面写的是版本注释
+        //$ git commit -am '再次修改' 直接将修改的文件上传到版本库 一步操作了add 和 commit
+        //$ git commit --amend 撤销上次操作 并将暂存区的文件重新提交 可以用改修改版本注释
+
+        //查看日志
+        //$ git log -a 或者 $ git log 查看所有的更改信息
+        //$ git log --oneline 单行显示版本信息
+
+        //查看状态
+        //$ git status   查看状态
+
+        //回退暂存区操作
+        //$ git checkout -- 文件名   用暂存区的文件覆盖现在的文件
+        //$ git checkout -- .      将所有暂存区的文件覆盖到现在的文件
+
+        //回退版本到暂存区操作 HEAD可以替换成任意版本号
+        //$ git reset HEAD 文件名   将最近的一次提交的文件覆盖到暂存区
+        //$ git reset 版本号 文件名 将指定版本的文件覆盖到暂存区 可以通过 git checkout -- 文件名 将暂存区的文件覆盖到本地
+        //$ git reset --hard HEAD  
+        //有3个选项 hard 回退到版本且暂存区和本地文件都回退
+        // mixed 只是版本和暂存区回退 本地文件不收影响 
+        //soft回退版本  暂存区和本地文件都不受影响
+
+        //删除操作
+        //$ git rm 文件名   删除文件
+        //$ git rm --cached 文件名 删除暂存区的文件 保留本地文件
+        //$ git rm -f 删除暂存区和本地文件
+
+        //git 分支
+        //$ git branch                         查看分支
+        //$ git branch 分支名称                 创建分支
+        //$ git checkout 分支名                 切换分支
+        //$ git branch -d 分支名                删除分支  
+        //$ git branch -m 旧分支名称 新分支名称  修改分支名称
+        //$ git checkout -b 分支名              创建分支并切换到这个分支
+        //$ git merge 分支名                    合并当前的分支和输入的分支 需要在当前分支执行
+        //$ git diff                           比较暂存区和工作区的差异
+        //$ git diff --staged                  比较暂存区和版本库的差异
+        //$ git diff 版本号1 版本号2            比较2个版本的差异
+        //$ git diff 分支名                    比较2个分支的差异
+        //$ git stash                          暂存修改
+        //$ git stash list                     查看暂存修改
+        //$ git stash apply 暂存文件名称        拿出暂存修改  暂存文件还是存在
+        //$ git stash pop 暂存文件名称          拿出暂存修改  当前暂存文件不存在
+        //$ git stash drop 暂存文件名称         删除指定的暂存修改 
+
+        //git远程仓库
+        //ssh-keygen                            生成秘钥 plb是公钥 将公钥填写到github中
+        //$ git pull github地址                 将GitHub的项目拉到本地 拉到本地之前 请git init 一下
+        //$ git push github地址                 将本地文件上传到github
+        //$ git remote add  新名称 GitHub地址    将GitHub地址简写为前面的名称 之后就可以使用简写名称进行github提交
+        //$ git remote -v                       查看简写名称
+
+        //git服务器操作
+        //ssh root@ 服务器地址                     登录服务器
+        //找到一个服务器文件或者新建文件后
+        //git init --bare                         初始化一个裸露的仓库
+        //在需要上传到服务器的文件夹中使用 git bush here 
+        //$ git push ssh://root@服务器地址下的文件夹
+        //从GitHub克隆一份到ngix或者其他的服务器方法
+        //找到需要克隆的位置
+        //git clone git服务器地址
+
+        //服务器ssh免密操作
+        //本地操作
+        //$ ssh-copy-id root@服务器地址        将本地的公钥保存到服务器上
+
+        //git help文档
+        //忽略文件
+        //首先 $ touch .gitignore
+        //然后 $ vim .gitignore 编辑文件 将不需要的提交的文件名称写入进去  文件名* 代表忽略所有以文件名+所有后缀的 ？代表一个字符
+        //注意可以将.gitignore一起忽略
+        //$ git help 你需要查找的命令
+    </script>
+</body>
+
+</html>
