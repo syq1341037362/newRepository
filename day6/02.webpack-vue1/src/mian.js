@@ -59,3 +59,8 @@ var vm = new Vue({
 //5.使用import导入这个组件
 //6.创建vm实例 var vm = new Vue({el:'#app',render:c=>c(login)})
 //7.在页面中创建一个 id 为app 的div 元素 作为我们vm实例要控制的区域
+
+
+import m1, { title as title123, content } from './test.js'
+console.log(m1);
+console.log(title123 + '----' + content)
