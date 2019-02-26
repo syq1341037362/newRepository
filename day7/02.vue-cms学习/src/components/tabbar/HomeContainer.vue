@@ -2,29 +2,33 @@
     <div>
         <!-- 轮播图区域 -->
         <mt-swipe :auto="4000">
-            <mt-swipe-item>1</mt-swipe-item>
-            <mt-swipe-item>2</mt-swipe-item>
-            <mt-swipe-item>3</mt-swipe-item>
+            <!-- 在组件中使用v-for 循环 必须写:key -->
+            <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
+                <img :src="item.img_src">
+            </mt-swipe-item>
         </mt-swipe>
     </div>
 </template>
 <script>
+import {Toast} from 'mint-ui';
 export default {
     data(){
-        return{}
+        return{
+            lunbotuList:[] //保存轮播图数组
+        }
     },
     created(){
         this.getLunbotu();
     },
     methods:{
         getLunbotu(){
-            this.$axios.get('/getscript', JSON.stringify({//这里将json格式转成string格式发送
-                method: 'user.login',
-                mobile: this.username,
-                password: this.password,
-                sign: ''
-                })).then(function (response) {
-                console.log(response);
+            this.$axios.get('/getlunbo', {}).then(res=>{
+                    if(res.data.status==0){
+                      this.lunbotuList = res.data.message
+                     
+                    }else{
+                        Toast('加载轮播图失败')
+                    }
                 }).catch(function (error) {
                 console.log(error);
                 });
@@ -46,6 +50,10 @@ export default {
              &:nth-child(3){
                 background-color: blue
             }
+        }
+        img{
+            width: 100%;
+            height: 100%;
         }
 
     }

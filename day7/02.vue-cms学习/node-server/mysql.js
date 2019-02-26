@@ -26,7 +26,7 @@ server.on('request', function(req, res) {
     var rdata = urlModule.parse(req.url, true).query; //获取参数
 
     console.log(rdata);
-    if (url === '/getscript') {
+    if (url === '/getlunbo') {
         //console.log(req.url);
         //拼接一个合法的js脚本 这里拼接的是个方法的调用
         //console.log(query.callback);
@@ -38,9 +38,8 @@ server.on('request', function(req, res) {
         sql = `select * from vue_swiper `;
 
 
-        var option = {};
-        option.status = 200;
-        option.data = [];
+        var body = {};
+        body.status = 0;
         var m = new Array();
         //查
         connection.query(sql, function(err, rs) {
@@ -56,15 +55,15 @@ server.on('request', function(req, res) {
                 for (v of rs) {
                     m.push(v);
                 }
-                option.data = m;
-                var script = `${JSON.stringify(option)}`;
+                body.message = m;
+                var script = `${JSON.stringify(body)}`;
                 res.end(script);
 
                 //connection.end();
             } else {
 
-                option.data = m;
-                var script = `${JSON.stringify(option)}`;
+                body.message = m;
+                var script = `${JSON.stringify(body)}`;
                 res.end(script);
 
             }
