@@ -32,44 +32,30 @@ server.on('request', function(req, res) {
         //console.log(query.callback);
         //console.log(url);
         //connection.connect();
-        var sql = '';
-        var a = '';
-
-        sql = `select * from vue_swiper `;
-
-
-        var body = {};
-        body.status = 0;
-        var m = new Array();
-        //查
-        connection.query(sql, function(err, rs) {
-            if (err) {
-                console.log('[SELECT ERROR] - ', err.message);
-                return;
-            }
-
-            console.log('--------------------------SELECT----------------------------');
-            //console.log(rs)
-            console.log('------------------------------------------------------------\n\n');
-            if (a != "1") {
-                for (v of rs) {
-                    m.push(v);
-                }
-                body.message = m;
-                var script = `${JSON.stringify(body)}`;
-                res.end(script);
-
-                //connection.end();
-            } else {
-
-                body.message = m;
-                var script = `${JSON.stringify(body)}`;
-                res.end(script);
-
-            }
-        });
+        var sql = `select * from vue_swiper `;
+        selectAll(sql, res);
 
         //res.end 发送给客户端 客户端去吧这个字符串 当做js代码去解析执行
+    } else if (url === '/getnewslist') { //获取新闻列表
+        var sql = `select * from vue_home_news order by ctime desc`;
+        selectAll(sql, res);
+    } else if (url === '/getnewsinfo') { //根据id查询新闻内容
+        var sql = `select * from vue_home_news where id = ${rdata.id} `;
+        selectAll(sql, res);
+    } else if (url === '/getcomment') { //查询留言
+        var page = 0;
+        var pagesize = 0;
+        if (rdata.page != 0) {
+            page = (rdata.page * rdata.pagesize);
+            pagesize = rdata.pagesize;
+        } else {
+            page = 0;
+            pagesize = rdata.pagesize;
+        }
+        pageSelect(res, page, pagesize)
+            // selectAll(sql, res);
+    } else if (url === '/insertcomment') { //插入留言
+        insertcomment(res, rdata)
     } else {
         res.end('404')
     }
@@ -84,3 +70,93 @@ server.on('request', function(req, res) {
 server.listen(1234, function() {
     console.log('server listen at http://127.0.0.1:1234')
 })
+
+//查询
+function selectAll(sql, res) {
+    console.log(sql)
+    var body = {};
+    body.status = 0;
+    var m = new Array();
+    //查
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        for (v of rs) {
+            m.push(v);
+        }
+        console.log('--------------------------SELECT----------------------------');
+        console.log(sql)
+        console.log('------------------------------------------------------------\n\n');
+        body.message = m;
+        //将对象转换为Json字符串
+        var script = `${JSON.stringify(body)}`;
+        //发送
+        res.end(script);
+    });
+
+
+}
+
+//分页查询
+function pageSelect(res, page, pagesize) {
+    var body = {};
+    body.status = 0;
+    var m = new Array();
+    var sql = `select count(1) as max from vue_comment`
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        var max = (rs[0].max);
+        if (page >= max) {
+            console.log(page)
+            console.log(max)
+            var toast = '没有更多数据了'
+            body.toast = toast;
+            res.end(JSON.stringify(body));
+        } else {
+            var selectSql = `select * from vue_comment limit ${page},${pagesize}`
+            connection.query(selectSql, function(err, rs) {
+                if (err) {
+                    console.log('[SELECT ERROR] - ', err.message);
+                    return;
+                }
+                for (v of rs) {
+                    m.push(v);
+                }
+                console.log('--------------------------SELECT----------------------------');
+                console.log(selectSql)
+                console.log('------------------------------------------------------------\n\n');
+                body.message = m;
+                body.toast = null;
+                //将对象转换为Json字符串
+                var script = `${JSON.stringify(body)}`;
+                //发送
+                res.end(script);
+            })
+        }
+    })
+}
+
+
+//插入数据
+function insertcomment(res, params) {
+    var body = {};
+    body.status = 0;
+    var sql = `insert into vue_comment(name,type,ctime,content,floor) select '${params.name}',${params.type},'${params.ctime}','${params.content}' ,(select max(floor)+1 from vue_comment where type = ${params.type})`
+    console.log(sql)
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        body.toast = "发表成功!"
+        res.end(JSON.stringify(body));
+
+
+    })
+
+}

@@ -1,7 +1,11 @@
 <template>
     <div class="app-container">
         <!-- 顶部导航区域 -->
-        <mt-header fixed title="黑马程序员Vue项目"></mt-header>
+        <mt-header fixed title="黑马程序员Vue项目">
+			<router-link to="../" slot="left" v-if="!flag">
+    			<mt-button icon="back">返回</mt-button>
+  			</router-link>
+		</mt-header>
 
 
         <!-- 中间的 路由 router-view 区域 -->
@@ -37,13 +41,18 @@
 <script>
 
 export default {
-   
+   data(){
+	   return {
+		   flag:false
+	   }
+   }
 }
 </script>
 <style scoped>
 .app-container{
     padding-top: 40px;
 	overflow-x: hidden;
+	padding-bottom: 50px;
 }
 .v-enter{
 	opacity: 0;

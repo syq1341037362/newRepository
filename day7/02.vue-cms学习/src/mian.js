@@ -1,6 +1,12 @@
 //入口文件
 import Vue from 'vue'
 
+
+//导入 jq
+import $ from 'jquery'
+window.jQuery = $;
+window.$ = $;
+
 //导入路由的包
 
 import VueRouter from 'vue-router'
@@ -18,10 +24,11 @@ import router from './router.js'
 import app from './App.vue'
 
 //头部组件 轮播图组件
-import { Header, Swipe, SwipeItem } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button)
 
 
 
@@ -36,6 +43,15 @@ axios.defaults.baseURL = 'http://127.0.0.1:1234'; // 配置接口地址
 axios.defaults.withCredentials = false;
 
 Vue.prototype.$axios = axios; // 将axios配置成vue的原型
+
+
+//导入时间插件
+import moment from 'moment'
+
+//定义全局过滤器
+Vue.filter('dataFormat', (dataStr, patten = "YYYY-MM-DD HH:mm:ss") => {
+    return moment(dataStr).format(patten)
+})
 
 
 //导入底部tabbar样式
