@@ -28,18 +28,25 @@ export default {
             commentList:[],
             tx:'',
             name:'匿名用户',
-            type:1
+            type:1,
+            id:this.$route.params.id
         }
     },methods:{
         getComment(){
             this.$axios.get('/getcomment', {
                     params: {
                         page:this.page,
-                        pagesize:this.pagesize
+                        pagesize:this.pagesize,
+                        id:this.id
                     }
                 }).then(res=>{
                     if(res.data.status==0){
-                      this.commentList = res.data.message
+                         if(res.data.toast==null){
+                            let queryList = res.data.message
+                            this.commentList = this.commentList.concat(queryList);
+                      }else{
+                          Toast(res.data.toast)
+                      }
                     }else{
                         Toast('数据加载失败')
                     }
@@ -49,29 +56,9 @@ export default {
         },
         moreComment(){
             //获取更多
-            this.$axios.get('/getcomment', {
-                    params: {
-                        page:this.page+1,
-                        pagesize:this.pagesize
-                    }
-                }).then(res=>{
-                    if(res.data.status==0){
-                      if(res.data.toast==null){
-                        let queryList = res.data.message
-                        this.commentList = this.commentList.concat(queryList);
-                        console.log(this.commentList)
-                        
-                        this.page = this.page+1
-                      }else{
-                          Toast(res.data.toast)
-                      }
-                      
-                    }else{
-                        Toast('数据加载失败')
-                    }
-                }).catch(function (error) {
-                console.log(error);
-                });
+            
+            this.page++
+            this.getComment();
         },
         insertComment(){
             //添加评论
@@ -80,11 +67,15 @@ export default {
                         name:this.name,
                         content:this.tx,
                         type:this.type,
-                        ctime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+                        ctime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+                        newsid:this.id
                     }
                 }).then(res=>{
                     if(res.data.status==0){
-                       Toast(res.data.toast)
+                       Toast(res.data.toast);
+                       this.tx = '';
+                       this.page = 0;
+                       this.getComment()
                     }else{
                         Toast('数据加载失败')
                     }

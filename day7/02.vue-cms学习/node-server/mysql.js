@@ -37,7 +37,7 @@ server.on('request', function(req, res) {
 
         //res.end 发送给客户端 客户端去吧这个字符串 当做js代码去解析执行
     } else if (url === '/getnewslist') { //获取新闻列表
-        var sql = `select * from vue_home_news order by ctime desc`;
+        var sql = `select * from vue_home_news order by ctime desc limit ${rdata.page}, ${rdata.pagesize}`;
         selectAll(sql, res);
     } else if (url === '/getnewsinfo') { //根据id查询新闻内容
         var sql = `select * from vue_home_news where id = ${rdata.id} `;
@@ -52,7 +52,7 @@ server.on('request', function(req, res) {
             page = 0;
             pagesize = rdata.pagesize;
         }
-        pageSelect(res, page, pagesize)
+        pageSelect(res, page, pagesize, rdata.id)
             // selectAll(sql, res);
     } else if (url === '/insertcomment') { //插入留言
         insertcomment(res, rdata)
@@ -100,11 +100,11 @@ function selectAll(sql, res) {
 }
 
 //分页查询
-function pageSelect(res, page, pagesize) {
+function pageSelect(res, page, pagesize, id) {
     var body = {};
     body.status = 0;
     var m = new Array();
-    var sql = `select count(1) as max from vue_comment`
+    var sql = `select count(1) as max from vue_comment where newsid = ${id}`
     connection.query(sql, function(err, rs) {
         if (err) {
             console.log('[SELECT ERROR] - ', err.message);
@@ -118,7 +118,11 @@ function pageSelect(res, page, pagesize) {
             body.toast = toast;
             res.end(JSON.stringify(body));
         } else {
-            var selectSql = `select * from vue_comment limit ${page},${pagesize}`
+            var selectSql = `SELECT a.* FROM vue_comment a INNER JOIN vue_home_news b on a.newsid = b.id where b.id = ${id} order by a.ctime desc limit ${page},${pagesize}`
+                // console.log(selectSql)
+
+
+            //var selectSql = `select * from vue_comment  limit ${page},${pagesize}`
             connection.query(selectSql, function(err, rs) {
                 if (err) {
                     console.log('[SELECT ERROR] - ', err.message);
@@ -146,7 +150,7 @@ function pageSelect(res, page, pagesize) {
 function insertcomment(res, params) {
     var body = {};
     body.status = 0;
-    var sql = `insert into vue_comment(name,type,ctime,content,floor) select '${params.name}',${params.type},'${params.ctime}','${params.content}' ,(select max(floor)+1 from vue_comment where type = ${params.type})`
+    var sql = `insert into vue_comment(name,type,ctime,content,floor,newsid) select '${params.name}',${params.type},'${params.ctime}','${params.content}' ,(select max(floor)+1 from vue_comment where type = ${params.type}),${params.newsid}`
     console.log(sql)
     connection.query(sql, function(err, rs) {
         if (err) {

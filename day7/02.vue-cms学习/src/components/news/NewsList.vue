@@ -13,7 +13,7 @@
                     </div>
                 </router-link>
             </li>
-		</ul>
+        </ul>
     </div>
 </template>
 
@@ -23,12 +23,19 @@ export default {
     data(){
         return {
             newsList:[],
-            flag:true
+            flag:true,
+            page:0,
+            pagesize:10
         }
     },
     methods:{
         getNewsList(){
-            this.$axios.get('/getnewslist', {}).then(res=>{
+            this.$axios.get('/getnewslist', {
+                params:{
+                    page:this.page,
+                    pagesize:this.pagesize    
+                }
+            }).then(res=>{
                     if(res.data.status==0){
                       this.newsList = res.data.message
                      
@@ -39,6 +46,7 @@ export default {
                 console.log(error);
                 });
         }
+
     },
     created(){
         this.getNewsList()

@@ -24,11 +24,12 @@ import router from './router.js'
 import app from './App.vue'
 
 //头部组件 轮播图组件
-import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Button, Loadmore } from 'mint-ui'
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button)
+Vue.component(Loadmore.name, Loadmore)
 
 
 
