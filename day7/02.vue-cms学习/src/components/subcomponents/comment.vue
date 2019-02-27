@@ -4,7 +4,7 @@
         <hr>
         <textarea placeholder="请输入要输入的内容(最多吐槽120字)" maxlength="120" v-model="tx"></textarea>
         <mt-button type='primary' size="large" @click="insertComment">发表评论</mt-button>
-        <div class="cmt-list" v-for="item in commentList" :key="item.id">
+        <div class="cmt-list" v-for="item in commentList" :key="item.ctime">
             <div class="cmt-item">
                 <div class="cmt-title">第{{item.floor+1}}楼&nbsp;&nbsp;用户:{{item.name}}&nbsp;&nbsp;发表时间：{{item.ctime | dataFormat}}</div>
                 <div class="cmt-body">
@@ -28,8 +28,8 @@ export default {
             commentList:[],
             tx:'',
             name:'匿名用户',
-            type:1,
-            id:this.$route.params.id
+            routeid:this.$route.params.id,
+
         }
     },methods:{
         getComment(){
@@ -37,6 +37,7 @@ export default {
                     params: {
                         page:this.page,
                         pagesize:this.pagesize,
+                        routeid:this.routeid,
                         id:this.id
                     }
                 }).then(res=>{
@@ -58,24 +59,35 @@ export default {
             //获取更多
             
             this.page++
-            this.getComment();
+            this.getComment()
         },
         insertComment(){
+            if(this.tx.trim().length === 0){
+                return Toast('评论内容不能为空!')
+            }
             //添加评论
              this.$axios.get('/insertcomment', {
                     params: {
                         name:this.name,
                         content:this.tx,
-                        type:this.type,
+                        type:this.id,
                         ctime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-                        newsid:this.id
+                        newsid:this.routeid
                     }
-                }).then(res=>{
+                },).then(res=>{
                     if(res.data.status==0){
                        Toast(res.data.toast);
-                       this.tx = '';
-                       this.page = 0;
-                       this.getComment()
+                       var commentObj = {}
+                       commentObj.content = this.tx
+                       commentObj.name = this.name
+                       commentObj.type = this.type
+                       commentObj.ctime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+                       commentObj.id = this.commentList.length+1
+                       commentObj.floor = this.commentList.length;
+                       this.commentList.unshift(commentObj);
+
+                       this.tx = ''
+                       
                     }else{
                         Toast('数据加载失败')
                     }
@@ -86,7 +98,8 @@ export default {
     },
     created(){
         this.getComment();
-    }
+    },
+    props:['id']
 }
 </script>
 <style lang="scss" scoped>

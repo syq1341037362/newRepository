@@ -24,14 +24,25 @@ import router from './router.js'
 import app from './App.vue'
 
 //头部组件 轮播图组件
-import { Header, Swipe, SwipeItem, Button, Loadmore } from 'mint-ui'
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button)
-Vue.component(Loadmore.name, Loadmore)
+// import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Button.name, Button)
+// Vue.component(Loadmore.name, Loadmore)
+// import { Lazyload } from 'mint-ui'
+// Vue.use(Lazyload)
 
 
+//因为 懒加载 按需导入有问题 改为全局导入
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
+
+
+//导入缩略图
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
 
 
 

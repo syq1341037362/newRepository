@@ -45,6 +45,7 @@ server.on('request', function(req, res) {
     } else if (url === '/getcomment') { //查询留言
         var page = 0;
         var pagesize = 0;
+
         if (rdata.page != 0) {
             page = (rdata.page * rdata.pagesize);
             pagesize = rdata.pagesize;
@@ -52,10 +53,33 @@ server.on('request', function(req, res) {
             page = 0;
             pagesize = rdata.pagesize;
         }
-        pageSelect(res, page, pagesize, rdata.id)
+        console.log("111-------rid" + rdata.routeid)
+        console.log("2222----id" + rdata.id)
+        pageSelect(res, page, pagesize, rdata.id, rdata.routeid)
             // selectAll(sql, res);
     } else if (url === '/insertcomment') { //插入留言
+        console.log(rdata)
         insertcomment(res, rdata)
+    } else if (url === '/getimgcategory') {
+        var sql = 'select * from vue_itemtype'
+        selectAll(sql, res);
+
+    } else if (url === '/getphotolistbycateid') {
+        var sql = '';
+        if (rdata.cateid == 0) {
+            sql = `select id,img_url,title,sub_title from vue_imglist order by typeid`
+        } else {
+            sql = `select id,img_url,title,sub_title from vue_imglist where typeid = ${rdata.cateid}`
+        }
+
+        selectAll(sql, res);
+
+    } else if (url === '/getphotoinfo') {
+        var sql = `select id,img_url,title,sub_title,typeid,content,click from vue_imglist where id = ${rdata.id}`;
+        selectAll(sql, res);
+    } else if (url === '/getthumbs') {
+        var sql = `select  img,img_one,img_two,img_three,img_four from vue_imglist where id = ${rdata.id}`
+        imgthumbs(sql, res);
     } else {
         res.end('404')
     }
@@ -100,11 +124,12 @@ function selectAll(sql, res) {
 }
 
 //分页查询
-function pageSelect(res, page, pagesize, id) {
+function pageSelect(res, page, pagesize, id, rid) {
     var body = {};
     body.status = 0;
     var m = new Array();
-    var sql = `select count(1) as max from vue_comment where newsid = ${id}`
+    var sql = `select count(1) as max from vue_comment where newsid = ${rid} and type = ${id}`
+    console.log(sql)
     connection.query(sql, function(err, rs) {
         if (err) {
             console.log('[SELECT ERROR] - ', err.message);
@@ -112,13 +137,11 @@ function pageSelect(res, page, pagesize, id) {
         }
         var max = (rs[0].max);
         if (page >= max) {
-            console.log(page)
-            console.log(max)
             var toast = '没有更多数据了'
             body.toast = toast;
             res.end(JSON.stringify(body));
         } else {
-            var selectSql = `SELECT a.* FROM vue_comment a INNER JOIN vue_home_news b on a.newsid = b.id where b.id = ${id} order by a.ctime desc limit ${page},${pagesize}`
+            var selectSql = `SELECT a.* FROM vue_comment a INNER JOIN vue_home_news b on a.newsid = b.id where b.id = ${rid} and a.type=${id} order by a.ctime desc limit ${page},${pagesize}`
                 // console.log(selectSql)
 
 
@@ -148,9 +171,11 @@ function pageSelect(res, page, pagesize, id) {
 
 //插入数据
 function insertcomment(res, params) {
+    console.log(params)
     var body = {};
     body.status = 0;
-    var sql = `insert into vue_comment(name,type,ctime,content,floor,newsid) select '${params.name}',${params.type},'${params.ctime}','${params.content}' ,(select max(floor)+1 from vue_comment where type = ${params.type}),${params.newsid}`
+    var sql = `insert into vue_comment(name,type,ctime,content,floor,newsid) 
+                select '${params.name}',${params.type},'${params.ctime}','${params.content}' ,(select IFNULL(max(floor)+1,1)  from vue_comment where type = ${params.type} and newsid= ${params.newsid}),${params.newsid}`
     console.log(sql)
     connection.query(sql, function(err, rs) {
         if (err) {
@@ -162,5 +187,35 @@ function insertcomment(res, params) {
 
 
     })
+
+}
+
+function imgthumbs(sql, res) {
+    console.log(sql)
+    var body = {};
+    body.status = 0;
+    var m = new Array();
+    //查
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        m.push({ src: rs[0].img })
+        m.push({ src: rs[0].img_one })
+        m.push({ src: rs[0].img_two })
+        m.push({ src: rs[0].img_three })
+        m.push({ src: rs[0].img_four })
+        body.message = m
+        console.log(m)
+        console.log('--------------------------SELECT----------------------------');
+        console.log(sql)
+        console.log('------------------------------------------------------------\n\n');
+        //将对象转换为Json字符串
+        var script = `${JSON.stringify(body)}`;
+        //发送
+        res.end(script);
+    });
+
 
 }
