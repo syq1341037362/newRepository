@@ -95,6 +95,8 @@ server.on('request', function(req, res) {
         getGoodsInfoById(res, rdata)
     } else if (url === '/getgoodsdesc') {
         getGoodsDesc(res, rdata)
+    } else if (url === '/getshopcarinfo') {
+        getShopcarListInfo(res, rdata)
     } else {
         res.end('404')
     }
@@ -297,7 +299,7 @@ function getGoodsInfoById(res, rdata) {
             console.log('[SELECT ERROR] - ', err.message);
             return;
         }
-        console.log(rs[0])
+        //console.log(rs[0])
         m.push({ src: rs[0].img })
         m.push({ src: rs[0].img_one })
         m.push({ src: rs[0].img_two })
@@ -332,6 +334,33 @@ function getGoodsDesc(res, rdata) {
         console.log(rs)
         body.message.content = rs[0].goodscontent;
         body.message.name = rs[0].goodsname;
+        var script = `${JSON.stringify(body)}`;
+        //发送
+        res.end(script);
+    })
+
+}
+
+//获取购物车中商品的信息
+function getShopcarListInfo(res, rdata) {
+    var body = {};
+    body.status = 0;
+    var m = new Array();
+    var sql = `select id,img_url,goodsname,nowprice from vue_goodslist where id in(${rdata.id})`
+        // console.log(sql);
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        for (v of rs) {
+            m.push(v);
+        }
+        console.log('--------------------------SELECT----------------------------');
+        console.log(sql)
+        console.log('------------------------------------------------------------\n\n');
+        body.message = m;
+        //将对象转换为Json字符串
         var script = `${JSON.stringify(body)}`;
         //发送
         res.end(script);

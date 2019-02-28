@@ -2,7 +2,7 @@
     <div class="app-container">
         <!-- 顶部导航区域 -->
         <mt-header fixed title="黑马程序员Vue项目">
-			<span slot="left" @click="goback" v-show="flag">
+			<span slot="left" @click="goBack" v-show="flag">
     			<mt-button icon="back">返回</mt-button>
   			</span>
 		</mt-header>
@@ -41,24 +41,30 @@
 <script>
 
 export default {
-   data(){
-	   return {
-		   flag:false,
-		   num:0
-	   }
+    data(){
+	    return {
+		    flag:false
+	    }
    },
-   methods:{
-	   goback(){
-		   if(this.$route.path=="/home"){
-			   this.flag = false;
-			   return false;
-		   }else{
-			   this.flag = true;
-				this.$router.go(-1)
-		   }
-		   
-	   }
-   }
+    methods:{
+	    goBack(){
+		    //点击后退
+		    this.$router.go(-1)
+	    }
+	  
+   },
+    watch:{
+		"$route.path":function(n){
+			if(n === '/home'){
+				this.flag = false
+			}else{
+				this.flag = true
+			}
+		}
+	},
+	created(){
+		this.flag = this.$route.path === '/home' ? false:true
+	}
 }
 </script>
 <style scoped>
