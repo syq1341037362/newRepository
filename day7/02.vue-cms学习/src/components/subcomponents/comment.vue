@@ -38,7 +38,8 @@ export default {
                         page:this.page,
                         pagesize:this.pagesize,
                         routeid:this.routeid,
-                        id:this.id
+                        id:this.id,
+                        tab:this.tab
                     }
                 }).then(res=>{
                     if(res.data.status==0){
@@ -99,7 +100,7 @@ export default {
     created(){
         this.getComment();
     },
-    props:['id']
+    props:['id','tab']
 }
 </script>
 <style lang="scss" scoped>

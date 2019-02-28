@@ -22,7 +22,7 @@
 
         </div>
         <!-- 放置一个现成的评论子组件 -->
-        <cmt-box :id="2"></cmt-box>
+        <cmt-box :id="2" :tab="2"></cmt-box>
     </div>
 </template>
 

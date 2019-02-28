@@ -53,9 +53,7 @@ server.on('request', function(req, res) {
             page = 0;
             pagesize = rdata.pagesize;
         }
-        console.log("111-------rid" + rdata.routeid)
-        console.log("2222----id" + rdata.id)
-        pageSelect(res, page, pagesize, rdata.id, rdata.routeid)
+        pageSelect(res, page, pagesize, rdata.id, rdata.routeid, rdata.tab)
             // selectAll(sql, res);
     } else if (url === '/insertcomment') { //插入留言
         console.log(rdata)
@@ -80,6 +78,23 @@ server.on('request', function(req, res) {
     } else if (url === '/getthumbs') {
         var sql = `select  img,img_one,img_two,img_three,img_four from vue_imglist where id = ${rdata.id}`
         imgthumbs(sql, res);
+    } else if (url === '/getgoodslist') {
+        var page = 0;
+        var pagesize = 0;
+
+        if (rdata.page != 0) {
+            page = (rdata.page * rdata.pagesize);
+            pagesize = rdata.pagesize;
+        } else {
+            page = 0;
+            pagesize = rdata.pagesize;
+        }
+        pageSelectGoodsList(res, page, pagesize)
+
+    } else if (url === '/getgoodsinfo') {
+        getGoodsInfoById(res, rdata)
+    } else if (url === '/getgoodsdesc') {
+        getGoodsDesc(res, rdata)
     } else {
         res.end('404')
     }
@@ -97,7 +112,6 @@ server.listen(1234, function() {
 
 //查询
 function selectAll(sql, res) {
-    console.log(sql)
     var body = {};
     body.status = 0;
     var m = new Array();
@@ -124,7 +138,7 @@ function selectAll(sql, res) {
 }
 
 //分页查询
-function pageSelect(res, page, pagesize, id, rid) {
+function pageSelect(res, page, pagesize, id, rid, tabid) {
     var body = {};
     body.status = 0;
     var m = new Array();
@@ -141,8 +155,14 @@ function pageSelect(res, page, pagesize, id, rid) {
             body.toast = toast;
             res.end(JSON.stringify(body));
         } else {
-            var selectSql = `SELECT a.* FROM vue_comment a INNER JOIN vue_home_news b on a.newsid = b.id where b.id = ${rid} and a.type=${id} order by a.ctime desc limit ${page},${pagesize}`
-                // console.log(selectSql)
+            var selectSql = '';
+            if (tabid != 3) {
+                selectSql = `SELECT a.* FROM vue_comment a INNER JOIN vue_home_news b on a.newsid = b.id where b.id = ${rid} and a.type=${id} order by a.ctime desc limit ${page},${pagesize}`
+            } else {
+                selectSql = `SELECT a.* FROM vue_comment a INNER JOIN vue_goodslist b on a.newsid = b.id where b.id = ${rid} and a.type=${id} order by a.ctime desc limit ${page},${pagesize}`
+            }
+
+            console.log(selectSql)
 
 
             //var selectSql = `select * from vue_comment  limit ${page},${pagesize}`
@@ -189,9 +209,8 @@ function insertcomment(res, params) {
     })
 
 }
-
+//缩略图
 function imgthumbs(sql, res) {
-    console.log(sql)
     var body = {};
     body.status = 0;
     var m = new Array();
@@ -217,5 +236,105 @@ function imgthumbs(sql, res) {
         res.end(script);
     });
 
+
+}
+
+//商品分页查询
+function pageSelectGoodsList(res, page, pagesize) {
+    var body = {};
+    body.status = 0;
+    body.toast = '';
+    var m = new Array();
+    var sql = `select count(1) as max from vue_goodslist`
+    console.log(sql)
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        var max = (rs[0].max);
+        if (page >= max) {
+            body.toast = '没有更多数据了'
+            res.end(JSON.stringify(body));
+        } else {
+            var selectSql = `SELECT a.* FROM vue_goodslist a  order by a.ctime desc limit ${page},${pagesize}`
+                // console.log(selectSql)
+
+
+            //var selectSql = `select * from vue_comment  limit ${page},${pagesize}`
+            connection.query(selectSql, function(err, rs) {
+                if (err) {
+                    console.log('[SELECT ERROR] - ', err.message);
+                    return;
+                }
+                for (v of rs) {
+                    m.push(v);
+                }
+                console.log('--------------------------SELECT----------------------------');
+                console.log(selectSql)
+                console.log('------------------------------------------------------------\n\n');
+                body.message = m;
+                body.toast = null;
+                //将对象转换为Json字符串
+                var script = `${JSON.stringify(body)}`;
+                //发送
+                res.end(script);
+            })
+        }
+    })
+}
+
+
+//商品详情页查询
+function getGoodsInfoById(res, rdata) {
+    var body = {};
+    body.status = 0;
+    var m = [];
+    body.message = {}
+    var sql = `select * from vue_goodslist where id = ${rdata.id}`
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        console.log(rs[0])
+        m.push({ src: rs[0].img })
+        m.push({ src: rs[0].img_one })
+        m.push({ src: rs[0].img_two })
+        m.push({ src: rs[0].img_three })
+        m.push({ src: rs[0].img_four })
+        body.message.list = m;
+        body.message.content = rs[0].content;
+        body.message.goodsname = rs[0].goodsname;
+        body.message.now = rs[0].nowprice;
+        body.message.old = rs[0].oldprice;
+        body.message.number = rs[0].goodsnumber;
+        body.message.ctime = rs[0].ctime;
+        body.message.stock = rs[0].stock;
+
+        var script = `${JSON.stringify(body)}`;
+        //发送
+        res.end(script);
+
+    })
+}
+//获取商品的图文介绍
+function getGoodsDesc(res, rdata) {
+    var body = {};
+    body.status = 0;
+    body.message = {};
+    var sql = `select goodscontent,goodsname from vue_goodslist where id = ${rdata.id}`
+    connection.query(sql, function(err, rs) {
+        if (err) {
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        console.log(rs)
+        body.message.content = rs[0].goodscontent;
+        body.message.name = rs[0].goodsname;
+        var script = `${JSON.stringify(body)}`;
+        //发送
+        res.end(script);
+    })
 
 }

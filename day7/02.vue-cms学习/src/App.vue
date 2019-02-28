@@ -2,9 +2,9 @@
     <div class="app-container">
         <!-- 顶部导航区域 -->
         <mt-header fixed title="黑马程序员Vue项目">
-			<router-link to="../" slot="left" v-if="!flag">
+			<span slot="left" @click="goback" v-show="flag">
     			<mt-button icon="back">返回</mt-button>
-  			</router-link>
+  			</span>
 		</mt-header>
 
 
@@ -26,7 +26,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-syq" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{num}}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item-syq" to="/search">
@@ -43,7 +43,20 @@
 export default {
    data(){
 	   return {
-		   flag:false
+		   flag:false,
+		   num:0
+	   }
+   },
+   methods:{
+	   goback(){
+		   if(this.$route.path=="/home"){
+			   this.flag = false;
+			   return false;
+		   }else{
+			   this.flag = true;
+				this.$router.go(-1)
+		   }
+		   
 	   }
    }
 }

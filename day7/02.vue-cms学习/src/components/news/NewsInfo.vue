@@ -12,7 +12,7 @@
         <div class="content" v-html="newsInfo.content" ref="content"></div>
 
         <!-- 评论子组件区 -->
-        <comment-box :id="1"></comment-box>
+        <comment-box :id="1" :tab="1"></comment-box>
     </div>
 </template>
 
