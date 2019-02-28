@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <!-- 顶部导航区域 -->
-        <mt-header fixed title="黑马程序员Vue项目">
+        <mt-header fixed title="Vue项目">
 			<span slot="left" @click="goBack" v-show="flag">
     			<mt-button icon="back">返回</mt-button>
   			</span>

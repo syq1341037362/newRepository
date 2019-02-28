@@ -1,14 +1,14 @@
 {
-    "name": "01.webpack-study",
+    "name": "vue-project",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "this is a vue project",
+    "main": "main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "webpack-dev-server --open --port 3000 --hot --host 192.168.1.2"
+        "dev": "webpack-dev-server --open --port 3000 --hot"
     },
     "keywords": [],
-    "author": "",
+    "author": "syq",
     "license": "ISC",
     "devDependencies": {
         "axios": "^0.18.0",
