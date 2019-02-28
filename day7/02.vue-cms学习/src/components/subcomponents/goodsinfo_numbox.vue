@@ -3,7 +3,7 @@
     <!-- 我们可以使用 watch 属性监听 来监听父组件传递个max 值 不管我们的 watch 会触发几次 但是最后一次肯定是一个合法的max 数值 -->
      <div class="mui-numbox" data-numbox-min='1' data-numbox-max='max'>
         <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-        <input id="test" class="mui-input-numbox" type="number" value="0" ref="numbox" @change="countChange" />
+        <input id="test" class="mui-input-numbox" type="number" ref="numbox" @change="countChange" />
         <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
     </div>
 

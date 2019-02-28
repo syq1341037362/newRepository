@@ -11,7 +11,7 @@ const vueLoaderPlugin = require("vue-loader/lib/plugin");
 //打包的文件的入口 和出口  就会检查项目目录的配置文件  并读取这个文件 就拿到了导出的这个配置对象
 //然后根据这个对象进行打包构建
 module.exports = {
-    entry: path.join(__dirname, './src/mian.js'), //项目入口文件
+    entry: path.join(__dirname, './src/main.js'), //项目入口文件
     output: {
         path: path.join(__dirname, './dist'), //输出路径
         filename: 'bundle.js' //指定输出文件的命令
