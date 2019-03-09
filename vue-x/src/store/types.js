@@ -1,0 +1,12 @@
+/**
+ * 方法名称
+ */
+const COUNTADD = 'COUNTADD'
+const COUNTDECREASE = 'COUNTDECREASE'
+const COUNTADDASYNC = 'COUNTADDASYNC'
+
+export default {
+    COUNTADD,
+    COUNTDECREASE,
+    COUNTADDASYNC
+}
