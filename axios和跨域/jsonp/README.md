@@ -1,7 +1,7 @@
 ## vue中如何使用 jsonp
 
 ### 1.安装jsonp
-* 1.安装jsonp
+* 安装jsonp
 > cnpm i vue-jsonp
 
 ### 2.将jsonp 配置到vue
