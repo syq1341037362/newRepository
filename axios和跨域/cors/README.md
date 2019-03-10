@@ -2,7 +2,7 @@
 > 详情请看server2.js [B站视频地址](https://www.bilibili.com/video/av31173487?t=2151)
 
 ### 前端需要注意的点
- * 1. cookie 问题
+ * 1.cookie 问题
  > document.cookie = '1121'; //cookie 不允许跨域但是可以强制带cookie跨域
  > xhr.withCredentials = true; //强制携带凭证 也就是cookie
  * 2.前端设置请求头
