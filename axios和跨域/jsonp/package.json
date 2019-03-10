@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
     "vue": "^2.6.6",
     "vue-jsonp": "^0.1.8"
   },

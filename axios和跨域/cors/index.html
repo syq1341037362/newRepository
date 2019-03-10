@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+HELLO
+
+<body>
+
+</body>
+<script>
+    //注意看 server2.js
+    let xhr = new XMLHttpRequest;
+    xhr.open('PUT', 'http://localhost:4000/getData', true);
+    xhr.withCredentials = true; //强制携带凭证 也就是cookie
+    xhr.setRequestHeader('name', '1121'); //设置请求头
+    document.cookie = '1121'; //cookie 不允许跨域但是可以强制带cookie跨域
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+                console.log(xhr.response)
+                console.log(xhr.getResponseHeader('name'))
+            }
+        }
+    }
+    xhr.send();
+</script>
+
+</html>

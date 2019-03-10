@@ -2,6 +2,7 @@
   <div id="app">
       <button @click="getDataFromQiHu">获取360搜索的数据</button>
       <button @click="getDataFromBaiDu">获取百度搜索的数据</button>
+      <button @click="getDataFromMy">获取自己的server</button>
       <p v-for="item in list" :key="item">
         {{item}}
       </p>
@@ -49,6 +50,16 @@ export default {
         }).catch(err=>{
           console.log(err);
         })
+    },
+    getDataFromMy(){
+      this.$jsonp('http://localhost:3000/say',{
+        params:{
+        wd:'我爱你',
+        cb:'show'
+
+      }}).then(res=>{
+        console.log(res)
+      })
     }
    
   }
