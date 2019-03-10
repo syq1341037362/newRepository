@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>发送ajax请求</title>
+    <link rel="stylesheet" href="">
+    <script src="/src/lib/vue.min.js"></script>
+    <script src="/src/lib/axios.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click="send">发送ajax请求</button>
+        <button @click="sendGet">Get发送ajax请求</button>
+        <button @click="sendPost">Postt发送ajax请求</button>
+    </div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {},
+
+        methods: {
+            send() {
+                axios({
+                    methods: 'get',
+                    url: './json/user.jsaon',
+                }).then(res => {
+                    if (res.status == 200) {
+                        console.log(res.data);
+                    }
+
+                }).catch(err => {
+                    console.log('---错误---')
+                })
+            },
+            sendGet() {
+                //第一种通过直接url+参数
+                // axios.get("./server.php?name=秋香&age=18")
+                //第二种 通过 params
+                axios.get("./server.php", {
+                        params: {
+                            name: "秋香",
+                            age: 18
+                        }
+                    })
+                    .then(res => {
+
+                        console.log(res.data);
+
+                    }).catch(err => {
+                        console.log('---错误---')
+                    })
+            },
+            sendPost() {
+                axios.post('./server.php', this.user, {
+                        transformRequest: [
+                            function(data) {
+                                let params = '';
+                                for (let index in data) {
+                                    params += index + "=" + data[index] + "&"
+                                }
+                                return params;
+                            }
+                        ]
+                    })
+                    .then(res => {
+                        if (res.status == 200) {
+                            console.log(res.data)
+                        }
+                    }).catch(err => {
+                        console.log('---错误---')
+                    })
+            }
+        }
+
+    })
+</script>
+
+</html>
