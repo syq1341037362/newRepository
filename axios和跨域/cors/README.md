@@ -7,7 +7,7 @@
  > xhr.withCredentials = true; //强制携带凭证 也就是cookie
  * 2.前端设置请求头
  > xhr.setRequestHeader('name', '1121'); //设置请求头
- * 3. 获取后端发送过来的头
+ * 3.获取后端发送过来的头
  > xhr.getResponseHeader('name')
 
  ### 后端几个基本配置
