@@ -5,5 +5,5 @@
     $name = $_POST['name'];
     $age = $_POST['age'];
     //相应数据
-    echo '姓名：',$name,'年龄',$age;
+    echo '姓名：',$name,'年龄',$age; 
 ?>
