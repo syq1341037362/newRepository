@@ -28,5 +28,7 @@
           console.log(err);
         })
 ```
+### jsonp问题
+> (只能get 不能post delete put 而且不安全容易xss攻击)
 
 
