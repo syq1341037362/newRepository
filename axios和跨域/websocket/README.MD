@@ -11,21 +11,6 @@
 - 1.页面创建一个websocket 发送数据
 - 2.服务端 创建一个 websocket 服务器 接收数据并返回
 ***
-### 实现
-- 1.a.html先引用b.html(跨域不能直接拿值) a 和 b 虽然是一二级域名的关系 但是还是跨域
-- 2.在a.html中 加入 document.domin = 'ky.cn'
-- 3.在b.html中 加入 document.domin = 'ky.cn'
-- 3.在a.html中获取b的属性 用 frame.contentWindow.b中你想要的属性的名称
-***
-
-### 注意如果没有一二级的域名 可以通过hosts文件进行修改模拟一二级域名
-> hosts文件地址 C:\Windows\System32\drivers\etc\hosts
-> 假设我是 a.ky.cn 和 b.ky.cn 我就如下配置模拟一个一二级域名 注意不要带上# #是注释不使用的意思
-```
-    127.0.0.1       a.ky.cn
-	127.0.0.1       b.ky.cn
-```
-
 ### 代码
 > socket.html
 ```
