@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <iframe src="http://localhost:4000/b.html" frameborder="0" id="frame" onload="load()"></iframe>
+
+    <script>
+        function load() {
+            let frame = document.getElementById("frame"); //获取iframe
+            frame.contentWindow.postMessage('我爱你', 'http://localhost:4000') //向b.html发送内容并指定发送的源为4000
+            window.onmessage = function(e) { //这里接收 4000下的 b.html发送回来的内容并打印出来
+                console.log(e.data);
+            }
+        }
+    </script>
+</body>
+
+</html>
