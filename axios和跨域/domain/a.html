@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 一级域名和二级域名 -->
+    <!-- 一级例如 www.baidu.com -->
+    <!-- 二级域名 video.baidu.com -->
+    <!-- 看似能访问 其实不能 主要是因为 域名 协议 端口 不同都是跨域 -->
+    <!-- a 是通过  http://a.ky.cn:3000/a.html -->
+
+    HELLO-A
+    <iframe src="http://b.ky.cn:3000/b.html" id='frame' onload="load()"></iframe>
+    <script>
+        document.domain = 'ky.cn'
+
+        function load() {
+            console.log(frame.contentWindow.a);
+        }
+    </script>
+</body>
+
+</html>
