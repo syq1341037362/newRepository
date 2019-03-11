@@ -4,11 +4,11 @@
 ### 需求
 
 - 1.a.html 和 b.html 是一二级域名
-- 2.获取 b.html的属性
+- 2.a.html 获取 b.html的属性
 ***
 
 ### 实现
-- 1.a.html先引用c.html(跨域不能直接拿值) a 和 b 虽然是一二级域名的关系 但是还是跨域
+- 1.a.html先引用b.html(跨域不能直接拿值) a 和 b 虽然是一二级域名的关系 但是还是跨域
 - 2.在a.html中 加入 document.domin = 'ky.cn'
 - 3.在b.html中 加入 document.domin = 'ky.cn'
 - 3.在a.html中获取b的属性 用 frame.contentWindow.b中你想要的属性的名称
