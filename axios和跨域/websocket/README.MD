@@ -1,5 +1,8 @@
 ## websocket通信 可以跨域 和 http长连接的本质区别是 http是单向 socket是双向 传输都是靠TCP
 
+### [B站视频链接](https://www.bilibili.com/video/av31173487)
+
+
 ### 需求
 - 1.向websocket发送数据
 - 2.获取返回的数据
