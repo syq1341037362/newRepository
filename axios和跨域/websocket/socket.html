@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //高级api 不兼容 但是有一个库叫socket.io (一般使用它)兼容 这里就使用websocket
+        //仔细看server.js 服务端
+        //创建一个scoket
+        let scoket = new WebSocket('ws://localhost:3000');
+        //当连接成功之后 会触发onopen
+        scoket.onopen = function() {
+                scoket.send('我爱你')
+            }
+            //监听服务端发送的消息
+        scoket.onmessage = function(e) {
+            console.log(e.data)
+        }
+    </script>
+</body>
+
+</html>
