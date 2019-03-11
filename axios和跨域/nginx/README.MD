@@ -30,3 +30,38 @@
     }
 ```
 ***
+
+### 第三步 页面请求nginx服务器
+- 1.创建一个index.html页面
+- 2.创建一个本地服务器 为跨域准备
+- 3.发送请求到nginx服务器
+***
+> index.html 发送一个简单的xhr请求
+```
+    let xhr = new XMLHttpRequest;
+    xhr.open('get', 'http://localhost/a.json', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+                console.log(xhr.response)
+            }
+        }
+    }
+    xhr.send();
+```
+***
+> server.js 配置一个简单的服务器 用于和nginx服务器跨域
+```
+    const express = require('express')
+
+    const app = express();
+
+    app.use(express.static(__dirname));
+
+    app.listen(3000)
+```
+***
+> nginx 配置了请求头等信息 就可以访问到 a.json了
+
+
+
