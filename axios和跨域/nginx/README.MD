@@ -1,16 +1,16 @@
 ## nginx跨域 使用和cros差不多
 
 ### 第一步 下载
-> 1.下载nginx [nginx下载](http://nginx.org/en/download.html)
-> 2.解压出来点击exe就可以使用了
-> 3.目录结构如下
-> -| config
-> -| contrib
-> -| docs
-> -| html
-> -| logs
-> -| temp
-> -| nginx.exe
+- 1.下载nginx [nginx下载](http://nginx.org/en/download.html)
+- 2.解压出来点击exe就可以使用了
+- 3.目录结构如下
+- -| config
+- -| contrib
+- -| docs
+- -| html
+- -| logs
+- -| temp
+- -| nginx.exe
 ***
 ### 第二步 配置nginx
 > 1.找到 nginx.config
