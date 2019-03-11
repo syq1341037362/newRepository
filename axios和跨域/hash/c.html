@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        console.log(location.hash); //打印出a传递过来的hash
+        let ifranme = document.createElement('iframe'); //创建一个iframe 
+        ifranme.src = 'http://localhost:3000/b.html#idontloveyou' //把处理的结果传给b.html
+        document.body.appendChild(ifranme); //一定要把这个iframe 放进页面 不然不执行
+    </script>
+</body>
+
+</html>

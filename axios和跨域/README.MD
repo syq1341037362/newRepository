@@ -4,8 +4,8 @@
 - cors
 - postMessage
 - window.name
-- doucument.domain
 - location.hash
+- doucument.domain
 - http-proxy
 - nginx
 - websocket

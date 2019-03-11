@@ -1,4 +1,4 @@
-## window.name(文件跨域获取数据) 借助iframe实现
+## window.name(页面跨域获取数据) 借助iframe实现
 ### [B站视频链接](https://www.bilibili.com/video/av31173487)
 ### 需求
 - 1.a.html和b.html是同域 同属于 http://localhost:3000
