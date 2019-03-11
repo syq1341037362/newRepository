@@ -13,9 +13,9 @@
 - -| nginx.exe
 ***
 ### 第二步 配置nginx
-> 1.找到 nginx.config
-> 2.找到 location的位置 假设我们需要访问的是 nginx 下的 josn文件夹下的 a.json
-> 3.为请求配置 需要注意的是 不能使用 : 结尾必须加上 ;
+- 1.找到 nginx.config
+- 2.找到 location的位置 假设我们需要访问的是 nginx 下的 josn文件夹下的 a.json
+- 3.为请求配置 需要注意的是 不能使用 : 结尾必须加上 ;
 ```
     //这里是基本的
     location / {
