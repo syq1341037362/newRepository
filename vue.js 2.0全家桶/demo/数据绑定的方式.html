@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据绑定的方式</title>
+    <link rel="stylesheet" href="">
+    <script src="../js/vue.js"></script>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+    
+    * {
+        margin-bottom: 50px;
+    }
+    
+    input {
+        width: 400px;
+    }
+</style>
+
+<body>
+
+    <div id="app">
+
+        <!-- 双向绑定 -->
+        <h1>双向数据绑定</h1>
+        <label for="">双向数据绑定</label>
+        <input type="text" v-model="msg" placeholder="随便输入点啥">
+        <p>这是是双向数据绑定的显示---<span v-cloak>{{msg}}</span></p>
+        <hr>
+
+        <!-- 单向数据绑定 -->
+        <!-- 1. {{}} -->
+        <h1>单向数据绑定第一种使用 { { } }</h1>
+        <p v-cloak>{{title}}</p>
+
+        <!-- 2.v-text 或 v-html -->
+        <h1>单向数据绑定第二种使用v-text或者v-html</h1>
+        <label for="">v-text和v-html的区别</label>
+        <input type="text" v-model="showMsg" placeholder="输入之后看下面不同的结果(记得输入一点标签查看不同)">
+        <p>v-text解析为纯文本：<span v-text="showMsg"></span></p>
+        <p>v-html可以识别标签：<span v-html="showMsg"></span></p>
+        <hr>
+
+
+        <!-- v-once 只绑定一次 不随改变而改变-->
+        <h1>v-once 只绑定一次</h1>
+        <p>v-once只绑定一次：<span v-once>{{showMsg}}</span></p>
+        <hr>
+
+
+        <!-- v-pre 不编译 原样显示 -->
+        <h1>v-pre 不编译 原样显示</h1>
+        <p>v-pre 不编译 原样显示：<span v-pre>{{showMsg}}</span></p>
+
+
+    </div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {
+            msg: '',
+            title: "欢迎使用Vue",
+            showMsg: 'welcome to vue.js'
+        },
+
+        methods: {}
+
+    })
+</script>
+
+</html>

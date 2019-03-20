@@ -55,8 +55,8 @@
     <div id='app'>
         {{msg}}
     </div>    
-
-## vue 常用的指令
+---
+## 三、vue 常用的指令
 
 ### 什么是指令？（用来扩展html标签的功能）
 #### 常用的指令 示例请看demo 中 常用的指令.html
@@ -186,7 +186,7 @@ var vm = new Vue({
 ```
 ---
 
-## 事件和属性
+## 四、事件和属性
 
 ### 1.事件
 
@@ -285,8 +285,8 @@ function show(e) {
    - .middle - (2.2.0) 只当点击鼠标中键时触发。
    - .passive - (2.3.0) 以 { passive: true } 模式添加侦听器
 
-
-## 模板
+---
+## 五、模板
 
 ### 1.简介
   Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。
@@ -296,7 +296,86 @@ function show(e) {
     <span>Message: {{ msg }}</span>
     ```
 ### 2.数据绑定的方式
+    具体请看 demo 中的数据绑定的方式
  - a. 双向数据绑定 v-model 
  - b. 单向数据绑定两种
     1. 使用两对大括号  {{ }} 可能会出现闪烁问题 解决方法 v-cloak 结合 css样式
-    2. 111
+    2. v-text 或者 v-html  不会出现闪烁问题 text和html区别在于 html可以识别标签 而 text解析成纯文本
+
+### 3.其他指令
+具体请看 demo 中的数据绑定的方式
+ - v-once 数据只绑定一次 不随改变而改变
+ - v-pre 不编译 直接原样显示
+
+---
+ ## 六、过滤器
+
+ ### 1.简介
+[官网地址](https://cn.vuejs.org/v2/api/#Vue-filter)
+- 用来过滤模型数据,在显示之前进行数据处理和筛选
+- 语法: {{ data | filter1(参数) | filter2(参数) }}
+
+### 2.关于内置过滤器
+- Vue 1.0中内置许多过滤器 如currency、uppercase、lowercase、limtBy、orderBy、filterBy
+- Vue 2.0中已经删除了所有内置过滤器 全部被废除
+如何解决?
+ 1. 使用第三方库,如loadash、date-fns日期格式化、accounting.js 货币格式化
+ 2. 使用自定义过滤器
+
+### 3.自定义过滤器
+详细信息请看 demo 中 自定义过滤器.html
+- 使用全局过滤器 Vue.filter(过滤器ID,过滤器函数)
+```
+html:
+  <p>{{msg | msgFormat('疯狂+1')}}</p>
+
+js:  
+//定义一个vue 全局过滤器  名字叫做 msgFormat
+    Vue.filter('msgFormat',(msg,arg)=>{
+
+        //字符串的 replace 方法 第一个参数 除了可以写一个 字符串之外 还可以定义一个正则
+
+        return  msg.replace(/单纯/g,arg)
+        
+    });
+    var vm = new Vue({
+        el:'#app',
+        data:{
+
+            msg:'曾经，我也是一个单纯的少年，单纯的我，傻傻的问谁是世界上最单纯的男人'
+
+        },
+        methods: {
+            
+        }
+    })
+```
+- 自定义局部过滤器
+ 在vm实例身上或者组件中的实例身上 挂载一个 filters  filters 是一个对象
+ ```
+ html:
+    <!-- 过滤器传值 -->
+    <h1>保留小数点后3位的过滤器</h1>
+    <h3>{{ 12.345666 | number(3) }}</h3>
+    <hr>
+js:
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {
+            currentTime: Date.now()
+        },
+
+        methods: {},
+        filters: { //自定义局部过滤器
+            number: (data, n) => {
+                var list = (data + '').split('.');
+                var last = list[1].substr(0, n);
+                var newData = parseFloat(list[0] + '.' + last);
+                return newData;
+            }
+        }
+
+    })    
+ ```

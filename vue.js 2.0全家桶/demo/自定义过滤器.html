@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义过滤器</title>
+    <link rel="stylesheet" href="">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 普通过滤器 -->
+        <h1>普通过滤器</h1>
+        <h3>{{ 8| padZero}}</h3>
+        <hr>
+
+        <!-- 过滤器传值 -->
+        <h1>保留小数点后3位的过滤器</h1>
+        <h3>{{ 12.345666 | number(3) }}</h3>
+        <hr>
+
+        <!-- 日期格式化 -->
+        <h1>日期格式化过滤器</h1>
+        <h3>{{currentTime | dateFormat('yyyy-mm-dd hh:mm:ss')}}</h3>
+        <hr>
+
+    </div>
+
+</body>
+
+<script>
+    //创建全局过滤器
+    var padZero = Vue.filter('padZero', function(data) {
+            return data < 10 ? "0" + data : data
+        })
+        // var number = Vue.filter('number', (data, n) => {
+        //         var list = (data + '').split('.');
+        //         var last = list[1].substr(0, n);
+        //         var newData = parseFloat(list[0] + '.' + last);
+        //         return newData;
+        //     })
+        //默认格式是 yyyy-mm-dd 
+    var dateFormat = Vue.filter('dateFormat', (data, n = "yyyy-mm-dd") => {
+        let d = new Date(data);
+        if (n == "yyyy-mm-dd") {
+            let month = (d.getMonth() + 1 + '').padStart(2, 0);
+            let day = (d.getDate() + '').padStart(2, 0);
+            return d.getFullYear() + '-' + month + '-' + day
+        } else {
+            let month = (d.getMonth() + 1 + '').padStart(2, 0);
+            let day = (d.getDate() + '').padStart(2, 0);
+            let h = (d.getHours() + '').padStart(2, 0);
+            let min = (d.getMinutes() + '').padStart(2, 0);
+            let sec = (d.getSeconds() + '').padStart(2, 0);
+            return d.getFullYear() + '-' + month + '-' + day + ' ' + h + ':' + min + ':' + sec;
+        }
+
+
+    })
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {
+            currentTime: Date.now()
+        },
+
+        methods: {},
+        filters: { //自定义局部过滤器
+            number: (data, n) => {
+                var list = (data + '').split('.');
+                var last = list[1].substr(0, n);
+                var newData = parseFloat(list[0] + '.' + last);
+                return newData;
+            }
+        }
+
+    })
+</script>
+
+</html>
