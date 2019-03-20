@@ -258,12 +258,12 @@ function show(e) {
  ```
 
 #### 1.5 键盘事件(f1 和 26个字母不能直接使用 需要自己重新定义) 
- 回车: @keydown.13 或者 @keydown.enter
- 上: @keydown.38 或者 @keydown.up
- 下: @keydown.40 或者 @keydown.down
- 左: @keydown.37 或者 @keydown.left
- 右: @keydown.39 或者 @keydown.right
- 删除: @keydown.8 或者  @keydown.delete
+ - 回车: @keydown.13 或者 @keydown.enter
+ - 上: @keydown.38 或者 @keydown.up
+ - 下: @keydown.40 或者 @keydown.down
+ - 左: @keydown.37 或者 @keydown.left
+ - 右: @keydown.39 或者 @keydown.right
+ - 删除: @keydown.8 或者  @keydown.delete
  ---
  > 声明全局的自定义键盘事件,也称为自定义键码或自定义键位别名 具体请看 demo 中 键盘事件.html
  ```
