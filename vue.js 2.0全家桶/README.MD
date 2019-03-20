@@ -59,7 +59,7 @@
 ## vue 常用的指令
 
 ### 什么是指令？（用来扩展html标签的功能）
-#### 常用的指令
+#### 常用的指令 示例请看demo 中 常用的指令.html
 + v-model 双向数据绑定
 + v-for 循环
 + v-on 简写@ 绑定事件 举例 v-on:click @click
@@ -239,7 +239,7 @@ function show(e) {
 ---
 #### 1.3 事件冒泡  
  阻止事件冒泡 [官网对应位置](https://cn.vuejs.org/v2/api/#v-on)
- a) 原生js方式 依赖于事件对象 具体看demo中的冒泡事件.html
+ a) 原生js方式 依赖于事件对象 具体看demo 中 冒泡事件和默认行为.html
  b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.stop** 举例如下
  ```
    <div @click="write">
@@ -247,9 +247,29 @@ function show(e) {
             <button @click.stop="show()">点我</button>
         </p>
     </div>
-
-
  ```
 
 #### 1.4 事件默认行为
+ 阻止默认行为
+  a) 原生js方式 依赖于事件对象 具体看demo 中 冒泡事件和默认行为.html
+  b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.prevent** 举例如下
+ ```
+    <a href="#" @click.prevent="study()">vue阻止默认行为</a>
+ ```
+
+#### 1.5 键盘事件(f1 和 26个字母不能直接使用 需要自己重新定义) 
+ 回车: @keydown.13 或者 @keydown.enter
+ 上: @keydown.38 或者 @keydown.up
+ 下: @keydown.40 或者 @keydown.down
+ 左: @keydown.37 或者 @keydown.left
+ 右: @keydown.39 或者 @keydown.right
+ 删除: @keydown.8 或者  @keydown.delete
+ ---
+ > 声明全局的自定义键盘事件,也称为自定义键码或自定义键位别名 具体请看 demo 中 键盘事件.html
+ ```
+    Vue.config.keyCodes = {
+    v: 86,
+    f1: 112
+    }
+```
 

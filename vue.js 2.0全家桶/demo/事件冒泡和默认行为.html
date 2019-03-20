@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>阻止冒泡 vue中使用.stop</h1>
+        <!-- 使用原生js阻止冒泡 -->
+        <div @click="write">
+            <p @click="print">
+                <button @click="show($event)">点我-原生js</button>
+            </p>
+        </div>
+        <!-- 使用vue阻止冒泡 -->
+        <div @click="write">
+            <p @click="print">
+                <button @click.stop="show()">点我-vue</button>
+            </p>
+        </div>
+        <hr>
+
+
+        <h1>阻止默认行为</h1>
+        <!-- 原生js解决默认行为 -->
+        <a href="#" @click="study($event)">原生js阻止默认行</a>
+        <br>
+        <!-- vue解决默认行为 -->
+        <a href="#" @click.prevent="study()">vue阻止默认行为</a>
+    </div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {},
+
+        methods: {
+            write() {
+                console.log("我是div的冒泡事件");
+            },
+            print() {
+                console.log("我是p标签的冒泡事件");
+            },
+            show() {
+                if (arguments[0]) {
+                    console.log("我是button的冒泡事件-原生js");
+                    arguments[0].stopPropagation(); //js原生阻止冒泡
+                } else {
+                    console.log("我是button的冒泡事件-vue");
+                }
+            },
+            study() {
+                if (arguments[0]) {
+                    arguments[0].preventDefault();
+                    console.log("阻止默认行为-原生js");
+                } else {
+                    console.log("阻止默认行为-vue");
+                }
+
+            }
+        }
+
+    })
+</script>
+
+</html>

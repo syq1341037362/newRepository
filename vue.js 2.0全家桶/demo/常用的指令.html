@@ -7,18 +7,96 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>常用的指令</title>
     <link rel="stylesheet" href="">
-    <script src="js/vue.js"></script>
+    <script src="../js/vue.js"></script>
 </head>
-
+<style>
+    * {
+        margin-bottom: 50px;
+    }
+    
+    .block {
+        display: block
+    }
+    
+    .bg {
+        background-color: aqua;
+    }
+    
+    .font {
+        font-size: 20px;
+    }
+    
+    [v-cloak] {
+        display: none;
+    }
+</style>
 
 <body>
     <div id="app">
+        <h1>双向数据绑定 v-model</h1>
+        <!-- 双向数据绑定  v-model -->
+        <input type="text" v-model="name" placeholder="试着输入点什么" />
+        <p> aaa----<span>{{name}}</span></p>
+        <hr>
+
+        <!-- vue中的遍历 v-for 一定要写 :key :key是用来指定唯一性的可以是数字和字符串 -->
+        <!-- 遍历数组 -->
+        <h1>v-for遍历</h1>
+        <ul>
+            <li>这是遍历出来的数组</li>
+            <li v-for="(item,index) in nums" :key="index">
+                {{item}}
+            </li>
+        </ul>
+
+        <!-- 遍历对象 -->
+        <ul>
+            <li>这是遍历出来的对象</li>
+            <li v-for="(item,index) in user" :key="index">
+                {{item}}
+            </li>
+        </ul>
+        <hr>
+
+        <h1>vue提供的属性绑定 v-bind 简写 : </h1>
+        <!-- 属性绑定 v-bind 简写 : -->
+        <!-- 原生 -->
+        <p>
+            <img src="https://www.baidu.com/img/bd_logo1.png?where=super" width="200px" height="100px">
+            <span class="block bg font">这是原生显示的样式</span>
+        </p>
+        <!-- vue提供的属性绑定 -->
+        <p>
+            <img :src="url" :width="w" :height="h">
+            <span :class="{block:flag,bg:flag,font:flag}">这是vue的bind属性绑定显示的样式</span>
+        </p>
+        <hr>
+
+        <h1>vue提供的事件绑定 v-on 简写@ </h1>
+        <!-- 事件绑定 v-on 简写@ -->
         <!-- 之前都是传递event然后在方法中获取 -->
-        <button onclick="show(event)">点我</button>
+        <p>
+            <button onclick="show(event)">原生-点我</button>
 
-        <!-- vue中通过$event传递 -->
-        <button @click="print($event)">点我</button>
+            <!-- vue中通过$event传递 -->
+            <button @click="print($event)">vue-点我</button>
+        </p>
+        <hr>
 
+
+        <h1>vue提供的显示隐藏</h1>
+        <!-- vue 控制元素的显示或隐藏 -->
+        <button @click="flag = !flag">点我显示/隐藏</button>
+        <!-- v-if 是直接删除了这个元素 如果为true则重新添加 -->
+        <p v-if="flag">这是一段内容....</p>
+        <!-- v-show 其实控制显示隐藏利用了 display:none -->
+        <p v-show="flag">这是一段内容....</p>
+        <hr>
+
+
+        <h1>vue的v-cloak 不需要表达式 用于文档加载的时候不显示 { {xxx} } 这样的还未完成编译的 等完全加载好之后再显示</h1>
+        <!-- v-cloak  需要结合 css样式来实现-->
+        <p v-cloak>{{ok}}</p>
     </div>
 </body>
 
@@ -36,8 +114,13 @@
             nums: [12, 4, 23, 5],
             user: {
                 id: 9527,
-                name: '唐伯虎'
-            }
+                name: '唐伯虎',
+                age: 25
+            },
+            url: 'https://www.baidu.com/img/bd_logo1.png?where=super',
+            w: '200px',
+            h: '100px',
+            ok: '我已经完成编译了'
         },
 
         methods: {

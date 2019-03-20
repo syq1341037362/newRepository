@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘事件</title>
+    <link rel="stylesheet" href="">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <h1>vue的键盘事件</h1>
+        <!-- 键盘事件 @keydown @keypress @keyup -->
+        <!-- 原生js按键事件 -->
+        <label for="js">原生js按键事件</label>
+        <input type="text" name="js" @keydown="show($event)">
+        <br>
+        <!-- vue按键事件 -->
+        <label for="vue">vue按键事件</label>
+        <input type="text" name="vue" @keydown.enter="show()">
+        <br>
+        <label for="vue2">vue按键事件简化写法</label>
+        <!-- 另一种简化写法 -->
+        <input type="text" name="vue2" @keydown.13="show()">
+
+        <br>
+
+        <h1>Vue自定义键位别名</h1>
+        <!-- 自定义按键事件 -->
+        <label for="js">自定义按键事件</label>
+        <input type="text" name="js" @keydown.a="userDefined">
+
+    </div>
+
+</body>
+
+<script>
+    //声明全局的自定义键盘事件,也称为自定义键码或自定义键位别名
+    Vue.config.keyCodes = {
+        a: 65
+    }
+
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {},
+
+        methods: {
+            show() {
+                let e = '';
+                if (arguments[0]) {
+                    e = arguments[0];
+                }
+                if (e) {
+                    console.log(e.keyCode + '---原生js获取按键对应的数字');
+                    if (e.keyCode == 13) {
+                        console.log('---原生js按下enter后---');
+                    }
+                } else {
+                    console.log('---vue按下enter后---');
+                }
+            },
+            userDefined() {
+                console.log('自定义按键事件触发');
+            }
+        }
+
+    })
+</script>
+
+</html>
