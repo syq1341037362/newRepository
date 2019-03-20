@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="">
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        {{msg}}
+    </div>
+
+</body>
+
+<script>
+    //配置是否允许vue-devtools检查代码 方便进行调试 生产环境需要设置为false
+    Vue.config.devtools = false;
+    //阻止vue启动时生成生产消息
+    Vue.config.productionTip = false;
+    var vm = new Vue({
+
+        el: '#app', //指定关联的元素
+
+        data: { //存储数据
+            msg: 'hello world'
+        },
+
+        methods: {}
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>常用的指令</title>
+    <link rel="stylesheet" href="">
+    <script src="js/vue.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <!-- 之前都是传递event然后在方法中获取 -->
+        <button onclick="show(event)">点我</button>
+
+        <!-- vue中通过$event传递 -->
+        <button @click="print($event)">点我</button>
+
+    </div>
+</body>
+
+
+
+<script>
+    var vm = new Vue({
+
+        el: '#app',
+
+        data: {
+            name: '',
+            age: 21,
+            flag: true,
+            nums: [12, 4, 23, 5],
+            user: {
+                id: 9527,
+                name: '唐伯虎'
+            }
+        },
+
+        methods: {
+
+            print(e) {
+                console.log(e.target.innerHTML)
+            }
+        }
+
+    });
+    //因为 onclick不是vue的方法所以不能写在vm中
+    function show(e) {
+        console.log(e.target.innerHTML)
+    }
+</script>
+
+</html>

@@ -1,4 +1,3 @@
-### vue.js 五天
 
 ## 一、vue.js简介
 
@@ -25,7 +24,7 @@
  + 简单、易学、更轻量
  + 指令以 v-xxx开头
  + HTML代码+JSON数据,再创建一个vue实例
- + 由 **尤雨溪**等人维护, 目前就职于阿里巴巴 2014.2开源了 vue.js库源代码
+ + 由 **尤雨溪** 等人维护, 目前就职于阿里巴巴 2014.2开源了 vue.js库源代码
  ![](https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=d49c7e60ee1190ef15f69a8daf72f673/4afbfbedab64034f29596c8ba6c379310b551da2.jpg)
  
 ---
@@ -238,10 +237,19 @@ function show(e) {
 </script>
 ```
 ---
-#### 1.3 事件冒泡 
- 阻止事件冒泡
- a) 原生js方式 依赖于事件源
+#### 1.3 事件冒泡  
+ 阻止事件冒泡 [官网对应位置](https://cn.vuejs.org/v2/api/#v-on)
+ a) 原生js方式 依赖于事件对象 具体看demo中的冒泡事件.html
+ b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.stop** 举例如下
+ ```
+   <div @click="write">
+        <p @click="print">
+            <button @click.stop="show()">点我</button>
+        </p>
+    </div>
 
+
+ ```
 
 #### 1.4 事件默认行为
 
