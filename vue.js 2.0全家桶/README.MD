@@ -239,8 +239,8 @@ function show(e) {
 ---
 #### 1.3 事件冒泡  
  阻止事件冒泡 [官网对应位置](https://cn.vuejs.org/v2/api/#v-on)
- a) 原生js方式 依赖于事件对象 具体看demo 中 冒泡事件和默认行为.html
- b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.stop** 举例如下
+ - a) 原生js方式 依赖于事件对象 具体看demo 中 冒泡事件和默认行为.html
+ - b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.stop** 举例如下
  ```
    <div @click="write">
         <p @click="print">
@@ -251,8 +251,8 @@ function show(e) {
 
 #### 1.4 事件默认行为
  阻止默认行为
-  a) 原生js方式 依赖于事件对象 具体看demo 中 冒泡事件和默认行为.html
-  b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.prevent** 举例如下
+ - a) 原生js方式 依赖于事件对象 具体看demo 中 冒泡事件和默认行为.html
+ - b) vue方式 更简洁 不依赖于事件对象 直接在需要冒泡的地方加上事件修饰符 **.prevent** 举例如下
  ```
     <a href="#" @click.prevent="study()">vue阻止默认行为</a>
  ```
