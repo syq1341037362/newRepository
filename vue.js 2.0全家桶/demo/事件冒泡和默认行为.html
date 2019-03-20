@@ -35,6 +35,11 @@
         <br>
         <!-- vue解决默认行为 -->
         <a href="#" @click.prevent="study()">vue阻止默认行为</a>
+        <hr>
+
+        <h1>只触发一次</h1>
+        <button @click.once="once">只触发一次</button>
+
     </div>
 
 </body>
@@ -69,6 +74,9 @@
                     console.log("阻止默认行为-vue");
                 }
 
+            },
+            once() {
+                console.log('触发一次的提示');
             }
         }
 

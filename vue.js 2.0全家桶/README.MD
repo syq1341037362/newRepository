@@ -261,8 +261,6 @@ function show(e) {
  - 回车: @keydown.13 或者 @keydown.enter
  - 上: @keydown.38 或者 @keydown.up
  - 下: @keydown.40 或者 @keydown.down
- - 左: @keydown.37 或者 @keydown.left
- - 右: @keydown.39 或者 @keydown.right
  - 删除: @keydown.8 或者  @keydown.delete
  ---
  > 声明全局的自定义键盘事件,也称为自定义键码或自定义键位别名 具体请看 demo 中 键盘事件.html
@@ -273,3 +271,32 @@ function show(e) {
     }
 ```
 
+#### 1.6 事件修饰符
+ [官网对应位置](https://cn.vuejs.org/v2/api/#v-on)
+   - .stop - 调用 event.stopPropagation()。
+   - .prevent - 调用 event.preventDefault()。
+   - .capture - 添加事件侦听器时使用 capture 模式。
+   - .self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+   - .{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
+   - .native - 监听组件根元素的原生事件。
+   - .once - 只触发一次回调。
+   - .left - (2.2.0) 只当点击鼠标左键时触发。
+   - .right - (2.2.0) 只当点击鼠标右键时触发。
+   - .middle - (2.2.0) 只当点击鼠标中键时触发。
+   - .passive - (2.3.0) 以 { passive: true } 模式添加侦听器
+
+
+## 模板
+
+### 1.简介
+  Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。
+  - 文本插值 {{xxx}}
+  数据绑定最常见的形式就是使用“Mustache”语法 (双大括号) 的文本插值：
+    ```
+    <span>Message: {{ msg }}</span>
+    ```
+### 2.数据绑定的方式
+ - a. 双向数据绑定 v-model 
+ - b. 单向数据绑定两种
+    1. 使用两对大括号  {{ }} 可能会出现闪烁问题 解决方法 v-cloak 结合 css样式
+    2. 111
