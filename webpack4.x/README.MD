@@ -197,4 +197,35 @@ rules: [{
         use: ['file-loader']
     }]
 ```
-###
+### 压缩CSS插件 optimize-css-assets-webpack-plugin 和 JS压缩插件 uglifyjs-webpack-plugin
+> * cnpm i optimize-css-assets-webpack-plugin -D 
+> * cnpm i uglifyjs-webpack-plugin -D  
+> * 下面注释区域是因为放在optimization(优化) 中不起作用所以还是放在plugin里面
+---
+```
+plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/index.html'),
+            title: '页面标题',
+            filename: "index.html",
+            hash: true
+        }),
+        new OptimizeCssAssetsWebpackPlugin({}), //普通css压缩
+        new UglifyjsWebpackPlugin({ //普通js压缩
+            cache: true,
+            parallel: true,
+            sourceMap: true
+        })
+    ],
+    // optimization: {
+    //     minimizer: [
+    //         new OptimizeCssAssetsWebpackPlugin({}),
+    //         new UglifyjsWebpackPlugin({
+    //             cache: true,
+    //             parallel: true,
+    //             sourceMap: true
+    //         }),
+    //     ],
+    // },
+```

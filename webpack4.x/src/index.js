@@ -2,6 +2,6 @@ import './index.css'
 import './index.scss'
 
 function main() {
-    console.log('HelloWorld');
+    console.log('HelloWorld+1');
 }
 main();

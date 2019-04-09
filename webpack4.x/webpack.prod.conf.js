@@ -1,15 +1,13 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebapckMerge = require('webpack-merge')
+const BaseConfig = require('./webpack.base.conf')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 
 const devMode = process.env.NODE_ENV !== 'production'
 const dist_dir = 'dist'
-module.exports = {
+module.exports = WebapckMerge(BaseConfig, {
     mode: 'production',
-    entry: {
-        index: path.resolve(__dirname, './src/index.js')
-    },
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, dist_dir)
@@ -51,16 +49,9 @@ module.exports = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-            title: '页面标题',
-            filename: "index.html",
-            hash: true
-        }),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css', // 配置提取出来的css名称
+            filename: '[name].[hash:6].css', // 配置提取出来的css名称
             chunkFilename: '[id].[hash].css' //
         })
     ]
-}
+})

@@ -1,14 +1,11 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebapckMerge = require('webpack-merge')
+const BaseConfig = require('./webpack.base.conf')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 const dist_dir = 'dist_dev'
-module.exports = {
+module.exports = WebapckMerge(BaseConfig, {
     mode: 'development',
-    entry: {
-        index: path.resolve(__dirname, './src/index.js')
-    },
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, dist_dir)
@@ -48,21 +45,11 @@ module.exports = {
                     }
                 }]
             })
-        }, {
-            test: /\.(png|svg|jpg|jpeg)$/,
-            use: ['file-loader']
         }]
     },
     plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-            title: '页面标题',
-            filename: "index.html",
-            hash: true
-        }),
         new ExtractTextWebpackPlugin({
-            filename: '[name].min.css' // 配置提取出来的css名称
+            filename: '[name].[hash:6].css' // 配置提取出来的css名称
         })
     ]
-}
+})
