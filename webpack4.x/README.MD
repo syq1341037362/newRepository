@@ -15,7 +15,6 @@ new HtmlWebpackPlugin({
             title: '页面标题',
             filename: 'index.html',
             favicon: './static/logo.png',//网页的图标
-            filename: "index.html",
             hash: true,
             inject: 'body', // 在 body 底部引入
             minify: {
