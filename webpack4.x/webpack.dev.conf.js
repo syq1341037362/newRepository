@@ -5,6 +5,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 const dist_dir = 'dist_dev'
 module.exports = {
+    mode: 'development',
     entry: {
         index: path.resolve(__dirname, './src/index.js')
     },
@@ -27,9 +28,18 @@ module.exports = {
                     options: {
                         ident: 'postcss', //微标志
                         sourceMap: true,
-                        plugins: loader => {
-                            require('autoprefixer')({ browsers: ['>0.15% in CN'] })
-                        }
+                        plugins: (loader) => [
+                            require('autoprefixer')({
+                                browsers: [
+                                    "defaults",
+                                    "not ie < 11",
+                                    "last 2 versions",
+                                    "> 1%",
+                                    "iOS 7",
+                                    "last 3 iOS versions"
+                                ]
+                            })
+                        ]
                     }
                 }, {
                     loader: "sass-loader",

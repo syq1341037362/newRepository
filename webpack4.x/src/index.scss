@@ -2,5 +2,7 @@ $color:hotpink;
 .box {
     background-color: $color;
     font-size: 18px;
-    font-weight: bold
+    font-weight: bold;
+    display: flex;
+    transition: all 0.5s ease;
 }
