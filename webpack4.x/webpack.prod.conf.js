@@ -9,7 +9,7 @@ const dist_dir = 'dist'
 module.exports = WebapckMerge(BaseConfig, {
     mode: 'production',
     output: {
-        filename: 'main.js',
+        filename: 'main.[hash:6].js',
         path: path.resolve(__dirname, dist_dir)
     },
     module: {
