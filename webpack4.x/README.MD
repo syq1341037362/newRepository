@@ -12,7 +12,7 @@
 > * 4.0版本默认清理output指定的目录
 > * cnpm i extract-text-webapck-plugin@next -D
 ### css文件加c3前缀和sourceMap
-> * sourceMap
+> * sourceMap 定位css样式的位置
 ---
 ```
 rules: [{
