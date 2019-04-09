@@ -8,6 +8,40 @@
 > * cnpm i clean-webpack-plugin -D
 > * 使用里面配置的属性<%= htmlWebpackPlugin.options.title %>
 ---
-### 拆分css为单独文件的插件 extract-text-webapck-plugin@next(4.0版本需要加 *@next*) 
-> * 4.0版本默认清楚output指定的目录
+### 拆分css为单独文件的插件1 extract-text-webapck-plugin@next(4.0版本需要加 *@next*) 
+> * 4.0版本默认清理output指定的目录
 > * cnpm i extract-text-webapck-plugin@next -D
+### css文件加c3前缀和sourceMap
+> * sourceMap
+---
+```
+rules: [{
+            test: /\.(sc|c|sa)ss$/,
+            use: ExtractTextWebpackPlugin.extract({
+                fallback: "style-loader",
+                use: [{
+                    loader: "css-loader",
+                    options: {
+                        sourceMap: true
+                    }
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        ident: 'postcss', //微标志
+                        sourceMap: true,
+                        plugins: loader => {
+                            require('autoprefixer')({ browsers: ['>0.15% in CN'] })
+                        }
+                    }
+                }, {
+                    loader: "sass-loader",
+                    options: {
+                        sourceMap: true
+                    }
+                }]
+            })
+        }, {
+            test: /\.(png|svg|jpg|jpeg)$/,
+            use: ['file-loader']
+        }]
+```
