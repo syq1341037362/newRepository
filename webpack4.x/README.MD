@@ -2,6 +2,7 @@
 
 ---
 ### 清理插件 clean-webpack-plugin
+> * 4.0版本默认清理output指定的目录
 > * cnpm i clean-webpack-plugin -D
 ---
 ### html插件 html-webpack-plugin 
@@ -9,7 +10,6 @@
 > * 使用里面配置的属性<%= htmlWebpackPlugin.options.title %>
 ---
 ### css样式抽离组件1 extract-text-webapck-plugin@next(4.0版本需要加 *@next*) 
-> * 4.0版本默认清理output指定的目录
 > * cnpm i extract-text-webapck-plugin@next -D
 ---
 ```
@@ -83,8 +83,7 @@ module.exports = {
 }
 ```
 ### css样式抽离组件2 mini-css-extract-plugin
-> * 4.0版本默认清理output指定的目录
-> * cnpm i extract-text-webapck-plugin@next -D
+> * cnpm i mini-css-extract-plugin -D
 ---
 ```
  const path = require('path')
