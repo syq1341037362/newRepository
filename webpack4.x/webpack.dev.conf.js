@@ -50,15 +50,6 @@ module.exports = WebapckMerge(BaseConfig, {
             })
         }]
     },
-    plugins: [
-        new ExtractTextWebpackPlugin({
-            filename: '[name].[hash:6].css', // 配置提取出来的css名称
-            // publicPath: './style'
-        }),
-
-        new Webpack.HotModuleReplacementPlugin(), //替换插件 热更新必备插件
-
-    ],
     devServer: {
         // // clientLogLevel: 'warning', //日志输出级别 可能有的值 none warning info error
         // hot: true, //启用 webpack模块的 热更新 需要配合：webpack.HotModuleReplacementPlugin插件
@@ -88,5 +79,14 @@ module.exports = WebapckMerge(BaseConfig, {
         // //     ignored: /node_modules/, //忽略监控的文件 正则
         // //     aggregateTimeout: 300 //默认值 当第一个文件更改 会在重新构建前增加延迟
         // // }
-    }
+    },
+    plugins: [
+        new ExtractTextWebpackPlugin({
+            filename: '[name].[hash:6].css', // 配置提取出来的css名称
+            // publicPath: './style'
+        }),
+
+        new Webpack.HotModuleReplacementPlugin(), //替换插件 热更新必备插件
+
+    ]
 })

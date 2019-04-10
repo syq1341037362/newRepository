@@ -346,7 +346,7 @@ devtool: 'inline-source-map'//开发阶段开启sourceMap
         "watch": "webpack --watch --config webpack.dev.conf.js"
     }
 ```
-#### 8.2 使用插件webpack-dev-server 使webpack自动更新(热更新)
+#### 8.2 使用插件webpack-dev-server 使webpack自动更新(热更新) 具体所有配置看devServer(在package.json中写有效果，但是在配置文件中写没有效果具体原因不知道)
 > * cnpm i webpack-dev-server -D
 > * 1.在package.json 中script下添加一个新的启动选项  如下
 ---
