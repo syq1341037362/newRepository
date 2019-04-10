@@ -14,8 +14,8 @@ module.exports = {
             use: [{
                     loader: 'url-loader',
                     options: {
-                        name: 'images/[name]_[hash:6].[ext]', //保持打包后的图片名字和原来一样
-                        // outputPath: 'images/',
+                        name: '[name]_[hash:6].[ext]', //保持打包后的图片名字和原来一样
+                        outputPath: 'images/',
                         limit: 10000 //将小于等于10KB的图片转换成base64 一般限定到10KB
                     }
                 },
