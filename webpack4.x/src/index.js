@@ -1,5 +1,5 @@
-import './index.css'
-import './index.scss'
+import '../src/style/index.css'
+import '../src/style/index.scss'
 
 function main() {
     console.log('HelloWorld+1');

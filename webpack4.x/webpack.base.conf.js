@@ -10,8 +10,39 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.(png|svg|jpg|jpeg)$/,
-            use: ['file-loader']
+            test: /\.(png|svg|jpg|jpeg|gif)$/,
+            use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name]_[hash].[ext]', //保持打包后的图片名字和原来一样
+                        outputPath: 'images/'
+                    }
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65
+                        },
+                        optipng: {
+                            enabled: false
+                        },
+                        pngquant: {
+                            quality: '65-90',
+                            speed: 4
+                        },
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        // the webp option will enable WEBP
+                        webp: {
+                            quality: 75
+                        }
+
+                    }
+                }
+            ]
         }]
     },
     plugins: [

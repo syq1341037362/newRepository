@@ -1,11 +1,11 @@
 ## webpack4.x [B站视频链接](https://www.bilibili.com/medialist/play/ml85543977/av41546218?pn=1)
 
 ---
-### 清理插件 clean-webpack-plugin
+### 1.清理插件 clean-webpack-plugin
 > * 4.0版本默认清理output指定的目录
 > * cnpm i clean-webpack-plugin -D
 ---
-### html插件 html-webpack-plugin 
+### 2.html插件 html-webpack-plugin 
 > * cnpm i clean-webpack-plugin -D
 > * 使用里面配置的属性<%= htmlWebpackPlugin.options.title %>
 ---
@@ -25,7 +25,8 @@ new HtmlWebpackPlugin({
         }),
 ```
 ---
-### css样式抽离组件1 extract-text-webapck-plugin@next(4.0版本需要加 *@next*) 
+### 3.css样式抽离组件
+#### 3.1 extract-text-webapck-plugin@next(4.0版本需要加 *@next*) 
 > * cnpm i extract-text-webapck-plugin@next -D
 ---
 ```
@@ -98,7 +99,7 @@ module.exports = {
     ]
 }
 ```
-### css样式抽离组件2 mini-css-extract-plugin
+#### 3.2 css样式抽离组件2 mini-css-extract-plugin
 > * cnpm i mini-css-extract-plugin -D
 ---
 ```
@@ -169,7 +170,7 @@ module.exports = {
     ]
 }
 ```
-### css文件加c3前缀和sourceMap
+### 4.css文件加c3前缀和sourceMap
 > * sourceMap 定位css样式的位置
 > * css加c3前缀需要用到 *postcss-loader* 和 它的内部插件 *autoprefixer* 如果浏览器版本过高可能没有前缀
 ---
@@ -213,7 +214,7 @@ rules: [{
         use: ['file-loader']
     }]
 ```
-### 压缩CSS插件 optimize-css-assets-webpack-plugin 和 JS压缩插件 uglifyjs-webpack-plugin
+### 5.压缩CSS插件 optimize-css-assets-webpack-plugin 和 JS压缩插件 uglifyjs-webpack-plugin
 > * cnpm i optimize-css-assets-webpack-plugin -D 
 > * cnpm i uglifyjs-webpack-plugin -D  
 > * 下面注释区域是因为放在optimization(优化) 中不起作用所以还是放在plugin里面
@@ -245,3 +246,7 @@ plugins: [
     //     ],
     // },
 ```
+### 6.图片处理和优化插件
+#### 6.1首先图片处理需要依靠 file-loader
+#### 6.2 图片优化插件 image-webpack-loader
+> * cnpm i image-webpack-loader -D
