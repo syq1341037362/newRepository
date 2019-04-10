@@ -247,6 +247,85 @@ plugins: [
     // },
 ```
 ### 6.图片处理和优化插件
-#### 6.1首先图片处理需要依靠 file-loader
+#### 6.1首先图片处理需要依靠 file-loader 或者 url-loader(相对于file-loader *url-loader*不仅能压缩图片而且还可以通过options中的limit 将符合条件的图片转成base64)
 #### 6.2 图片优化插件 image-webpack-loader
 > * cnpm i image-webpack-loader -D
+---
+> * 这里使用的是file-loader
+```
+rules: [{
+            test: /\.(png|svg|jpg|jpeg|gif)$/,
+            use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name]_[hash].[ext]', //保持打包后的图片名字和原来一样
+                        outputPath: 'images/'
+                    }
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65
+                        },
+                        optipng: {
+                            enabled: false
+                        },
+                        pngquant: {
+                            quality: '65-90',
+                            speed: 4
+                        },
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        // the webp option will enable WEBP
+                        webp: {
+                            quality: 75
+                        }
+
+                    }
+                }
+            ]
+        }]
+```
+> * 这里使用的是url-loader
+---
+```
+ rules: [{
+            test: /\.(png|svg|jpg|jpeg|gif)$/,
+            use: [{
+                    loader: 'url-loader',
+                    options: {
+                        name: '[name]_[hash:6].[ext]', //保持打包后的图片名字和原来一样
+                        outputPath: 'images/',
+                        limit: 10000 //将小于10KB的图片转成base64 一般限定到10KB
+                    }
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65
+                        },
+                        optipng: {
+                            enabled: false
+                        },
+                        pngquant: {
+                            quality: '65-90',
+                            speed: 4
+                        },
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        // the webp option will enable WEBP
+                        webp: {
+                            quality: 75
+                        }
+
+                    }
+                }
+            ]
+        }]
+```

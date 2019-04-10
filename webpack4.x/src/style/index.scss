@@ -7,3 +7,10 @@ $color:hotpink;
     transition: all 0.5s ease;
     background: url(../assets/img/gtx.jpg)
 }
+
+.imgbox {
+    background: url(../../static/logo.png) no-repeat center center;
+    background-size: 100% 100%;
+    width: 100px;
+    height: 100px;
+}

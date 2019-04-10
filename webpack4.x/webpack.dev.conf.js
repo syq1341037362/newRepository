@@ -49,7 +49,7 @@ module.exports = WebapckMerge(BaseConfig, {
     },
     plugins: [
         new ExtractTextWebpackPlugin({
-            filename: '[name].[hash:6].css' // 配置提取出来的css名称
+            filename: '[name].[hash:6].css', // 配置提取出来的css名称
         })
     ]
 })

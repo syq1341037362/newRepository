@@ -12,10 +12,11 @@ module.exports = {
         rules: [{
             test: /\.(png|svg|jpg|jpeg|gif)$/,
             use: [{
-                    loader: 'file-loader',
+                    loader: 'url-loader',
                     options: {
-                        name: '[name]_[hash].[ext]', //保持打包后的图片名字和原来一样
-                        outputPath: 'images/'
+                        name: 'images/[name]_[hash:6].[ext]', //保持打包后的图片名字和原来一样
+                        // outputPath: 'images/',
+                        limit: 10000 //将小于等于10KB的图片转换成base64 一般限定到10KB
                     }
                 },
                 {

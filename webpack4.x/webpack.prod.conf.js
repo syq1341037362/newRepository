@@ -51,7 +51,7 @@ module.exports = WebapckMerge(BaseConfig, {
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name].[hash:6].css', // 配置提取出来的css名称
-            chunkFilename: '[id].[hash].css' //
+            chunkFilename: '[id].[hash].css'
         })
     ]
 })
