@@ -329,3 +329,45 @@ rules: [{
             ]
         }]
 ```
+---
+### 7.开发模式启用js的 sourceMap webpack默认支持
+> * 只需要在开发的配置文件 dev文件中添加如下配置
+```
+devtool: 'inline-source-map'//开发阶段开启sourceMap
+```
+
+### 8.webpack启动监控和自动更新(热更新)
+#### 8.1 使用 --watch来启动监控 (遇到一个问题虽然别的都打包了但是没有打包css中的图像文件 但是去掉url-loader的limit之后就好了 原因在于对应的路径不同 但是没啥解决的办法)
+> * 在package.json 中script下添加一个新的启动选项watch  如下
+```
+"scripts": {
+        "dev": "webpack --config webpack.dev.conf.js",
+        "build": "webpack --config webpack.prod.conf.js",
+        "watch": "webpack --watch --config webpack.dev.conf.js"
+    }
+```
+#### 8.2 使用插件webpack-dev-server 使webpack自动更新(热更新)
+> * cnpm i webpack-dev-server -D
+> * 1.在package.json 中script下添加一个新的启动选项  如下
+---
+```
+        "devhot": "webpack-dev-server --open --inline --port:3000 ContentBase src --config webpack.dev.conf.js"
+
+```
+> * 2.在dev配置文件中引入 webpack 并在plguins中使用webpack.HotModuleReplacementPlugin()
+---
+```
+const Webpack = require('webpack')
+plugins: [ 
+    new Webpack.HotModuleReplacementPlugin(), //替换插件 热更新必备插件
+ ],
+```
+---
+### 9.图片路径等问题
+> * img标签引用本地文件 打包后发现路径不正确 如果修改url-loader 的 publicPath
+> * css显示正确但是 img标签显示错误 后来引用了html-loader 路径问题解决但是另一个问题出现了
+> * html-webpack-plugin配置页面标题用 <%= htmlWebpackPlugin.options.title %> 打包之后变成了字符串 所以还是有问题 
+> * 最后不使用 html-loader 然后 img标签统一用下面的方法 然后url-loader不改变publicPath的路径 这样暂时解决了问题
+```
+<img src="<%= require( './assets/img/gtx.jpg') %>" alt=""> 
+```

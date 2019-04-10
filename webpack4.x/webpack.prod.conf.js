@@ -4,6 +4,7 @@ const BaseConfig = require('./webpack.base.conf')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
+
 const devMode = process.env.NODE_ENV !== 'production'
 const dist_dir = 'dist'
 module.exports = WebapckMerge(BaseConfig, {

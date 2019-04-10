@@ -10,41 +10,49 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.(png|svg|jpg|jpeg|gif)$/,
-            use: [{
-                    loader: 'url-loader',
-                    options: {
-                        name: '[name]_[hash:6].[ext]', //保持打包后的图片名字和原来一样
-                        outputPath: 'images/',
-                        limit: 10000 //将小于等于10KB的图片转换成base64 一般限定到10KB
-                    }
-                },
-                {
-                    loader: 'image-webpack-loader',
-                    options: {
-                        mozjpeg: {
-                            progressive: true,
-                            quality: 65
-                        },
-                        optipng: {
-                            enabled: false
-                        },
-                        pngquant: {
-                            quality: '65-90',
-                            speed: 4
-                        },
-                        gifsicle: {
-                            interlaced: false,
-                        },
-                        // the webp option will enable WEBP
-                        webp: {
-                            quality: 75
+                test: /\.(png|svg|jpg|jpeg|gif)$/,
+                use: [{
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name]_[hash:6].[ext]', //保持打包后的图片名字和原来一样
+                            outputPath: 'images/',
+                            // publicPath: '../images',
+                            limit: 10000 //将小于等于10KB的图片转换成base64 一般限定到10KB
                         }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            optipng: {
+                                enabled: false
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
 
+                        }
                     }
-                }
-            ]
-        }]
+                ]
+            },
+            //  {
+            //     test: /\.html$/,
+            //     use: {
+            //         loader: 'html-loader'
+            //     }
+            // }
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(),
