@@ -251,7 +251,7 @@ plugins: [
 #### 6.2 图片优化插件 image-webpack-loader
 > * cnpm i image-webpack-loader -D
 ---
-> * 这里使用的是file-loader
+> * 下面使用的是file-loader
 ```
 rules: [{
             test: /\.(png|svg|jpg|jpeg|gif)$/,
@@ -289,7 +289,7 @@ rules: [{
             ]
         }]
 ```
-> * 这里使用的是url-loader
+> * 下面使用的是url-loader
 ---
 ```
  rules: [{
