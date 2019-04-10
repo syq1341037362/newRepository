@@ -337,7 +337,7 @@ devtool: 'inline-source-map'//开发阶段开启sourceMap
 ```
 
 ### 8.webpack启动监控和自动更新(热更新)
-#### 8.1 使用 --watch来启动监控 (遇到一个问题虽然别的都打包了但是没有打包css中的图像文件 但是去掉url-loader的limit之后就好了 原因在于对应的路径不同 但是没啥解决的办法)
+#### 8.1 使用 --watch来启动监控 (遇到一个问题虽然别的都打包了但是没有打包css中的图像文件 但是去掉url-loader的limit之后就好了 原因在于对应的路径不同 暂时没有想到解决办法)
 > * 在package.json 中script下添加一个新的启动选项watch  如下
 ```
 "scripts": {
