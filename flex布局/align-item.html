@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>align-items</title>
+</head>
+<style>
+    .demo {
+        display: flex;
+        border: 2px solid orange;
+        height: 200px;
+        justify-content: flex-start;
+    }
+    
+    .demo-strat {
+        align-items: flex-start;
+    }
+    
+    .demo-center {
+        align-items: center;
+    }
+    
+    .demo-end {
+        align-items: flex-end;
+    }
+    
+    .demo-stretch {
+        align-items: stretch;
+    }
+    
+    .demo-baseline {
+        align-items: baseline;
+    }
+    
+    .item {
+        background-color: blueviolet;
+        color: #ffffff;
+        border: 1px solid black;
+        padding: 20px;
+    }
+</style>
+
+<body>
+    <div class="demo">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- flex-start 从行首位置开始排列-->
+    <div class="demo demo-strat">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- flex-start 从行首位置开始排列-->
+    <div class="demo demo-center">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- flex-start 从行首位置开始排列-->
+    <div class="demo demo-end">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- flex-start 结合align-items 和 justity-content 从行首位置开始排列-->
+    <div class="demo demo-strat">
+        <div class="item">结合align-items 和 justity-contentA</div>
+        <div class="item">结合align-items 和 justity-contentB</div>
+        <div class="item">结合align-items 和 justity-contentC</div>
+    </div>
+    <!-- flex-start 结合align-items 和 justity-content 从行首位置开始排列-->
+    <div class="demo demo-center">
+        <div class="item">结合align-items 和 justity-contentA</div>
+        <div class="item">结合align-items 和 justity-contentB</div>
+        <div class="item">结合align-items 和 justity-contentC</div>
+    </div>
+    <!-- flex-start 结合align-items 和 justity-content 从行首位置开始排列-->
+    <div class="demo demo-end">
+        <div class="item">结合align-items 和 justity-contentA</div>
+        <div class="item">结合align-items 和 justity-contentB</div>
+        <div class="item">结合align-items 和 justity-contentC</div>
+    </div>
+    <!-- flex-start 结合align-items 和 justity-content 从行首位置开始排列-->
+    <div class="demo demo-stretch">
+        <div class="item">结合align-items 和 justity-contentA</div>
+        <div class="item">结合align-items 和 justity-contentB</div>
+        <div class="item">结合align-items 和 justity-contentC</div>
+    </div>
+    <!-- flex-start 结合align-items 和 justity-content 从行首位置开始排列-->
+    <div class="demo demo-baseline">
+        <div class="item">结合align-items 和 justity-contentA</div>
+        <div class="item">结合align-items 和 justity-contentB</div>
+        <div class="item">结合align-items 和 justity-contentC</div>
+    </div>
+
+</body>
+
+<script>
+</script>
+
+</html>

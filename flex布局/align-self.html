@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>algin-self</title>
+</head>
+<style>
+    .demo {
+        display: flex;
+        border: 2px solid orange;
+        height: 200px;
+    }
+    
+    .demo-center {
+        justify-content: center;
+    }
+    
+    .demo-strat {
+        justify-content: flex-start;
+    }
+    
+    .demo-end {
+        justify-content: flex-end;
+    }
+    
+    .demo-stretch {
+        justify-content: stretch;
+    }
+    
+    .demo-around {
+        justify-content: space-around;
+    }
+    
+    .demo-between {
+        justify-content: space-between;
+    }
+    
+    .demo-evenly {
+        justify-content: space-evenly;
+    }
+    
+    .item {
+        background-color: blueviolet;
+        color: #ffffff;
+        border: 1px solid black;
+        padding: 20px;
+    }
+    
+    .item-start {
+        align-self: flex-start;
+    }
+    
+    .item-center {
+        align-self: center;
+    }
+    
+    .item-end {
+        align-self: flex-end;
+    }
+    
+    .item-stretch {
+        align-self: stretch;
+    }
+</style>
+
+<body>
+    <!-- flex-start 从行首位置开始排列-->
+    <div class="demo demo-strat">
+        <div class="item item-start">A</div>
+        <div class="item item-center">B</div>
+        <div class="item item-end">C</div>
+        <div class="item item-stretch">D</div>
+    </div>
+    <!-- center 居中排列-->
+    <div class="demo demo-center">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- flex-end 从行尾位置开始排列-->
+    <div class="demo demo-end">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- stretch-->
+    <div class="demo demo-stretch">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- around 平均分布 根据元素个数分成相应的份数-->
+    <div class="demo demo-around">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- between 两端对齐 左右居两端 中间的空白区域等分-->
+    <div class="demo demo-between">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <!-- evenly 平均分布（元素间隔相同）所有元素的空间一样大-->
+    <div class="demo demo-evenly">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+
+</body>
+
+<script>
+</script>
+
+</html>

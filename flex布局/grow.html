@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>grow弹性</title>
+</head>
+<style>
+    .demo {
+        display: flex;
+        border: 2px solid orange;
+    }
+    
+    .item {
+        background-color: blueviolet;
+        color: #ffffff;
+        padding: 20px;
+        border: solid 1px black;
+    }
+    
+    .a {
+        flex-grow: 1;
+    }
+    
+    .b {
+        flex-grow: 1;
+    }
+    
+    .c {
+        flex-grow: 1;
+    }
+    
+    .grow1 {
+        flex-grow: 1;
+    }
+    
+    .grow2 {
+        flex-grow: 2;
+    }
+    
+    .grow3 {
+        flex-grow: 3;
+    }
+</style>
+
+<body>
+    <div class="demo">
+        <div class="item a">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo">
+        <div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo">
+        <div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item c">C</div>
+    </div>
+    <div class="demo">
+        <div class="item grow2">A</div>
+        <div class="item grow3">B</div>
+        <div class="item grow1">C</div>
+    </div>
+</body>
+
+<script>
+</script>
+
+</html>

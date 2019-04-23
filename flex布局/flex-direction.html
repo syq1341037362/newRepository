@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex-direction</title>
+</head>
+<style>
+    .demo {
+        display: flex;
+        border: 2px solid orange;
+        height: 200px;
+        justify-content: space-between;
+    }
+    
+    .demo-center {
+        justify-content: center;
+    }
+    
+    .demo-strat {
+        justify-content: flex-start;
+    }
+    
+    .demo-end {
+        justify-content: flex-end;
+    }
+    
+    .demo-stretch {
+        justify-content: stretch;
+    }
+    
+    .demo-around {
+        justify-content: space-around;
+    }
+    
+    .demo-between {
+        justify-content: space-between;
+    }
+    
+    .demo-evenly {
+        justify-content: space-evenly;
+    }
+    
+    .item {
+        background-color: blueviolet;
+        color: #ffffff;
+        border: 1px solid black;
+        padding: 20px;
+    }
+    
+    .item-start {
+        align-self: flex-start;
+    }
+    
+    .item-center {
+        align-self: center;
+    }
+    
+    .item-end {
+        align-self: flex-end;
+    }
+    
+    .item-stretch {
+        align-self: stretch;
+    }
+    
+    .demo-direction-row {
+        flex-direction: row;
+    }
+    
+    .demo-direction-row-reverse {
+        flex-direction: row-reverse;
+    }
+    
+    .demo-direction-column {
+        flex-direction: column;
+    }
+    
+    .demo-direction-column-reverse {
+        flex-direction: column-reverse;
+    }
+</style>
+
+<body>
+    <div class="demo demo-direction-row">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-direction-row-reverse">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-direction-column">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-direction-column-reverse">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+
+</body>
+
+<script>
+</script>
+
+</html>

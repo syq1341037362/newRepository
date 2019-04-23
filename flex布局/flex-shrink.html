@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex-shrink</title>
+</head>
+<style>
+    .demo {
+        display: flex;
+        border: 2px solid orange;
+    }
+    
+    .item {
+        background-color: blueviolet;
+        color: #ffffff;
+        padding: 20px;
+        border: solid 1px black;
+        width: 200px;
+    }
+    
+    .a {
+        flex-shrink: 1;
+        flex-grow: 1;
+    }
+    
+    .b {
+        flex-shrink: 1;
+        flex-grow: 1;
+    }
+    
+    .c {
+        flex: 1 1 fill;
+    }
+</style>
+
+<body>
+    <div class="demo">
+        <div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item c">C</div>
+    </div>
+</body>
+
+<script>
+</script>
+
+</html>

@@ -45,7 +45,16 @@ module.exports = {
                         }
                     }
                 ]
-            },
+            }, {
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true //缩短babel转码的速度
+                    }
+                }
+            }
             //  {
             //     test: /\.html$/,
             //     use: {

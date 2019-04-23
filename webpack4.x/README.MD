@@ -371,3 +371,23 @@ plugins: [
 ```
 <img src="<%= require( './assets/img/gtx.jpg') %>" alt=""> 
 ```
+
+### 10.webpack配置babel转换JS
+> * 主要的是三个  babel-loader  babel-core或者@babel/core  babel-preset-env或者@babel-preset-env  注意 版本最好是在同一个大版本下 比如都是 6 都是7 都是8版本 不同版本可能报错
+> * 下面是.babelrc文件
+---
+```
+{
+    "presets": ["env"]
+}
+```
+---
+> * 下面是 Baseconfig的loader配置
+---
+```
+ {
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: 'babel-loader'
+}
+```
