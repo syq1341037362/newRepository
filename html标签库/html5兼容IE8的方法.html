@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--  // 兼容IE8 IE9 及以下第二种方式也是最常用的 引入兼容js 注意一定要在标签解析之前引用 -->
+    <script src="./html5hiv.min.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    article,
+    aside,
+    dialog,
+    footer,
+    header,
+    section,
+    footer,
+    nav,
+    figure,
+    menu {
+        display: block
+    }
+    
+    header {
+        display: block;
+        width: 100%;
+        height: 100px;
+        background-color: red
+    }
+    
+    nav {
+        display: block;
+        width: 100%;
+        height: 36px;
+        background-color: green;
+    }
+    
+    main {
+        display: block;
+        width: 100%;
+        height: 500px;
+        background-color: #ccc;
+    }
+    
+    main>article {
+        display: block;
+        width: 80%;
+        height: 100%;
+        background-color: purple;
+        float: left;
+    }
+    
+    main>aside {
+        display: block;
+        width: 20%;
+        height: 100%;
+        background-color: pink;
+        float: left;
+    }
+    
+    footer {
+        display: block;
+        background-color: skyblue;
+        width: 100%;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <script>
+        // 兼容IE8 IE9 及以下第一种方式在解析到标签之前创建标签 需要对应的标签变为块级标签 因为创建出来的都是行内标签
+        // document.createElement("header");
+        // document.createElement("nav");
+        // document.createElement("main");
+        // document.createElement("article");
+        // document.createElement("aside");
+        // document.createElement("footer");
+    </script>
+    <header>头部</header>
+    <nav>导航</nav>
+    <main>
+        <article>左边</article>
+        <aside>右边</aside>
+    </main>
+    <footer>底部</footer>
+
+</body>
+
+</html>
