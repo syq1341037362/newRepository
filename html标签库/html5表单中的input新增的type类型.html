@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" onsubmit="return check()">
+        <label>用户名：</label> <input type="text" name="userName"><br>
+        <label>密码：</label> <input type="password" name="userPwd"><br>
+        <!-- email提供了默认的电子邮箱的完整验证：要求必须包含@符号 同时必须包含服务器的名称 -->
+        <label>邮箱：</label> <input type="email" name="email"><br>
+        <!-- tel 并不是用来实现验证 本质是在移动端打开数字键盘 -->
+        <label>电话：</label> <input type="tel" name="tel"><br>
+        <!-- 必须是一个合法的url -->
+        <label>网址：</label> <input type="url" name="url"><br>
+        <!-- 可以设定最大值 默认值 和最小值 -->
+        <label>数量：</label> <input type="number" value="20" min="0" max="100"><br>
+        <!-- search 提供人性化的输入体验 删除 -->
+        <label>请输入商品名称：</label> <input type="search" value=""><br>
+        <!-- range：范围 -->
+        <label>范围：</label> <input type="range" value="50" min="0" max="100"><br>
+        <!-- 颜色拾取 -->
+        <label>颜色拾取：</label> <input type="color"><br>
+        <!-- time 时分秒 -->
+        <label>时间</label> <input type="time"><br>
+        <!-- 日期 年月日-->
+        <label>日期</label> <input type="date"><br>
+        <!-- 年月日时分秒 现在大多数浏览器都不支持datetime-->
+        <label>时间日期</label> <input type="datetime"><br>
+        <!-- 日期时间 -->
+        <label>时间日期</label> <input type="datetime-local"><br>
+        <!-- 月份 -->
+        <label>月份</label> <input type="month"><br>
+        <!-- 星期 -->
+        <label>星期</label> <input type="week"><br>
+        <input type="submit" value="提交">
+    </form>
+    <script>
+        function check() {
+            var email = document.querySelectorAll("input[type=email]")[0].value;
+            if (email != "" && email != null && email != undefined) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

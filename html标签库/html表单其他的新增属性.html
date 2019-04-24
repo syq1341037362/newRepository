@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" onsubmit="return check()" id="myForm">
+        <!-- placeholder提示文本 -->
+        <!-- autofocus 自动获取焦点-->
+        <!-- autocomplete 自动提示 1.必须成功提交过 2.当前添加autocomplete的元素必须有name属性 -->
+        <label>用户名：</label> <input type="text" name="userName" placeholder="请输入" autofocus autocomplete="on"><br>
+        <!-- tel并不会验证 只是在手机端弹出数字键盘 -->
+        <!-- required 必须输入 -->
+        <!-- pattern 正则表达式验证 -->
+        <!-- 
+            * 代表任意 
+            ? 代表0个或者1个
+            + 代表1个或多个
+        -->
+        <label>手机号：</label> <input type="tel" name="tel" required pattern="^(\+86)?1\d{10}$"><br>
+        <!-- multiple 选择多个文件 -->
+        <label>文件：</label> <input type="file" name="file" multiple><br>
+        <!-- 多个邮箱也用 multiple 要以逗号分隔 -->
+        <label>多个邮箱：</label> <input type="email" name="email" multiple><br>
+        <input type="submit" value="提交">
+    </form><br>
+    <!-- 下面这个表单元素并没有包含在 form中 默认情况下表单元素的数据不会进行提交  -->
+    <!-- form指定表单的id 那么将来指定id的form的表单在进行数据提交的时候 也会将当前的表单的数据一起提交 -->
+    <label>地址：</label><input type="text" name="address" form="myForm">
+
+    <script>
+        function check() {
+            var email = document.querySelectorAll("input[type=email]")[0].value;
+            if (email != "" && email != null && email != undefined) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
