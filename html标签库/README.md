@@ -239,3 +239,93 @@
     <label>地址：</label><input type="text" name="address" form="myForm">
 ```
 ---
+
+### html5 表单新增的元素 datalist(配合input使用 他们之间的关联是靠 input标签的list属性绑定datalist的id) 
+> * 注意3个问题 1. option可以是单标签也可以是双标签 2.如果你的input 的 type 类型是 url 那么必须在datalist下的option中的value中加上 http 因为他必须是一个完整的网页地址 不然不显示 3.火狐不显示datalist下的option的value值 且必须双击才显示label值
+---
+```
+<form action="">
+    <!-- 不仅可以选择 还应该可以输入 -->
+    专业：<input type="text" list="subjects">
+    <!-- 通过datalist创建选项列表 -->
+    <!-- 建立输入框和datalist的关联 list="datalist的id" -->
+    <datalist id="subjects">
+        <!-- 创建选项值 value:具体值  label:提示信息 辅助值 -->
+        <!-- option可以是单标签也可以是双标签 -->
+        <option value="python" label="大数据" />
+        <option value="前端与移动开发" label="前景非常好"></option>
+        <option value="java" label="使用人数多"></option>
+        <option value="javascript" label="做特效"></option>
+        <option value="c++" label="不知道"></option>
+    </datalist>
+
+    <!-- 如果input输入框的type类型是url,那么 value值必须添加http -->
+    网址：<input type="url" list="urls">
+    <datalist id="urls">
+        <option value="http://www.baidu.com" label="百度"></option>
+        <option value="http://www.sohu.com" label="搜狐"></option>
+        <option value="http://www.163.com" label="163"></option>
+    </datalist>
+</form>
+```
+---
+
+### html5 表单新增的事件 oninput oninvalid 
+* 需要注意的点 
+> 1. 需要注意 oninput和onkeyup的区别(键盘弹起的时候触发 每一个键的弹起都会触发一次,oninput不管你是否按键只要值改变就触发) 
+> 2. oninvalid 只有在验证不通过才触发 所以必须有一个验证属性 pattern 
+> 3. this.setCustomValidity()是修改默认显示信息的 也就是验证不通过的提示信息
+---
+```
+<body>
+    <form action="">
+        用户名：<input type="text" name="userName" id="userName"><br>
+        <!--  -->
+        电话：<input type="tel" name="userPhone" id="userPhone" pattern="^1\d{10}">
+        <!--  -->
+        <input type="submit">
+    </form>
+    <script>
+        //1.oninput：监听当前指定元素内容的改变 只要内容改变（内容添加删除），就会触发这个事件
+        document.getElementById("userName").oninput = function() {
+            console.log("oninput:" + this.value);
+        };
+        //onkeyup：键盘弹起的时候触发 每一个键的弹起都会触发一次
+        document.getElementById("userName").onkeyup = function() {
+            console.log("onkeyup:" + this.value);
+        };
+
+        //oninvalid:当验证不通过时触发
+        document.getElementById("userPhone").oninvalid = function() {
+            //this.setCustomValidity 是用来修改默认的提示信息
+            this.setCustomValidity("手机号码不正确")
+        };
+    </script>
+</body>
+```
+---
+
+### html5的进度条 progress进度条 meter度量器
+* 需要注意的点
+> 1. progress不写 value值或者都不写会重复循环
+> 2. meter度量器的属性 hign 规定的较高的值 low:规定的较低的值 max:最大值 min:最小值 value:当前度量值
+---
+```
+<body>
+    <!-- 进度条progress max最大值 value当前值 不写就循环-->
+    <progress max="100" value="50"></progress>
+
+    <!-- 度量器 衡量当前进度值-->
+    <!-- hign 规定的较高的值
+        low:规定的较低的值
+        max:最大值
+        min:最小值
+        value:当前度量值
+    -->
+    <meter max="100" min="0" high="80" low="40" value="30"></meter>
+    <meter max="100" min="0" high="80" low="40" value="60"></meter>
+    <meter max="100" min="0" high="80" low="40" value="90"></meter>
+
+</body>
+```
+---
