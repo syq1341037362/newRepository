@@ -329,3 +329,164 @@
 </body>
 ```
 ---
+### html5的媒体标签 audio 和 video (之前是通过 embed标签或者flash)
+> * 1. 不管是audio还是video都要有controls不然无法显示控制器 也就是进度条等
+> * 2. Chrome 58+添加 controlsList="nodownload"禁止下载 添加oncontextmenu="return false" 禁止右键下载
+> * 3. audio和video具有的属性  autoplay自动播放 loop循环播放
+> * 4. video需要注意设置宽高一般情况下只会设置一个 让其自动适应 如过设置2个除非是等比例的
+---
+```
+<!-- embed：直接插入视频文件 :本质是调用本级上已经安装的软件 有兼容性 -->
+<!-- flash插件：安装flash 1.学习flash,增加使用成本 2.苹果设备不支持flash -->
+<!-- audio:音频 必须添加controls 
+    autoplay自动播放 
+    loop循环播放  
+    Chrome 58+添加 controlsList="nodownload"禁止下载 
+    添加oncontextmenu="return false" 禁止右键下载-->
+<audio src="./static/1.mp3" controls="true" autoplay loop controlsList="nodownload" oncontextmenu="return false"></audio>
+<!-- video：视频 -->
+<!-- 属性值 
+    autoplay自动播放 
+    loop循环播放  
+    width:宽度 注意设置宽高一般情况下只会设置一个 让其自动适应 如过设置2个除非是等比例的
+    height:高度
+    poster:当视频还没有完全下载或者用户还没有点击播放前显示的封面 默认显示当前视频文件的第一幅画面
+    
+-->
+<!-- <video src="./static/1.flv" poster="./static/1.png" controls="true" autoplay controlsList="nodownload" oncontextmenu="return false"></video> -->
+<video controls>
+    <source src="./static/1.flv" type="video/flv">
+    <source src="./static/1.mp4" type="video/mp4">
+        您的浏览器不支持播放当前视频
+</video>
+```
+---
+### html5中操作dom的新方法 querySelector
+> * 1. 之前是用 document.getElementById 或者 document.getElementsByTagName 或者document.getElementsByClassName 等
+> * 2. querySelector() 支持 标签 类 id 选择器 根据不同的需要自己选择
+> * 3. querySelector() 返回的是单个元素 即使多个也返回多个中的第一个(例如多个li有同一个class属性red 使用 querySelector(".red") 只会返回满足条件的第一个)
+> * 4. 查询多个元素 请使用 querySelectorAll() 同样支持 标签 类 id 选择器 根据不同的需要自己选择
+---
+```
+<body>
+    <ul>
+        <li class="red" id="red">前端</li>
+        <li class="blue" id="blue">java</li>
+        <li class="green" id="green">c++</li>
+        <li class="pink" id="pink">python</li>
+        <li class="gray" id="gray">php</li>
+    </ul>
+    <script>
+        // 获取第一个li标签
+        window.onload = function() {
+            //之前获取Dom
+
+            //TagName获取的是数组  
+            document.getElementsByClassName
+            //索引不直观 数据都是从后台动态获取 前台动态生成添加
+            // var cli = document.getElementsByTagName("li")[0];
+            // console.log(cli);
+
+            //html5获取Dom
+
+            //html5中使用querySelector(传入选择器的名称) query查询 Selector选择器(支持标签 类 id)
+            //querySelector获取单个元素 即使多个也返回多个中的第一个
+            //如果多个请使用querySelectorAll
+
+            //单个
+            var javaLiByTagName = document.querySelector("li");
+            var javaLiByClass = document.querySelector(".red");
+            var javaLiById = document.querySelector("#red");
+            console.log(javaLiByTagName);
+            console.log(javaLiByClass);
+            console.log(javaLiById);
+
+
+            //多个返回的是所有满足条件的元素数组
+            var liByTag = document.querySelectorAll("li");
+            var liByClass = document.querySelectorAll(".red");
+            var liById = document.querySelectorAll("#red");
+            console.log(liByTag);
+            console.log(liByClass);
+            console.log(liById);
+        }
+    </script>
+</body>
+```
+---
+### html5操作元素类属性classList 添加add() 删除remove() 获取classList.item(指定数组下标) 切换toggle() 判断是否含有某个类contains()
+> * 1. classList.add() 为指定的元素添加一个类样式 如果添加多个和className相同 直接classList ="你要添加的多个样式 空格隔开"
+> * 2. classList.remove() 为指定的元素移除一个类样式 如果移除多个和className相同 直接classList =""
+> * 3. classList.toggle 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
+> * 4. classList.contains 判断指定元素是否含有指定的样式 返回true或false
+---
+```
+<body>
+    <ul>
+        <li>Java</li>
+        <li class="blue underline" id="JavaScript">JavaScript</li>
+        <li>C++</li>
+        <li class="pink">Python</li>
+    </ul>
+    <div>
+        <input type="button" value="为第一个 li 元素添加样式" id="add" onclick="add(1)">
+        <input type="button" value="为第一个 li 元素添加多个样式" id="addmore" onclick="add(0)">
+    </div>
+    <div>
+        <input type="button" value="为第二个li元素移除某一个样式" id="remove" onclick="remove(1)">
+        <input type="button" value="为第二个li元素移除所有样式" id="remove" onclick="remove(0)">
+    </div>
+    <input type="button" value="为第三个li元素切换样式" id="toggle" onclick="toggle()">
+    <input type="button" value="判断第四个li元素是否包含某个样式" id="contain" onclick="contain()">
+
+    <script>
+        function add(size) {
+
+            // classList.add 为指定元素添加指定名称的样式 一次只能添加一个样式
+            if (size == 1) {
+                //add方法只能添加一个样式 如果添加多个样式需要重复写
+                document.querySelector("li").classList.add("red");
+
+            } else {
+                //下面是一次性添加多个 注意空格隔开
+                document.querySelector("li").classList = "red underline";
+            }
+        }
+
+        function remove(size) {
+
+            // classList.remove 为指定元素添加指定名称的样式 一次只能移除一个样式(移除的是样式 不是class属性)
+            if (size == 1) {
+                //remove方法只能移除一个样式 如果移除多个样式需要重复写
+                document.querySelector("#JavaScript").classList.remove("blue");
+
+            } else {
+                //下面是移除所有
+                if (document.querySelector("#JavaScript").classList.length === 0) {
+                    return false;
+                } else {
+                    document.querySelector("#JavaScript").classList = "";
+                }
+
+            }
+        }
+
+        function toggle() {
+            // classList.toggle 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
+            document.querySelectorAll("li")[2].classList.toggle("green");
+        }
+
+        function contain() {
+            // classList.contains 判断指定元素是否含有指定的样式 返回true或false
+            var flag = document.querySelectorAll("li")[3].classList.contains("pink");
+            console.log(flag);
+        }
+        
+        //获取指定元素的类名 通过数组下标
+         document.querySelectorAll("li")[1].onclick = function() {
+            console.log(this.classList.item(0));
+        }
+    </script>
+</body>
+```
+---

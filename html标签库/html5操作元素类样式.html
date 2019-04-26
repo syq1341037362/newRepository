@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .red {
+        color: #ff3636;
+    }
+    
+    .blue {
+        color: skyblue;
+    }
+    
+    .green {
+        color: greenyellow
+    }
+    
+    .pink {
+        color: hotpink;
+    }
+    
+    .gray {
+        color: #999999;
+    }
+    
+    .underline {
+        text-decoration: underline;
+    }
+    
+    input {
+        display: inline-block;
+        border: 1px solid #e1e1e1;
+        height: 40px;
+        border-radius: 20px;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 10px;
+        background-color: #999999;
+        outline: none;
+        padding: 0px 15px;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>Java</li>
+        <li class="blue underline" id="JavaScript">JavaScript</li>
+        <li>C++</li>
+        <li class="pink">Python</li>
+    </ul>
+    <div>
+        <input type="button" value="为第一个 li 元素添加样式" id="add" onclick="add(1)">
+        <input type="button" value="为第一个 li 元素添加多个样式" id="addmore" onclick="add(0)">
+    </div>
+    <div>
+        <input type="button" value="为第二个li元素移除某一个样式" id="remove" onclick="remove(1)">
+        <input type="button" value="为第二个li元素移除所有样式" id="remove" onclick="remove(0)">
+    </div>
+    <input type="button" value="为第三个li元素切换样式" id="toggle" onclick="toggle()">
+    <input type="button" value="判断第四个li元素是否包含某个样式" id="contain" onclick="contain()">
+
+    <script>
+        function add(size) {
+
+            // classList.add 为指定元素添加指定名称的样式 一次只能添加一个样式
+            if (size == 1) {
+                //add方法只能添加一个样式 如果添加多个样式需要重复写
+                document.querySelector("li").classList.add("red");
+
+            } else {
+                //下面是一次性添加多个 注意空格隔开
+                document.querySelector("li").classList = "red underline";
+            }
+        }
+
+        function remove(size) {
+
+            // classList.remove 为指定元素添加指定名称的样式 一次只能移除一个样式(移除的是样式 不是class属性)
+            if (size == 1) {
+                //remove方法只能移除一个样式 如果移除多个样式需要重复写
+                document.querySelector("#JavaScript").classList.remove("blue");
+
+            } else {
+                //下面是移除所有
+                if (document.querySelector("#JavaScript").classList.length === 0) {
+                    return false;
+                } else {
+                    document.querySelector("#JavaScript").classList = "";
+                }
+
+            }
+        }
+
+        function toggle() {
+            // classList.toggle 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
+            document.querySelectorAll("li")[2].classList.toggle("green");
+        }
+
+        function contain() {
+            // classList.contains 判断指定元素是否含有指定的样式 返回true或false
+            var flag = document.querySelectorAll("li")[3].classList.contains("pink");
+            console.log(flag);
+        }
+
+        //获取指定元素的类名 通过数组下标
+        document.querySelectorAll("li")[1].onclick = function() {
+            console.log(this.classList.item(0));
+        }
+    </script>
+</body>
+
+</html>

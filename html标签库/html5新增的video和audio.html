@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>audio和video</title>
+    <style>
+        audio {
+            width: 100%;
+            height: 30px;
+        }
+        
+        video {
+            float: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- embed：直接插入视频文件 :本质是调用本级上已经安装的软件 有兼容性 -->
+    <!-- flash插件：安装flash 1.学习flash,增加使用成本 2.苹果设备不支持flash -->
+    <!-- audio:音频 必须添加controls 
+        autoplay自动播放 
+        loop循环播放  
+        Chrome 58+添加 controlsList="nodownload"禁止下载 
+        添加oncontextmenu="return false" 禁止右键下载-->
+    <audio src="./static/1.mp3" controls="true" autoplay loop controlsList="nodownload" oncontextmenu="return false"></audio>
+    <!-- video：视频 -->
+    <!-- 属性值 
+        autoplay自动播放 
+        loop循环播放  
+        width:宽度 注意设置宽高一般情况下只会设置一个 让其自动适应 如过设置2个除非是等比例的
+        height:高度
+        poster:当视频还没有完全下载或者用户还没有点击播放前显示的封面 默认显示当前视频文件的第一幅画面
+        
+    -->
+    <!-- <video src="./static/1.flv" poster="./static/1.png" controls="true" autoplay controlsList="nodownload" oncontextmenu="return false"></video> -->
+    <video controls>
+        <source src="./static/1.flv" type="video/flv">
+        <source src="./static/1.mp4" type="video/mp4">
+            您的浏览器不支持播放当前视频
+    </video>
+</body>
+
+</html>

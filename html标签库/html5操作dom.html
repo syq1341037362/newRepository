@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .red {
+        color: #ff3636;
+    }
+    
+    .blue {
+        color: skyblue;
+    }
+    
+    .green {
+        color: greenyellow
+    }
+    
+    .pink {
+        color: hotpink;
+    }
+    
+    .gray {
+        color: #999999;
+    }
+</style>
+
+<body>
+    <ul>
+        <li class="red" id="red">前端</li>
+        <li class="blue" id="blue">java</li>
+        <li class="green" id="green">c++</li>
+        <li class="pink" id="pink">python</li>
+        <li class="gray" id="gray">php</li>
+    </ul>
+    <script>
+        // 获取第一个li标签
+        window.onload = function() {
+            //TagName获取的是数组
+            document.getElementsByClassName
+                //索引不直观 数据都是从后台动态获取 前台动态生成添加
+                // var cli = document.getElementsByTagName("li")[0];
+                // console.log(cli);
+
+            //html5中使用querySelector(传入选择器的名称) query查询 Selector选择器(支持标签 类 id)
+            //querySelector获取单个元素 即使多个也返回多个中的第一个
+            //如果多个请使用querySelectorAll
+
+            //单个
+            var javaLiByTagName = document.querySelector("li");
+            var javaLiByClass = document.querySelector(".red");
+            var javaLiById = document.querySelector("#red");
+            console.log(javaLiByTagName);
+            console.log(javaLiByClass);
+            console.log(javaLiById);
+
+
+            //多个返回的是所有满足条件的元素数组
+            var liByTag = document.querySelectorAll("li");
+            var liByClass = document.querySelectorAll(".red");
+            var liById = document.querySelectorAll("#red");
+            console.log(liByTag);
+            console.log(liByClass);
+            console.log(liById);
+        }
+    </script>
+</body>
+
+</html>
