@@ -417,8 +417,8 @@
 ### html5操作元素类属性classList 添加add() 删除remove() 获取classList.item(指定数组下标) 切换toggle() 判断是否含有某个类contains()
 > 1. classList.add() 为指定的元素添加一个类样式 如果添加多个和className相同 直接classList ="你要添加的多个样式 空格隔开"
 > 2. classList.remove() 为指定的元素移除一个类样式 如果移除所有和className相同 直接classList =""
-> 3. classList.toggle 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
-> 4. classList.contains 判断指定元素是否含有指定的样式 返回true或false
+> 3. classList.toggle() 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
+> 4. classList.contains() 判断指定元素是否含有指定的样式 返回true或false
 ---
 ```
 <body>
