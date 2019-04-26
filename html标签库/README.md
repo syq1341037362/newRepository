@@ -373,7 +373,7 @@
     
 -->
 <!-- <video src="./static/1.flv" poster="./static/1.png" controls="true" autoplay controlsList="nodownload" oncontextmenu="return false"></video> -->
-<video controls>
+<video controls controlsList="nodownload" oncontextmenu="return false" autoplay poster="./static/1.png">
     <source src="./static/1.flv" type="video/flv">
     <source src="./static/1.mp4" type="video/mp4">
         您的浏览器不支持播放当前视频
