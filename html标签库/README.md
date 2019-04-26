@@ -160,6 +160,25 @@
  menu {
     display: block
 }
+<body>
+    <script>
+        // 兼容IE8 IE9 及以下第一种方式在解析到标签之前创建标签 需要对应的标签变为块级标签 因为创建出来的都是行内标签
+        // document.createElement("header");
+        // document.createElement("nav");
+        // document.createElement("main");
+        // document.createElement("article");
+        // document.createElement("aside");
+        // document.createElement("footer");
+    </script>
+    <header>头部</header>
+    <nav>导航</nav>
+    <main>
+        <article>左边</article>
+        <aside>右边</aside>
+    </main>
+    <footer>底部</footer>
+
+</body>
 ```
 ### html5 表单中的input新增的type类型 *email* *tel* *url* *number* *range* *color* *time* *date* *datetime-local* *month* *week*
 ---
