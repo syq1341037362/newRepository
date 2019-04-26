@@ -330,10 +330,10 @@
 ```
 ---
 ### html5的媒体标签 audio 和 video (之前是通过 embed标签或者flash)
-> * 1. 不管是audio还是video都要有controls不然无法显示控制器 也就是进度条等
-> * 2. Chrome 58+添加 controlsList="nodownload"禁止下载 添加oncontextmenu="return false" 禁止右键下载
-> * 3. audio和video具有的属性  autoplay自动播放 loop循环播放
-> * 4. video需要注意设置宽高一般情况下只会设置一个 让其自动适应 如过设置2个除非是等比例的
+> 1. 不管是audio还是video都要有controls不然无法显示控制器 也就是进度条等
+> 2. Chrome 58+添加 controlsList="nodownload"禁止下载 添加oncontextmenu="return false" 禁止右键下载
+> 3. audio和video具有的属性  autoplay自动播放 loop循环播放
+> 4. video需要注意设置宽高一般情况下只会设置一个 让其自动适应 如过设置2个除非是等比例的
 ---
 ```
 <!-- embed：直接插入视频文件 :本质是调用本级上已经安装的软件 有兼容性 -->
@@ -362,10 +362,10 @@
 ```
 ---
 ### html5中操作dom的新方法 querySelector
-> * 1. 之前是用 document.getElementById 或者 document.getElementsByTagName 或者document.getElementsByClassName 等
-> * 2. querySelector() 支持 标签 类 id 选择器 根据不同的需要自己选择
-> * 3. querySelector() 返回的是单个元素 即使多个也返回多个中的第一个(例如多个li有同一个class属性red 使用 querySelector(".red") 只会返回满足条件的第一个)
-> * 4. 查询多个元素 请使用 querySelectorAll() 同样支持 标签 类 id 选择器 根据不同的需要自己选择
+> 1. 之前是用 document.getElementById 或者 document.getElementsByTagName 或者document.getElementsByClassName 等
+> 2. querySelector() 支持 标签 类 id 选择器 根据不同的需要自己选择
+> 3. querySelector() 返回的是单个元素 即使多个也返回多个中的第一个(例如多个li有同一个class属性red 使用 querySelector(".red") 只会返回满足条件的第一个)
+> 4. 查询多个元素 请使用 querySelectorAll() 同样支持 标签 类 id 选择器 根据不同的需要自己选择
 ---
 ```
 <body>
@@ -415,10 +415,10 @@
 ```
 ---
 ### html5操作元素类属性classList 添加add() 删除remove() 获取classList.item(指定数组下标) 切换toggle() 判断是否含有某个类contains()
-> * 1. classList.add() 为指定的元素添加一个类样式 如果添加多个和className相同 直接classList ="你要添加的多个样式 空格隔开"
-> * 2. classList.remove() 为指定的元素移除一个类样式 如果移除多个和className相同 直接classList =""
-> * 3. classList.toggle 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
-> * 4. classList.contains 判断指定元素是否含有指定的样式 返回true或false
+> 1. classList.add() 为指定的元素添加一个类样式 如果添加多个和className相同 直接classList ="你要添加的多个样式 空格隔开"
+> 2. classList.remove() 为指定的元素移除一个类样式 如果移除多个和className相同 直接classList =""
+> 3. classList.toggle 为指定元素切换样式 如果指定元素没有此样式就添加如果有就移除
+> 4. classList.contains 判断指定元素是否含有指定的样式 返回true或false
 ---
 ```
 <body>
