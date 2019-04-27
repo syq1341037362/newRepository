@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 需求 即时预览 -->
+    <!-- 
+        及时：当用户选择完图片之后就立刻进行预览的处理 >>onchange()
+        预览：通过文件读取对象的readAsDataURL()完成
+     -->
+    <form action="">
+        <label for="myFile">文件</label>
+        <input type="file" name="myFile" id="myFile" onchange="fileRead()">
+        <input type="submit" value="提交">
+    </form>
+    <img src="" alt="">
+    <script>
+        //FileReader：读取文件内容
+        //1.readAsText():读取文本文件(可以使用Txt打开的文件) 返回的是文本字符串 默认编码是UTF-8
+        //2.readAsBinaryString():Binary(二进制) 读取任意类型的文件 返回二进制字符串。 通常这个方法不是用来读取文件给用户看而是存储文件 例如使用readAsBinaryString()读取文件发送给后台后台接收到数据再进行存储
+        //3.readAsDataURL():读取文件获取一段以data开头的字符串 这段字符串的本质就是DataURL DataURL是一种将文件（----这个文件一般就是指图像或者能够嵌入到文档的文件格式等----）嵌入到文档的一种方案 DataURL是将资源转化为Base64编码的字符串并且将这些内容存储在url中>>优化网站的加载速度和执行的效率
+
+        function fileRead() {
+            //1.创建文件读取对象
+            //2.读取文件 获取DataURL  
+            //说明 1.readAsDataURL 没有返回值但是（---读取完---）会将文件的读取结果存储在文件读取对象的result中  2.readAsDataURL()需要传递一个blob(binary large object 二进制大文件)一般是图片或者其他可以嵌入到文档的类型
+
+            var reader = new FileReader();
+            var file = document.querySelector("#myFile").files;
+            reader.readAsDataURL(file[0]);
+            //监听文件是否读取完成 
+            //FileReader 提供了一个完整的事件模型 用来捕获读取文件是的状态
+            // onabort：读取文件中断时触发 ---- onerror：读取文件错误时触发 ---- onload：文件读取成功完成时触发  ---- onloadend：读取完成时触发无论成功还是失败 ----onloadstrat：开始读取时触发 ---- onprogress：读取文件过程中持续触发
+            // 获取数据
+            reader.onload = function() {
+                //展示
+                document.querySelector("img").src = reader.result;
+
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
