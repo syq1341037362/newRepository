@@ -700,7 +700,7 @@ function isFull() {
 ---
 
 ### html5的 FileReader(读取文件)  FileReader 提供了一个完整的事件模型 用来捕获读取文件是的状态
-* FileReader的DataURL FileReader 提供了一个完整的事件模型 用来捕获读取文件是的状态
+* __FileReader的DataURL FileReader 提供了一个完整的事件模型 用来捕获读取文件是的状态__
 > 1. 读取文件获取一段以data开头的字符串 这段字符串的本质就是DataURL DataURL是一种将文件（----这个文件一般就是指图像或者能够嵌入到文档的文件格式等----）嵌入到文档的一种方案 DataURL是将资源转化为Base64编码的字符串并且将这些内容存储在url中>>优化网站的加载速度和执行的效率
 > 2. 主要事件 **onabort：读取文件中断时触发**
 > 3. 主要事件 **onerror：读取文件错误时触发**
