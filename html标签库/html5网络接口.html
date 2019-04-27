@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //为了兼容移动端 最好不要直接写 window.ononline/window.onoffline
+        //推荐使用addEventListener添加事件
+        //ononline:当网络连通时 触发
+        window.addEventListener("online", function() {
+            alert("网络连通了")
+        })
+
+        //onoffline:当网络断开时 触发
+        window.addEventListener("offline", function() {
+            alert("网络断开了")
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全屏接口的使用</title>
+</head>
+
+<body>
+    <div>
+        <img src="./static/1.png" alt="">
+        <input type="button" id="full" value="全屏">
+        <input type="button" id="cancelFull" value="退出全屏">
+        <input type="button" id="isFull" value="是否全屏">
+    </div>
+    <script>
+        //全屏操作的主要方法和属性 存在兼容性问题需要添加浏览器前缀(谷歌和火狐暂时是可以不加前缀的IE至少是11)
+        // google 谷歌浏览器 webkit
+        //firefox 火狐浏览器 moz
+        //IE      IE浏览器   ms
+        //opera   欧朋浏览器 o
+        /*
+            1. requestFullScreen() //开启全屏显示
+            2. cancelFullScreen()  //退出全屏显示 默认的是exitFullScreen()
+            3. fullScreenElement() //是否是全屏状态
+        */
+        window.onload = function() {
+            var div = document.querySelector("div");
+            //添加三个按钮的点击事件
+
+            //全屏操作
+            document.querySelector("#full").onclick = function() {
+                //默认的
+                // div.requestFullscreen();
+
+                //谷歌浏览器
+                // div.webkitRequestFullScreen();
+
+                //火狐浏览器
+                // div.mozRequestFullScreen();
+
+                //IE浏览器
+                // div.msRequestFullscreen();
+
+                //使用能力测试添加不同浏览器的前缀
+                qz(div);
+
+            };
+            //退出全屏
+            document.querySelector("#cancelFull").onclick = function() {
+                //默认的
+                // document.exitFullscreen();
+
+                //谷歌浏览器
+                // document.webkitCancelFullScreen();
+
+                //火狐浏览器
+                // document.mozCancelFullscreen();
+
+                //IE浏览器
+                // document.msExitFullscreen();
+                exit()
+
+            };
+
+            document.querySelector("#isFull").onclick = function() {
+                if (isFull()) {
+                    alert("当前是全屏")
+                } else {
+                    alert("当前没有开启全屏")
+                }
+
+            }
+
+        };
+        //能力测试 测试浏览器是哪一种全屏方式
+        function qz(ele) {
+            if (ele.requestFullScreen) { //默认
+                ele.requestFullScreen();
+            } else if (ele.webkitRequestFullScreen) { //google
+                ele.webkitRequestFullScreen();
+            } else if (ele.mozRequestFullScreen) { //firefox
+                ele.mozRequestFullScreen();
+            } else if (ele.msRequestFullscreen) { //IE
+                ele.msRequestFullscreen();
+            }
+        }
+        //能力测试 测试浏览器是哪一种全屏方式
+        function exit() {
+            if (document.exitFullscreen) { //默认
+                document.exitFullscreen();
+            } else if (document.webkitCancelFullScreen) { //google
+                document.webkitCancelFullScreen();
+            } else if (document.mozCancelFullscreen) { //firefox
+                document.mozCancelFullscreen();
+            } else if (document.msExitFullscreen) { //IE
+                document.msExitFullscreen();
+            }
+        }
+        //能力测试 测试浏览器是否全屏 IE 有点问题就不写了
+        function isFull() {
+            if (document.fullscreenElement) { //默认
+                return document.fullscreenElement
+            } else if (document.webkitFullScreenElement) { //google
+                return document.webkitFullScreenElement
+            } else if (document.mozkitFullScreenElement) { //firefox
+                return document.mozkitFullScreenElement
+            }
+        }
+    </script>
+</body>
+
+</html>

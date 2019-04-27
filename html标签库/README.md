@@ -509,3 +509,192 @@
 </body>
 ```
 ---
+
+### html5中的自定义属性 data- (使用驼峰命名法来获取定义的值)
+> 1. data开头
+> 2. data-后后必须至少有一个字符,多个单词用-连接
+> 3. 名称都应该使用小写 --不要包含任何的大些字符
+> 4. 名称中不要有任何特殊符号 不要使用纯数字
+> 5. 取值必须使用驼峰命名法来拼接
+---
+```
+<body>
+    <!-- 1.定义 -->
+    <!-- 规范：
+        1.data开头
+        2.data-后后必须至少有一个字符,多个单词用-连接
+        建议
+        1.名称都应该使用小写 --不要包含任何的大些字符
+        2. 名称中不要有任何特殊符号 
+        3.名称不要使用纯数字
+    -->
+    <!-- 2.取值 -->
+    <p data-test-name="test">测试显示</p>
+    <span data-msg="msg">消息</span>
+    <a href="#" data-a-val-show="a标签">aaa</a>
+    <script>
+        //获取自定义属性值
+        window.onload = function() {
+            var p = document.querySelector("p");
+            //获取自定义属性值
+            //将data-后面的单词使用驼峰命名法来连接 必须使用驼峰命名合法获取否则有可能无法获取到值
+            var val = p.dataset["testName"];
+            console.log(val + "--");
+
+            //------------------------------
+            var span = document.querySelector("span")
+            var span_val = span.dataset["msg"];
+            console.log(span_val + "***");
+
+            //------------------------------
+            var a = document.querySelector("a")
+            var a_val = a.dataset["aValShow"];
+            console.log(a_val + "///");
+        }
+    </script>
+</body>
+```
+---
+
+### html5网络接口事件 ononline onoffline
+> 1.为了兼容移动端 最好不要使用 window.ononline / window.onoffline 推荐使用addEventListener添加事件
+> 2.可能会有缓存问题
+---
+```
+<script>
+    //为了兼容移动端 最好不要直接写 window.ononline/window.onoffline
+    //推荐使用addEventListener添加事件
+    //ononline:当网络连通时 触发
+    window.addEventListener("online", function() {
+        alert("网络连通了")
+    })
+
+    //onoffline:当网络断开时 触发
+    window.addEventListener("offline", function() {
+        alert("网络断开了")
+    })
+</script>
+```
+---
+
+### html5全屏事件  requestFullScreen()开启全屏 cancelFullScreen()退出全屏 fullScreenElement()是否全屏
+> 1.不管是 **开启** 还是 **退出** 还是 **检测是否全屏** 都需要浏览器兼容 兼容方法 加浏览器前缀
+> 2. **退出** 这个方法 默认的不是cancelFullScreen() 而是exitFullscreen() 哈哈没想到吧
+> 3. **检测是否是全屏** IE好像不支持可以用别的替代
+---
+```
+//全屏代码
+<body>
+    <div>
+        <img src="./static/1.png" alt="">
+        <input type="button" id="full" value="全屏">
+        <input type="button" id="cancelFull" value="退出全屏">
+        <input type="button" id="isFull" value="是否全屏">
+    </div>
+    <script>
+        //全屏操作的主要方法和属性 存在兼容性问题需要添加浏览器前缀(谷歌和火狐暂时是可以不加前缀的IE至少是11)
+        // google 谷歌浏览器 webkit
+        //firefox 火狐浏览器 moz
+        //IE      IE浏览器   ms
+        //opera   欧朋浏览器 o
+        /*
+            1. requestFullScreen() //开启全屏显示
+            2. cancelFullScreen()  //退出全屏显示 默认的是exitFullScreen()
+            3. fullScreenElement() //是否是全屏状态
+        */
+        window.onload = function() {
+            var div = document.querySelector("div");
+            //添加三个按钮的点击事件
+
+            //全屏操作
+            document.querySelector("#full").onclick = function() {
+                //默认的
+                // div.requestFullscreen();
+
+                //谷歌浏览器
+                // div.webkitRequestFullScreen();
+
+                //火狐浏览器
+                // div.mozRequestFullScreen();
+
+                //IE浏览器
+                // div.msRequestFullscreen();
+
+                //使用能力测试添加不同浏览器的前缀
+                qz(div);
+
+            };
+
+        };
+        //能力测试 测试浏览器是哪一种全屏方式
+        function qz(ele) {
+            if (ele.requestFullScreen) { //默认
+                ele.requestFullScreen();
+            } else if (ele.webkitRequestFullScreen) { //google
+                ele.webkitRequestFullScreen();
+            } else if (ele.mozRequestFullScreen) { //firefox
+                ele.mozRequestFullScreen();
+            } else if (ele.msRequestFullscreen) { //IE
+                ele.msRequestFullscreen();
+            }
+        }
+    
+    </script>
+</body> 
+```
+---
+---
+```
+//退出全屏
+document.querySelector("#cancelFull").onclick = function() {
+    //默认的
+    // document.exitFullscreen();
+
+    //谷歌浏览器
+    // document.webkitCancelFullScreen();
+
+    //火狐浏览器
+    // document.mozCancelFullscreen();
+
+    //IE浏览器
+    // document.msExitFullscreen();
+    exit()
+
+};
+//能力测试 测试浏览器是哪一种全屏方式
+function exit() {
+    if (document.exitFullscreen) { //默认
+        document.exitFullscreen();
+    } else if (document.webkitCancelFullScreen) { //google
+        document.webkitCancelFullScreen();
+    } else if (document.mozCancelFullscreen) { //firefox
+        document.mozCancelFullscreen();
+    } else if (document.msExitFullscreen) { //IE
+        document.msExitFullscreen();
+    }
+}
+```
+---
+---
+```
+//检测是否为全屏
+ document.querySelector("#isFull").onclick = function() {
+    if (isFull()) {
+        alert("当前是全屏")
+    } else {
+        alert("当前没有开启全屏")
+    }
+
+}
+//能力测试 测试浏览器是否全屏 IE 有点问题就不写了
+function isFull() {
+    if (document.fullscreenElement) { //默认
+        return document.fullscreenElement
+    } else if (document.webkitFullScreenElement) { //google
+        return document.webkitFullScreenElement
+    } else if (document.mozkitFullScreenElement) { //firefox
+        return document.mozkitFullScreenElement
+    }
+}
+```
+---
