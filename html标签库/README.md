@@ -557,8 +557,8 @@
 ---
 
 ### html5网络接口事件 ononline onoffline
-> 1.为了兼容移动端 最好不要使用 window.ononline / window.onoffline 推荐使用addEventListener添加事件
-> 2.可能会有缓存问题
+> 1. 为了兼容移动端 最好不要使用 window.ononline / window.onoffline 推荐使用addEventListener添加事件
+> 2. 可能会有缓存问题
 ---
 ```
 <script>
@@ -578,7 +578,7 @@
 ---
 
 ### html5全屏事件  requestFullScreen()开启全屏 cancelFullScreen()退出全屏 fullScreenElement()是否全屏
-> 1.不管是 **开启** 还是 **退出** 还是 **检测是否全屏** 都需要浏览器兼容 兼容方法 加浏览器前缀
+> 1. 不管是 **开启** 还是 **退出** 还是 **检测是否全屏** 都需要浏览器兼容 兼容方法 加浏览器前缀
 > 2. **退出** 这个方法 默认的不是cancelFullScreen() 而是exitFullscreen() 哈哈没想到吧
 > 3. **检测是否是全屏** IE好像不支持可以用别的替代
 ---
