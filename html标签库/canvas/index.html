@@ -285,7 +285,7 @@
             var minutes = t.getMinutes() + "";
             minutes = minutes.padStart(2, "0");
             var second = t.getSeconds() + "";
-            second = second.padStart(0, "0");
+            second = second.padStart(2, "0");
             document.querySelector(".nowtime").innerHTML = "当前时间为：" + year + "年 " + month + "月 " + date + "日 " + weekList[day] + " " + a_p + "时 : " + minutes + "分 : " + second + "秒";
             for (var i = 0; i < data_time.length; i++) {
                 this.init(data_time[i], i, "#fff");
