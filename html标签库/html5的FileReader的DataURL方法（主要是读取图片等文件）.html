@@ -41,8 +41,19 @@
             reader.onload = function() {
                 //展示
                 document.querySelector("img").src = reader.result;
-
+                userHeadImgCut();
             }
+
+
+        }
+        //使用canvas来绘制图像
+        function userHeadImgCut() {
+            //创建canvas
+            var cv = document.createElement("canvas");
+            cv.height = document.querySelector("img").offsetHeight;
+            cv.width = document.querySelector("img").offsetWidth;
+            cv.getContext("2d")
+            document.body.appendChild(cv)
 
 
         }

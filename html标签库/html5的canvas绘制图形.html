@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #f2f4f6;
+    }
+</style>
+
+<body>
+    <canvas></canvas>
+</body>
+<script>
+    var cv = document.querySelector("canvas");
+    cv.width = 500;
+    cv.height = 1000;
+    cv.style.border = '3px solid skyblue';
+
+    //设置canvas绘制2d还是3d
+    var content = cv.getContext("2d");
+
+
+    //设置canvas的画布默认颜色
+    content.fillStyle = '#f503fc';
+    //利用canvas绘制矩形
+    content.fillRect(0, 0, 100, 100);
+
+    //利用canvas绘制空心矩形
+    content.strokeStyle = "hotpink";
+    content.strokeRect(150, 0, 100, 100);
+
+
+    //利用canvas清除指定区域
+    content.clearRect(25, 25, 50, 50);
+
+    //canvas的透明度
+    content.fillStyle = 'green';
+    content.globalAlpha = 0.5;
+    content.fillRect(0, 150, 100, 100);
+
+    //canvas的渐变2D 和 3D
+    //线性渐变
+    var grid = content.createLinearGradient(0, 0, cv.width, 100);
+    grid.addColorStop(0, "blue");
+    grid.addColorStop(0.25, "green");
+    grid.addColorStop(0.5, "red");
+    grid.addColorStop(0.75, "pink");
+    grid.addColorStop(1, "skyblue");
+    content.fillStyle = grid;
+    content.fillRect(0, 350, cv.width, 100);
+    //扇形渐变
+    var grid
+</script>
+
+</html>
