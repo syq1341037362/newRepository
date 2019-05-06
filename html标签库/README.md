@@ -757,3 +757,86 @@ function isFull() {
 </body>
 ```
 ---
+
+### html5的拖拽事件 
+> 1. 首先需要拖拽的元素必须添加 draggable="true" 图片和超链接默认支持拖拽
+> 2. 需要在 ondragover中阻止浏览器的默认行为 因为不阻止默认行为 ondrap不执行
+> 3. 被拖拽元素的方法 
+    >> 3.1 //ondrag       应用于拖拽元素 整个拖拽过程都会调用（持续触发）
+    >> 3.2// ondragstart  应用于拖拽元素 当拖拽开始时调用
+    >> 3.3 // ondragleave  应用于拖拽元素 当鼠标离开拖拽元素的范围时调用
+    >> 3.4 // ondragend    应用于拖拽元素 当拖拽结束时调用
+> 4. 目标元素的方法
+    >> 4.1 ondragenter      应用于目标元素 当拖拽元素进入时调用
+    >> 4.2 ondragover       应用于目标元素 当停留在目标元素上时调用
+    >> 4.3 ondrop           应用于目标元素 当在目标元素上松开鼠标时调用
+    >> 4.4 ondragleave      应用于目标元素 当鼠标离开目标元素时调用
+---
+```
+<body>
+    <div class="div1" id="div1">
+        <!-- 在h5中 如果想拖拽元素，就必须为元素添加 draggable="true" 图片和超链接默认就可以拖拽 -->
+        <p id="pe" draggable="true">试着把我拖过去</p>
+    </div>
+    <div class="div2" id="div2"></div>
+    <script>
+        /*学习拖拽。主要是学习拖拽事件*/
+        /*1.应用于拖拽元素的事件 */
+        // ondrag       应用于拖拽元素 整个拖拽过程都会调用（持续触发）
+        // ondragstart  应用于拖拽元素 当拖拽开始时调用
+        // ondragleave  应用于拖拽元素 当鼠标离开拖拽元素的范围时调用
+        // ondragend    应用于拖拽元素 当拖拽结束时调用
+
+        var p = document.querySelector("#pe");
+        p.ondrag = function() {
+            console.log("ondrag");
+        }
+        p.ondragstart = function() {
+            console.log("ondragstart");
+        }
+        p.ondragleave = function() {
+            console.log("ondragleave");
+        }
+        p.ondragend = function() {
+            console.log("ondragend");
+        }
+
+        /*2.应用于目标元素的事件 */
+        // ondragenter      应用于目标元素 当拖拽元素进入时调用
+        // ondragover       应用于目标元素 当停留在目标元素上时调用
+        // ondrop           应用于目标元素 当在目标元素上松开鼠标时调用
+        // ondragleave      应用于目标元素 当鼠标离开目标元素时调用
+        var div2 = document.querySelector("#div2");
+        var div1 = document.querySelector("#div1");
+        div2.ondragenter = function(e) {
+            console.log("元素进入目标元素区域");
+            e.preventDefault();
+        }
+        div2.ondragover = function(e) {
+
+                console.log("元素正在目标元素上停留");
+                e.preventDefault();
+
+                /* 如果想触发ondrop 那么必须在ondragover中阻止浏览器的默认行为 */
+            }
+            /*默认不被触发 因为浏览器阻止触发 ondrop  必须在ondragover 中阻止浏览器的默认行为*/
+        div2.ondrop = function(e) {
+            console.log("您在目标元素上松开了鼠标");
+            /*添加被拖拽的元素*/
+            div2.appendChild(p);
+        }
+        div2.ondragleave = function(e) {
+            console.log("鼠标离开目标元素");
+        }
+        div1.ondragover = function(e) {
+            e.preventDefault();
+        }
+        div1.ondrop = function(e) {
+            console.log("您在目标元素上松开了鼠标");
+            /*添加被拖拽的元素*/
+            div1.appendChild(p);
+        }
+    </script>
+</body>
+```
+---
