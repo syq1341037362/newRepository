@@ -902,3 +902,35 @@ function isFull() {
 </body>
 ```
 ---
+### html5的存储 sessionStorage 和 localStorage
+> 1. **sessionStorage** 和 **localStorage** 的区别 一个是临时储存(存储在页面上) 一个是浏览器储存 存储在浏览器中 根据不同需要使用
+> 2. 方法 setItem() getItem() removeItem() clear() 注意clear()使用需谨慎 它清空所有的
+---
+```
+<body>
+    <p>sessionStorage 存储容量大概5M</p>
+    <p>参数1：setItem(key,value) 存储数据以键值对的形式</p>
+    <p>参数2：getItem(key) 获取数据</p>
+    <p>参数3：removeItem(key) 通过制定名称的key删除对应的内容</p>
+    <p>参数3：clear() 清空所有存储的内容</p>
+    <input type="text" id="userName"><br>
+    <input type="button" value="设置数据" id="setData">
+    <input type="button" value="获取数据" id="getData">
+    <input type="button" value="删除数据" id="removeData">
+    <script>
+        document.querySelector("#setData").onclick = function() {
+            var name = document.querySelector("#userName").value;
+            window.sessionStorage.setItem("userName", name);
+            console.log(window.sessionStorage.getItem("userName"));
+        }
+        document.querySelector("#getData").onclick = function() {
+            console.log(window.sessionStorage.getItem("userName"));
+        }
+        document.querySelector("#removeData").onclick = function() {
+            window.sessionStorage.removeItem("userName");
+            console.log("清除成功");
+        }
+    </script>
+</body>
+```
+---
