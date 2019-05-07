@@ -840,3 +840,65 @@ function isFull() {
 </body>
 ```
 ---
+#### 5.1 html5元素拖拽 使用 document 让所有元素拖拽 使用 dataTranser保存元素
+* 注意dataTranser.setData() 有2个参数 一个是 **format 数据类型** 一个是**data 值**
+* format 有2中类型  text/html 字符串 text/uri-list 链接
+* dataTranser.setData()的值 只能在drop中获取
+---
+```
+<body>
+    <div class="div1" id="div1">
+        <!-- 在h5中 如果想拖拽元素，就必须为元素添加 draggable="true" 图片和超链接默认就可以拖拽 -->
+        <p id="pe" draggable="true">试着把我拖过去1</p>
+        <p id="pe2" draggable="true">试着把我拖过去2</p>
+    </div>
+    <div class="div2" id="div2"></div>
+    <div class="div3" id="div3"></div>
+    <script>
+       
+        document.ondrag = function() {
+
+        };
+        document.ondragstart = function(e) {
+            /*通过事件捕获来获取当前被拖拽的子元素*/
+            // 通过dataTransfer存储值;
+            //setData(format,data);  text/html text/uri-list
+            //format 数据类型
+            //data 数据 一般来说是字符串值
+            e.dataTransfer.setData("text/html", e.target.id)
+        }
+        document.ondragleave = function() {
+
+        };
+        document.ondragend = function(e) {
+            e.target.style.opacity = 1;
+            e.target.parentNode.style.borderWidth = "2px";
+        };
+
+        document.ondragenter = function(e) {
+            e.preventDefault();
+            console.log(e.target);
+        };
+        document.ondragover = function(e) {
+
+            e.preventDefault();
+
+            /* 如果想触发ondrop 那么必须在ondragover中阻止浏览器的默认行为 */
+        };
+        /*默认不被触发 因为浏览器阻止触发 ondrop  必须在ondragover 中阻止浏览器的默认行为*/
+        document.ondrop = function(e) {
+            /*添加被拖拽的元素*/
+            //通过dataTransfer存储的值只能在drop事件中获取
+            var id = e.dataTransfer.getData("text/html");
+            e.target.appendChild(document.getElementById(id));
+            console.log(id);
+
+            // e.target.appendChild();
+        };
+        document.ondragleave = function(e) {
+
+        };
+    </script>
+</body>
+```
+---
