@@ -903,7 +903,7 @@ function isFull() {
 ```
 ---
 ### html5的存储 sessionStorage 和 localStorage
-> 1. **sessionStorage** 和 **localStorage** 的区别 一个是临时储存(存储在页面上) 一个是浏览器储存 存储在浏览器中 根据不同需要使用
+> 1. **sessionStorage** 和 **localStorage** 的区别 一个是临时储存(存储在页面上) 一个是浏览器储存 存储在浏览器中 根据不同需要使用 存储大小不同 **sessionStorage大概是5M** **localStorage大概是20M**
 > 2. 方法 setItem() getItem() removeItem() clear() 注意clear()使用需谨慎 它清空所有的
 ---
 * sessionStroage
