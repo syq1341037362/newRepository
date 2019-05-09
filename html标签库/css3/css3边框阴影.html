@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3的边框阴影</title>
+</head>
+<style>
+    .orange {
+        width: 200px;
+        height: 200px;
+        background-color: orange;
+        margin: 100px auto;
+        /* 添加阴影 */
+        box-shadow: 10px 10px 5px 5px rgba(0, 0, 150, 0.2) inset, -10px -10px 5px 5px rgba(0, 0, 150, 0.2) inset;
+    }
+    
+    p {
+        text-shadow: 1px 0px 4px skyblue;
+    }
+    
+    .item {
+        float: left;
+        margin-right: 50px;
+        height: 400px;
+        width: 300px;
+        border: 1px solid
+    }
+    
+    .item img {
+        width: 100%;
+    }
+    
+    .item:nth-of-type(-n+3) {
+        box-shadow: 3px 3px 3px #cccccc;
+    }
+    
+    .item:last-of-type {
+        box-shadow: 3px 3px 3px #cccccc inset, -3px -3px 3px #cccccc inset;
+    }
+</style>
+
+<body>
+    <!-- 文本阴影  text-shadow: offsetX offsetY blur(模糊值) color-->
+    <p>这是一段有文本阴影的文字</p>
+    <!-- 边框阴影 box-shadow: h(水平方向的偏移值) v(垂直方向的偏移值) blur(模糊值 可选) spread(扩展阴影 扩展和收缩阴影的大小 可选) color inset(内阴影 默认是外阴影)  -->
+    <div class="orange"></div>
+
+    <div class="items">
+        <div class="item">
+            <img src="../static/1.png" alt="">
+        </div>
+        <div class="item">
+            <img src="../static/2.png" alt="">
+        </div>
+        <div class="item">
+            <img src="../static/3.jpg" alt="">
+        </div>
+        <div class="item"></div>
+    </div>
+</body>
+
+</html>

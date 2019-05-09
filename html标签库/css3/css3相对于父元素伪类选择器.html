@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>相对于父元素的伪类选择器</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 700px;
+            height: 500px;
+            margin: 100px auto;
+        }
+        
+        li {
+            width: 100px;
+            height: 100px;
+            list-style-type: none;
+            border: 1px solid #e1e1e1;
+            color: #666666;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+        }
+        /*相对于父元素的结构伪类*/
+        /*1. E:first-child: 查找E元素的父级元素中的第一个E元素 在查找的时候并不会限制查找的元素的类型*/
+        /* 下面这句样式查找 li的父级元素的第一个li元素
+            1.相对于当前指定元素的父元素
+            2. 查找的类型必须是指定的类型
+        */
+        
+        li:first-child {
+            color: red;
+        }
+        /*1. E:first-child: 查找E元素的父级元素中的最后一个E元素 在查找的时候并不会限制查找的元素的类型*/
+        
+        li:last-child {
+            background-color: skyblue;
+        }
+        /* 在查找的时候限制类型 :first-of-type 
+            1.也是相对于父元素
+            2.在查找的时候只会查找满足类型条件的元素 过滤掉其他类型的元素
+        */
+        
+        li:first-of-type {
+            background-color: hotpink
+        }
+        
+        li:last-of-type {
+            font-size: 40px;
+        }
+        /*指定索引位置 li:nth-child(从1开始的索引 || 关键字 || 表达式) 不会限制查找元素的类型 */
+        /* 索引 */
+        
+        li:nth-child(5) {
+            background-color: lightblue;
+        }
+        /*关键字 奇数或者偶数 */
+        
+        li:nth-child(even) {
+            background-color: orange;
+        }
+        
+        li:nth-child(odd) {
+            background-color: purple;
+        }
+        /* 表达式 为前面的5个元素添加样式*/
+        
+        ul>li:nth-child(-n+5) {
+            color: #ffffff;
+        }
+        
+        ul>li:nth-last-child(-n+5) {
+            font-weight: bold;
+            color: aqua;
+        }
+        /* 空值 没有任何内容连空格都没有*/
+        
+        li:empty {
+            background: green;
+        }
+        /*指定索引位置 li:nth-of-type(从1开始的索引 || 关键字 || 表达式) 会限制查找元素的类型 */
+        /* li:nth-of-type(even) {
+            background-color: orange;
+        }
+        
+        li:nth-of-type(odd) {
+            background-color: purple;
+        } */
+        /* ul>li:nth-last-of-type(-n+5) {
+            font-weight: bold;
+            color: aqua;
+        } */
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li></li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+        <li>21</li>
+        <li>22</li>
+        <li>23</li>
+        <li>24</li>
+        <li>25</li>
+        <li>26</li>
+        <li>27</li>
+        <li>28</li>
+        <li>29</li>
+        <li>30</li>
+        <li>31</li>
+        <li>32</li>
+        <li>33</li>
+        <li>34</li>
+        <li>35</li>
+    </ul>
+</body>
+
+</html>

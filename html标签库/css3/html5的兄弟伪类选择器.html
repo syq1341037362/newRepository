@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪类选择器 - 兄弟元素伪类选择器</title>
+</head>
+<style>
+    .first {
+        color: red;
+    }
+    /* 兄弟伪类有两种一种是 + 一种是 ~ */
+    /* + 获取当前元素相邻的满足条件的元素 */
+    /* ~ 获取当前元素的满足条件的兄弟元素 */
+    /* 下面这句样式说明查找： 添加了.first样式的标签相邻的li元素 
+        1.必须是相邻的
+        2.必须是指定类型的元素
+     */
+    
+    .first+li {
+        color: blue;
+    }
+    /* 下面样式查找添加了 .first样式的元素的所有兄弟元素
+        1.必须是指定类型的元素
+    */
+    
+    .first~li {
+        color: hotpink;
+    }
+</style>
+
+<body>
+    <li class="first">web前端</li>
+    <span>能不能变成蓝色？</span>
+    <li>java</li>
+    <li>javascript</li>
+    <li>c++</li>
+    <li>python</li>
+</body>
+
+</html>
