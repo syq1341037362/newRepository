@@ -6,7 +6,7 @@
 > * cnpm i clean-webpack-plugin -D
 ---
 ### 2.html插件 html-webpack-plugin 
-> * cnpm i clean-webpack-plugin -D
+> * cnpm i html-webpack-plugin -D
 > * 使用里面配置的属性<%= htmlWebpackPlugin.options.title %>
 ---
 ```
