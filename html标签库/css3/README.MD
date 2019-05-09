@@ -1,0 +1,46 @@
+### css3的属性选择器( 属性选择器 ：属性是相对于标签而言 所谓的属性选择器就是根据指名称的属性的值来查找元素)
+* 1. E[attr]:查找指定的拥有attr属性的E标签  查找拥有style属性的li标签
+* 2. E[attr=value] 查找指定的拥有attr属性并且值为value的 E标签 = 是严格匹配 
+* 3. E[attr*=value] 查找指定的拥有attr属性并且值中包含(可以在任意位置)value的 
+* 4. E[attr^=value] 查找指定的拥有attr属性并且值中以value开头的 
+* 5. E[attr$=value] 查找指定的拥有attr属性并且值中以value结束的
+---
+```
+<style>
+    /* 1.E[attr]:查找指定的拥有attr属性的E标签  查找拥有style属性的li标签 */
+    li[style] {
+        text-decoration: underline;
+    }
+
+    /* 2. E[attr=value] 查找指定的拥有attr属性并且值为value的 E标签 = 是严格匹配 */
+    li[class='red'] {
+        font-size: 30px;
+    }
+
+    /* 3. E[attr*=value] 查找指定的拥有attr属性并且值中包含(可以在任意位置)value的 */
+    li[class *='red'] {
+        border: 3px solid #999999;
+    }
+
+    /* 4. E[attr^=value] 查找指定的拥有attr属性并且值中以value开头的 */
+    li[class^='blue'] {
+        color: pink
+    }
+
+    /* 5. E[attr$=value] 查找指定的拥有attr属性并且值中以value结束的 */
+    li[class$='blue'] {
+        color: green;
+    }
+</style>
+<body>
+    <p style="">看看不能不也添加样式</p>
+    <li class="red" style="">测试显示1</li>
+    <li class="blue">测试显示2</li>
+    <li class="darkred" style="">测试显示3</li>
+    <li class="blue">测试显示4</li>
+    <li class="red">测试显示5</li>
+    <li class="blueviolet">测试显示6</li>
+
+</body>
+```
+---

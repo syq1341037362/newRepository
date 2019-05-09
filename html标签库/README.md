@@ -967,3 +967,64 @@ function isFull() {
 </body>
 ```
 ---
+### html5的应用缓存
+* 1. 注意首先要在html标签中添加 manifest="你的缓存文件的名称" 例如 demo.appcache 后缀名必须是.appcache
+* 2. 然后你需要创建一个 demo.appcache
+* 3. demo.appcache 的第一行必须是 CACHE MANIFEST 在这个文件中 # 代表注释 
+* 4. 这个文件由3部分组成 
+> 第一部分 CACHE: 需要缓存的清单列表 * 代表缓存所有文件
+> 第二部分 NETWORK: 配置每一次都需要重新从服务器获取的文件清单
+> 第三部分 FALLBACK: 配置如果文件无法获取则使用指定的文件进行替代 / 代表所有文件
+* 5. 有时候缓存清单文件不起作用(IIS) 需要配置 **MIME-TYPE** 即 **text/cache-manifest** 添加一个文件扩展名为 .appcache MIME类型为 text/cache-manifest 
+---
+* html文件
+```
+<!DOCTYPE html>
+<html lang="en" manifest="demo.appcache">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        width: 300px;
+        display: block;
+    }
+</style>
+
+<body>
+    <img src="./static/1.png" alt="">
+    <img src="./static/2.png" alt="">
+    <img src="./static/3.jpg" alt="">
+    <img src="./static/4.jpg" alt="">
+</body>
+
+</html>
+```
+* demo.appcache文件
+```
+CACHE MANIFEST
+#上面一句必须是是文件的第一句
+#后面写注释
+
+#需要缓存的文件清单列表
+CACHE:
+#下面就是需要缓存的清单列表 *代表所有文件
+./static/1.png
+./static/2.png
+# * 代表所有文件
+
+#配置每一次都需要重新从服务器获取的文件清单
+NETWORK:
+./static/3.jpg
+
+
+#配置如果文件无法获取则使用指定的文件进行替代
+FALLBACK:
+./static/4.jpg  ./static/bannr.jpg
+# /代表所有文件
+```
+---

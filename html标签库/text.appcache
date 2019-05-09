@@ -1,0 +1,20 @@
+CACHE MANIFEST
+#上面一句必须是是文件的第一句
+#后面写注释
+
+#需要缓存的文件清单列表
+CACHE:
+#下面就是需要缓存的清单列表 *代表所有文件
+./static/1.png
+./static/2.png
+# * 代表所有文件
+
+#配置每一次都需要重新从服务器获取的文件清单
+NETWORK:
+./static/3.jpg
+
+
+#配置如果文件无法获取则使用指定的文件进行替代
+FALLBACK:
+./static/4.jpg  ./static/bannr.jpg
+# /代表所有文件
