@@ -394,7 +394,7 @@
 ### css3的颜色 RGBA 和 HSLA (它们其实就是RGB和HSL只不过添加了一个属性 A[alpha] 透明度)
 > 1. 颜色是 6位的 16进制数据 16进制每2个代表一个颜色 颜色遵循 红橙黄绿青蓝紫
 > 2. RGBA中 
-* ![示例图片](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557685873131&di=4ab460391325fc7aab2341b7f7d54432&imgtype=0&src=http%3A%2F%2Fs11.sinaimg.cn%2Fmw690%2F0034MXvmgy6OLzE2EDofa%26690)
+![RGBA颜色对照片](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557685873131&di=4ab460391325fc7aab2341b7f7d54432&imgtype=0&src=http%3A%2F%2Fs11.sinaimg.cn%2Fmw690%2F0034MXvmgy6OLzE2EDofa%26690)
 * R:红色(0-255) 
 * G:绿色(0-255) 
 * B:蓝色(0-255)  
@@ -402,7 +402,7 @@
 > 3. 在RGB中如果你想让一个颜色起主导作用 那么这个颜色必须有值且大于当前最大值的一半 也是就是 128 
 > 4.  HSLA H: Hue色调,色相 (取值是0-360 过度为红橙黄绿青蓝紫) S: Saturation饱和度 (取值 0.0%-100%) L: Lightness亮度 (取值 0.0%-100% 50%是平衡值) A:alpha(透明度 0-1) HSLA是在HSL基础上添加了透明度
 > 5. 在HSLA中   
-* ![颜色对照图](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557685640248&di=672650961b9b68cab608ed3a5d4a889a&imgtype=0&src=http%3A%2F%2Fstatic.qdskill.com%2F2018%2F10%2F1538714189-color-wheel.png)
+![HSLA颜色对照图](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557685640248&di=672650961b9b68cab608ed3a5d4a889a&imgtype=0&src=http%3A%2F%2Fstatic.qdskill.com%2F2018%2F10%2F1538714189-color-wheel.png)
 * H:红色0或者360 橙30 黄60 绿120 青180 蓝240 紫300 (其实就是一个圆取0-360之间的值)
 * S:值越小越偏向白色
 * L:值越小越偏向黑色 默认50% 一般建议保留50%的值 0%是黑色 100%是白色;
