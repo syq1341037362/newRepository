@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3的颜色之RGBA和HSLA</title>
+    <style>
+        /* 颜色是 6位的 16进制数据 16进制每2个代表一个颜色 颜色遵循 红橙黄绿青蓝紫
+        1. RGBA R:红色(0~255) G:绿色(0~255) B:蓝色(0~255)  A:alpha(透明度 0-1) RGBA是在RGB基础上添加了透明度
+            如果你想让一个颜色起主导作用 那么这个颜色必须有值且大于当前最大值的一半 也是就是 128 
+        2. HSLA H: Hue色调,色相 (取值是0-360 过度为红橙黄绿青蓝紫) S: Saturation饱和度 (取值 0.0%-100%) L: Lightness亮度 (取值 0.0%-100% 50%是平衡值) A:alpha(透明度 0-1) HSLA是在HSL基础上添加了透明度
+            H: 0-360就是红色 120就是纯绿 240就是纯蓝 遵循红橙黄绿青蓝紫(其实就是一个圆) 红色0或者360 橙30 黄60 绿120 青180 蓝240 紫300
+            S:值越小越偏向白色
+            L:值越小越偏向黑色 默认50% 一般建议保留50%的值 0%是黑色 100%是白色;
+        */
+        
+        .ironman {
+            background-color: #ff3636;
+            color: #fff;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            box-shadow: 1px 0px 2px red;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .captain {
+            background-color: rgba(255, 54, 54, 0.6);
+            color: #fff;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            box-shadow: 1px 0px 2px red;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .thor {
+            background-color: hsla(0, 100%, 50%, 1);
+            color: #fff;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            box-shadow: 1px 0px 2px red;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ironman">钢铁侠 - Iron Man </div>
+    <div class="captain">美国队长 - Captain America </div>
+    <div class="thor">雷神 - Thor Odinson</div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3的first-letter、first-line和selection</title>
+</head>
+<style>
+    p {
+        font-size: 20px;
+        line-height: 40px;
+        padding: 10px;
+    }
+    /* 伪元素 ::first-letter 和 ::first-line的使用
+        1.和 之前的before after等伪元素一样 可以使用:来兼容低版本 高版本自动转化为::
+        2. first-letter设置文字下沉之后 first-line对first-letter设置的元素不起作用
+        3. first-letter 获取第一个字母 first-line 获取第一行 selection选中样式
+        
+     */
+    
+    p:first-of-type::first-letter {
+        color: #ff3636;
+        font-weight: bold;
+        font-size: 40px;
+        float: left;
+    }
+    /* 如果你设置了 文字下沉 也就是上面那个添加了floa:left 则first-line对first-letter 操作的第一个字母不起作用，不设置文字下沉则起作用*/
+    
+    p:first-of-type::first-line {
+        text-decoration: underline;
+    }
+    /* 如果你设置了 文字下沉 也就是上面那个添加了floa:left 则selection对first-letter 操作的第一个字母不起作用即无法选中，不设置文字下沉则起作用*/
+    
+    p::selection {
+        background-color: hotpink;
+        color: skyblue;
+        /* 下面的这个不起作用 原因 它只能设置显示的样式，不能设置内容的大小*/
+        font-size: 30px;
+    }
+</style>
+
+<body>
+
+    <p>
+        我爱你三千次 - 摩根·斯塔克 <br/> Start With Iron Man And End With Iron Man <br/> I'm Iron Man - The Avengers Endgame <br/> I Love You Three Thousand Times - From Tony Stark To Morgan Stark
+    </p>
+</body>
+
+</html>

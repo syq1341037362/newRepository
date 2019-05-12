@@ -16,6 +16,7 @@
         /* E::before E::after IE不支持双 :  所以建议写成 单 ： 目前主流的浏览器都会把这样的 单 : 转成 双 :
             1.是一个行内样式 如果想要设置宽高则需要 转成块元素 display:block  float:*  postition: 
             2. 必须写content, 哪怕不设置内容 也需要要content="" 因为不写content 不可见
+            3. DOM树中不存在 后期无法通过 js 进行操作
         */
         
         div:first-of-type {

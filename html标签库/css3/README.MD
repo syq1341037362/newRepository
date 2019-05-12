@@ -278,10 +278,12 @@
 
 ```
 ---
-### css3 的 伪元素 ::before 和 ::after (在IE8上等低版本浏览器上叫伪类 **伪类 : 伪元素 ::** 高版本浏览器直接可以写:来兼容低版本 因为高本版浏览器即使你写: 也会自动转成::) 
+### css3 的 伪元素 
+#### css3 的 伪元素 ::before 和 ::after (在IE8上等低版本浏览器上叫伪类 **伪类 : 伪元素 ::** 高版本浏览器直接可以写:来兼容低版本 因为高本版浏览器即使你写: 也会自动转成::) 
 > 1. 注意使用 ::before 和 ::after 的时候 必须写 content属性 即使你不需要添加内容也要写 因为不写这个伪元素不显示
 > 2. ::before 和 ::after 是行内样式 如果想加宽度或者高度 请转为块级元素 三种转换方式 float position 和 display
 > 3. 优点 1.因为是虚假元素所以在DOM树中不存在减少DOM树的结构 2.便于搜索引擎抓取
+> 4. 问题： 因为DOM树中不存在 所以无法用 js 进行操作
 * 下方案例 利用伪元素添加2个div中间的空白半圆
 ---
 ```
@@ -337,6 +339,124 @@
 
     <div></div>
     <div></div>
+</body>
+```
+---
+#### css3 的伪元素 ::first-letter  ::first-line 和 ::selection (注意 ::selection不能写:因为不识别 其余都可以写成:)
+> 1. first-letter 获取第一个字母 first-line 获取第一行 selection选中样式
+> 2. first-letter设置文字下沉之后 first-line对first-letter设置的第一个字母不起作用
+> 3. selection只能设置样式 不能设置内容的大小
+---
+```
+<style>
+    p {
+        font-size: 20px;
+        line-height: 40px;
+        padding: 10px;
+    }
+    /* 伪元素 ::first-letter 和 ::first-line的使用
+        1.和 之前的before after等伪元素一样 可以使用:来兼容低版本 高版本自动转化为::
+        2. first-letter设置文字下沉之后 first-line对first-letter设置的元素不起作用
+        3. first-letter 获取第一个字母 first-line 获取第一行 selection选中样式
+        
+     */
+    
+    p:first-of-type::first-letter {
+        color: #ff3636;
+        font-weight: bold;
+        font-size: 40px;
+        float: left;
+    }
+    /* 如果你设置了 文字下沉 也就是上面那个添加了floa:left 则first-line对first-letter 操作的第一个字母不起作用，不设置文字下沉则起作用*/
+    
+    p:first-of-type::first-line {
+        text-decoration: underline;
+    }
+    /* 如果你设置了 文字下沉 也就是上面那个添加了floa:left 则selection对first-letter 操作的第一个字母不起作用即无法选中，不设置文字下沉则起作用*/
+    
+    p::selection {
+        background-color: hotpink;
+        color: skyblue;
+        /* 下面的这个不起作用 原因 它只能设置显示的样式，不能设置内容的大小*/
+        font-size: 30px;
+    }
+</style>
+
+<body>
+
+    <p>
+        我爱你三千次 - 摩根·斯塔克 <br/> Start With Iron Man And End With Iron Man <br/> I'm Iron Man - The Avengers Endgame <br/> I Love You Three Thousand Times - From Tony Stark To Morgan Stark
+    </p>
+</body>
+```
+---
+
+### css3的颜色 RGBA 和 HSLA (它们其实就是RGB和HSL只不过添加了一个属性 A[alpha] 透明度)
+> 1. 颜色是 6位的 16进制数据 16进制每2个代表一个颜色 颜色遵循 红橙黄绿青蓝紫
+> 2. RGBA R:红色(0~255) G:绿色(0~255) B:蓝色(0~255)  A:alpha(透明度 0-1) RGBA是在RGB基础上添加了透明度
+> 3. 在RGB中如果你想让一个颜色起主导作用 那么这个颜色必须有值且大于当前最大值的一半 也是就是 128 
+> 4.  HSLA H: Hue色调,色相 (取值是0-360 过度为红橙黄绿青蓝紫) S: Saturation饱和度 (取值 0.0%-100%) L: Lightness亮度 (取值 0.0%-100% 50%是平衡值) A:alpha(透明度 0-1) HSLA是在HSL基础上添加了透明度
+> 5. 在HSLA中 H: 0-360就是红色 120就是纯绿 240就是纯蓝 遵循红橙黄绿青蓝紫(其实就是一个圆) 红色0或者360 橙30 黄60 绿120 青180 蓝240 紫300
+     S:值越小越偏向白色
+     L:值越小越偏向黑色 默认50% 一般建议保留50%的值 0%是黑色 100%是白色;
+
+---
+```
+<style>
+        /* 颜色是 6位的 16进制数据 16进制每2个代表一个颜色 颜色遵循 红橙黄绿青蓝紫
+        1. RGBA R:红色(0~255) G:绿色(0~255) B:蓝色(0~255)  A:alpha(透明度 0-1) RGBA是在RGB基础上添加了透明度
+            如果你想让一个颜色起主导作用 那么这个颜色必须有值且大于当前最大值的一半 也是就是 128 
+        2. HSLA H: Hue色调,色相 (取值是0-360 过度为红橙黄绿青蓝紫) S: Saturation饱和度 (取值 0.0%-100%) L: Lightness亮度 (取值 0.0%-100% 50%是平衡值) A:alpha(透明度 0-1) HSLA是在HSL基础上添加了透明度
+            H: 0-360就是红色 120就是纯绿 240就是纯蓝 遵循红橙黄绿青蓝紫(其实就是一个圆) 红色0或者360 橙30 黄60 绿120 青180 蓝240 紫300
+            S:值越小越偏向白色
+            L:值越小越偏向黑色 默认50% 一般建议保留50%的值 0%是黑色 100%是白色;
+        */
+        
+        .ironman {
+            background-color: #ff3636;
+            color: #fff;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            box-shadow: 1px 0px 2px red;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .captain {
+            background-color: rgba(255, 54, 54, 0.6);
+            color: #fff;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            box-shadow: 1px 0px 2px red;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .thor {
+            background-color: hsla(0, 100%, 50%, 1);
+            color: #fff;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            box-shadow: 1px 0px 2px red;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ironman">钢铁侠 - Iron Man </div>
+    <div class="captain">美国队长 - Captain America </div>
+    <div class="thor">雷神 - Thor Odinson</div>
 </body>
 ```
 ---
