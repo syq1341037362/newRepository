@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: flex-start;
+            margin: 100px auto;
+        }
+        /* 伪元素选择器 虚假元素在 DOM 树中找不到*/
+        /* E::before E::after IE不支持双 :  所以建议写成 单 ： 目前主流的浏览器都会把这样的 单 : 转成 双 :
+            1.是一个行内样式 如果想要设置宽高则需要 转成块元素 display:block  float:*  postition: 
+            2. 必须写content, 哪怕不设置内容 也需要要content="" 因为不写content 不可见
+        */
+        
+        div:first-of-type {
+            width: 300px;
+            height: 150px;
+            background-color: aqua;
+        }
+        
+        div:last-of-type {
+            width: 200px;
+            height: 150px;
+            background-color: darkcyan;
+            position: relative
+        }
+        
+        div:last-of-type:before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            top: -5px;
+            left: -5px;
+            border-radius: 5px;
+        }
+        
+        div:last-of-type:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            bottom: -5px;
+            left: -5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+    <div></div>
+
+</body>
+
+</html>

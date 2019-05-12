@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>target伪类</title>
+    <style>
+        .main {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .left {
+            width: 200px;
+            position: fixed;
+            top: 200px;
+            left: 0;
+        }
+        
+        .left a {
+            display: block;
+            text-decoration: none;
+        }
+        
+        .right {
+            width: 600px;
+        }
+        
+        .right div {
+            width: 600px;
+            height: 300px;
+            margin-bottom: 20px;
+            background-color: aqua;
+        }
+        /* E:target 可以为锚点的目标元素添加样式 当目标元素被触发为当前的锚链接的目标元素时调用此伪类样式 */
+        
+        .right div:target {
+            background-color: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="left">
+            <a href="#box1">盒子1</a>
+            <a href="#box2">盒子2</a>
+            <a href="#box3">盒子3</a>
+            <a href="#box4">盒子4</a>
+            <a href="#box5">盒子5</a>
+        </div>
+        <div class="right">
+            <div id="box1">盒子1</div>
+            <div id="box2">盒子2</div>
+            <div id="box3">盒子3</div>
+            <div id="box4">盒子4</div>
+            <div id="box5">盒子5</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

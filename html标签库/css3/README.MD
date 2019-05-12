@@ -249,3 +249,94 @@
 </body>
 ```
 ---
+### css3的 锚点伪类 :target
+> 1.  E:target 可以为锚点的目标元素添加样式 当目标元素被触发为当前的锚链接的目标元素时调用此伪类样式 
+---
+```
+<style>
+    .right div:target {
+        background-color: hotpink;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="left">
+            <a href="#box1">盒子1</a>
+            <a href="#box2">盒子2</a>
+            <a href="#box3">盒子3</a>
+            <a href="#box4">盒子4</a>
+            <a href="#box5">盒子5</a>
+        </div>
+        <div class="right">
+            <div id="box1">盒子1</div>
+            <div id="box2">盒子2</div>
+            <div id="box3">盒子3</div>
+            <div id="box4">盒子4</div>
+            <div id="box5">盒子5</div>
+        </div>
+    </div>
+
+```
+---
+### css3 的 伪元素 ::before 和 ::after (在IE8上等低版本浏览器上叫伪类 **伪类 : 伪元素 ::** 高版本浏览器直接可以写:来兼容低版本 因为高本版浏览器即使你写: 也会自动转成::) 
+> 1. 注意使用 ::before 和 ::after 的时候 必须写 content属性 即使你不需要添加内容也要写 因为不写这个伪元素不显示
+> 2. ::before 和 ::after 是行内样式 如果想加宽度或者高度 请转为块级元素 三种转换方式 float position 和 display
+> 3. 优点 1.因为是虚假元素所以在DOM树中不存在减少DOM树的结构 2.便于搜索引擎抓取
+* 下方案例 利用伪元素添加2个div中间的空白半圆
+---
+```
+<style>
+    body {
+        display: flex;
+        justify-content: flex-start;
+        margin: 100px auto;
+    }
+    /* 伪元素选择器 虚假元素在 DOM 树中找不到*/
+    /* E::before E::after IE不支持双 :  所以建议写成 单 ： 目前主流的浏览器都会把这样的 单 : 转成 双 :
+        1.是一个行内样式 如果想要设置宽高则需要 转成块元素 display:block  float:*  postition: 
+        2. 必须写content, 哪怕不设置内容 也需要要content="" 因为不写content 不可见
+    */
+    
+    div:first-of-type {
+        width: 300px;
+        height: 150px;
+        background-color: aqua;
+    }
+    
+    div:last-of-type {
+        width: 200px;
+        height: 150px;
+        background-color: darkcyan;
+        position: relative
+    }
+    
+    div:last-of-type:before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+        top: -5px;
+        left: -5px;
+        border-radius: 5px;
+    }
+    
+    div:last-of-type:after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+        bottom: -5px;
+        left: -5px;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+
+    <div></div>
+    <div></div>
+</body>
+```
+---
