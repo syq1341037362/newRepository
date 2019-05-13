@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3的盒模型</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 200px;
+            background-color: #999999;
+            margin: 200px auto;
+        }
+        
+        .left,
+        .right {
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        
+        .left {
+            background-color: #ff3636;
+            padding-left: 10px;
+            border-right: 10px solid green;
+            /* 设置盒模型  
+                1.border-box 你设置的width属性就是盒子的最终宽度 包含 padding 和 border 如果添加 padding 和 border 那么真正放置内容的区域会减小 但是它可以稳固页面的结构
+                2.content-box 你设置的width属性仅仅是内容的宽度 盒子的最终的宽高值在width的基础上加上 padding 和 border
+                
+            */
+            box-sizing: border-box;
+        }
+        
+        .right {
+            background-color: skyblue;
+        }
+        
+        .items {
+            width: 1200px;
+            height: 170px;
+            margin: 100px auto;
+        }
+        
+        .item {
+            width: 316px;
+            height: 170px;
+            display: inline-block;
+            margin: 0 10px;
+            overflow: hidden;
+            /* 添加盒模型 */
+            box-sizing: border-box;
+        }
+        
+        .item:hover {
+            border: 10px solid red;
+        }
+        
+        .bg1 {
+            background: url("../static/1.png") no-repeat center center;
+        }
+        
+        .bg2 {
+            background: url("../static/2.png") no-repeat center center;
+        }
+        
+        .bg3 {
+            background: url("../static/3.jpg") no-repeat center center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left">刘诗诗自从和吴奇隆结婚后，就几乎很少露面，偶尔高兴了出来接个戏。每次被偷拍都是和吴奇隆大包小包的，不知道刚去哪度完假。而且每次被偷拍的照片，但每次吴奇隆看刘诗诗那宠溺的小眼神从未停止过疼爱。</div>
+        <div class="right"></div>
+    </div>
+    <div class="items">
+        <div class="item bg1"></div>
+        <div class="item bg2"></div>
+        <div class="item bg3"></div>
+    </div>
+</body>
+
+</html>
