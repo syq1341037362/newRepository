@@ -554,3 +554,45 @@
 </body>
 ```
 ---
+
+### css3的线性渐变 linear-gradient()
+> 1. 默认值是3个 分别是 point/angle(方向或者角度),strat(开始颜色),end(结束颜色) 第一个不写默认上到下
+> 2. point 位置 四个值 to left 、 to right 、 to top 、 to bottom
+> 3. angle 角度 向上(0deg)  向右(90deg)  向下**默认值**(180deg)  向左(270deg) **可以写任意的角度值**
+> 4. 渐变不是单一色 他产生的是图像 所以需要使用background而不是color
+> 5. linear-gradient(方向,颜色1 位置,颜色2 位置,颜色3 位置,....)  指定方向 颜色 位置 的写法 具体看下面
+---
+```
+<style>
+    /* 线性渐变语法:
+        linear-gradient(point 位置|| angle 角度 ,strat,end)
+        第一个参数:可选 point 或者 angle
+        point 位置 四个值 to left 、 to right 、 to top 、 to bottom
+        angle 角度 四个值只不过是角度问题  向上(0deg) 向右(90deg) 向下(180deg)是默认值 向左(270deg) 可以写任意的角度值
+        第二个参数： 起点颜色可以指定颜色的位置
+        第三个参数： 终点颜色 可以指定颜色位置
+        */
+    
+    div {
+        width: 300px;
+        height: 100px;
+        margin: 100px auto;
+        /* 添加渐变色  渐变不是单一色 他产生的是图像 所以需要使用background*/
+        /* linear-gradient(方向,开始颜色 位置,颜色2 位置,颜色3 位置,....) */
+        /* 方向 
+            to top : 0deg 
+            to right : 90deg
+            to bottom : 180deg
+            to left : 270deg
+        */
+        /* background: linear-gradient(to right, red, blue); */  //这里的是默认的写法
+        /* background: linear-gradient(to right, skyblue, pink, hotpink, blue); */ //这是是只指定颜色 
+        background: linear-gradient(to right, skyblue 0%, pink 15%, hotpink 50%, blue 100%); //这里不光指定了颜色 还指定了颜色的位置从哪里到哪里
+    }
+</style>
+
+<body>
+    <div></div>
+</body>
+```
+---
