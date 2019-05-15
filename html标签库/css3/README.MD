@@ -555,7 +555,7 @@
 ```
 ---
 
-### css3的线性渐变 linear-gradient()
+### css3的线性渐变 linear-gradient() IE9之前不支持
 > 1. 默认值是3个 分别是 point/angle(方向或者角度),strat(开始颜色),end(结束颜色) 第一个不写默认上到下
 > 2. point 位置 四个值 to left 、 to right 、 to top 、 to bottom
 > 3. angle 角度 向上(0deg)  向右(90deg)  向下**默认值**(180deg)  向左(270deg) **可以写任意的角度值**
@@ -593,6 +593,141 @@
 
 <body>
     <div></div>
+</body>
+```
+---
+### css3的径向渐变 radial-gradient()
+> 1. 语法 background: radial-gradient(center, shape, size, start-color, ..., last-color);
+> 2. center：渐变起点的位置，可以为百分比，默认是图形的正中心。可以是位置 也可以是表达式 表达式( top left right bottom)
+> 3. shape：渐变的形状，ellipse表示椭圆形，circle表示圆形。默认为ellipse，如果元素形状为正方形的元素，则ellipse和circle显示一样。
+> 4. size：渐变的大小，即渐变到哪里停止，它有四个值。 closest-side：最近边； farthest-side：最远边； closest-corner：最近角； farthest-corner：最远角
+---
+```
+<style>
+    /* 径向渐变的语法
+        background: radial-gradient(center, shape, size, start-color, ..., last-color);
+       
+        center：渐变起点的位置，可以为百分比，默认是图形的正中心。可以是位置 也可以是表达式 表达式( top left right bottom)
+        shape：渐变的形状，ellipse表示椭圆形，circle表示圆形。默认为ellipse，如果元素形状为正方形的元素，则ellipse和circle显示一样。
+        size：渐变的大小，即渐变到哪里停止，它有四个值。 closest-side：最近边； farthest-side：最远边； closest-corner：最近角； farthest-corner：最远角
+
+
+     */
+    
+    .divbox {
+        width: 1400px;
+        height: 700px;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    
+    .box1 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        /* 简写 不写第一个默认中心 不写第二个 默认从最远角*/
+        background: -webkit-radial-gradient(red, green, blue);
+        /* 完整的 */
+        /* background:  -webkit-radial-gradient(50% 50%, farthest-corner, red, green, blue); */
+        text-align: center;
+        color: #ffffff;
+    }
+    
+    .box2 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(red 5%, green 15%, blue 60%);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box3 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(circle, red, yellow, green);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box4 {
+        width: 300px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(ellipse, red, yellow, green);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box5 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(60% 40%, closest-side, blue, green, yellow, black);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box6 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(60% 40%, farthest-side, blue, green, yellow, black);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box7 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(60% 40%, closest-corner, blue, green, yellow, black);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box8 {
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-radial-gradient(60% 40%, farthest-corner, blue, green, yellow, black);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+    
+    .box9 {
+        width: 300px;
+        height: 200px;
+        margin-right: 100px;
+        background: -webkit-repeating-radial-gradient(red, yellow 10%, green 20%);
+        text-align: center;
+        color: #ffffff;
+        box-sizing: border-box;
+    }
+</style>
+
+<body>
+    <div class="divbox">
+        <div class="box1">以中心（50% 50%）为起点，到最远角（farthest-corner），从red到green、blue的均匀渐变，效果图：</div>
+        <div class="box2">多颜色节点不均匀分布</div>
+        <div class="box3">设置渐变形状 cricle </div>
+        <div class="box4">设置渐变形状 ellipse</div>
+        <div class="box5">closest-side 最近边</div>
+        <div class="box6">farthest-side 最远边</div>
+        <div class="box7">closest-corner 最近角</div>
+        <div class="box8">farthest-corner 最远角</div>
+        <div class="box9">重复性渐变</div>
+    </div>
+
 </body>
 ```
 ---
