@@ -731,3 +731,120 @@
 </body>
 ```
 ---
+### css3的边框图片 border-image: url slice/width/outset repeat
+* 1. url -> border-image-source
+> border-image-source：可以指定边框的图片路径 默认只是填充到容器的四个角点
+--- 
+* 2. slice -> border-image-slice
+> border-image-slice设置四个方向上的裁切距离 fill是做内容的内部填充
+---
+* 3. width - > border-image-width
+> 边框图片的宽度 如果没有设置这个属性 那么宽度默认就是元素的原始的边框的宽度
+---
+* 4. outset -> border-image-outset
+> 边框图片的扩展 一般不会使用
+---
+* 5. repeat -> border-image-repeat
+> 背景图片的平铺属性 repeat直接重复平铺 round将内容缩放进行完整平铺  stretch拉伸
+---
+```
+ <style>
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .box1 {
+        width: 300px;
+        height: 300px;
+        margin: 100px auto;
+        border: 27px solid red;
+        color: white;
+        /* 添加边框图片 */
+        /* border-image-source：可以指定边框的图片路径 默认只是填充到容器的四个角点 */
+        /* border-image-source: url("../static/2.png"); */
+        /* 让他成为9宫格 border-image-slice设置四个方向上的裁切距离 fill是做内容的内部填充 */
+        /* border-image-slice: 27 fill; */
+        /* border-image-width : 边框图片的宽度 如果没有设置这个属性 那么宽度默认就是元素的原始的边框的宽度 */
+        /* 
+            细节1：边框图片的本质是背景图片 并不会影响元素内容的放置 
+            细节2：内容只会被容器的padding和border影响
+            */
+        /* border-image-width: 27px; */
+        /* border-image-outset：边框图片的扩展 一般不会使用 */
+        /* border-image-outset: 27px; */
+        /* border-image-repeat：背景图片的平铺属性 repeat直接重复平铺 round将内容缩放进行完整平铺*/
+        /* border-image-repeat:round; */
+        /* 缩写
+            1. url -> border-image-source
+            2. slice -> border-image-slice
+            3. width - > border-image-width
+            4. outset -> border-image-outset
+            5. repeat -> border-image-repeat
+
+            border-image: url slice/width/outset repeat
+            */
+        border-image: url("../static/2.png") 27 fill / 27px / 0px round;
+    }
+</style>
+
+<body>
+    <div class="box1">111</div>
+</body>
+```
+---
+### css3的过度 transition 
+* 1. transition-property : 添加过渡效果的样式属性名称 
+>  all是所有样式 缺点 1.效率低下 它会去查询所有添加的样式  2.所有样式的过度效果是一样的
+> 推荐使用 **,** 分隔 设置多个样式  left 0.5s ease 2s,background-color 2s linear 2s,...
+* 2. transition-duration : 过渡效果的耗时 以秒为单位
+* 3. transition-timing-function : 设置时间函数---控制运动的速度 
+> linear 匀速 
+> ease 从慢到快再到慢
+> ease-in 规定以慢速开始的过渡效果
+> ease-out 规定以慢速结束的过渡效果
+> ease-in-out 规定以慢速开始和结束的过渡效果
+> cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+* 4. transition-delay ：过渡效果的延迟 以秒为单位
+---
+```
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    div {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        /* transition 添加过渡效果 过渡效果执行完毕 默认会还原到原始状态
+            1. transition-property : 添加过渡效果的样式属性名称 
+                all是所有样式 缺点 1.效率低下 它会去查询所有添加的样式  2.所有样式的过度效果是一样的
+                也可以用 , 设置多个样式  left 0.5s ease 2s,background-color 2s linear 2s
+            2. transition-duration : 过渡效果的耗时 以秒为单位
+            3. transition-timing-function : 设置时间函数---控制运动的速度 
+                linear 匀速 
+                ease 从慢到快再到慢
+                ease-in 规定以慢速开始的过渡效果
+                ease-out 规定以慢速结束的过渡效果
+                ease-in-out 规定以慢速开始和结束的过渡效果
+                cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+            4. transition-delay ：过渡效果的延迟 以秒为单位
+            */
+        transition: left 0.5s ease 2s, background-color 2s linear 2s;
+    }
+    
+    div:active {
+        left: 1000px;
+        background-color: blue;
+    }
+</style>
+<body>
+    <div></div>
+</body>
+```
+---

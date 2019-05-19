@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css的background的repeat新增属性值round和space</title>
+    <style>
+        .box1 {
+            background-image: url("../static/1.png");
+            width: 500px;
+            height: 500px;
+            /* local 和 scroll 区别 : 前提是滚动当前容器的内容
+                local 背景图片会跟随内容一起滚动
+                scroll 背景图片不会跟随内容一起滚动
+            */
+            background-attachment: local;
+            overflow: scroll;
+            border: 1px solid #ff3636;
+        }
+        
+        .box2 {
+            background-image: url("../static/2.png");
+            width: 500px;
+            height: 500px;
+            overflow: scroll;
+            /* scroll 背景图片不会跟随滚动 */
+            background-attachment: scroll;
+            border: 1px solid #ff3636;
+        }
+        
+        .box3 {
+            background-image: url("../static/3.jpg");
+            width: 500px;
+            height: 500px;
+            /* 背景图片会跟随滚动 */
+            background-attachment: scroll;
+            border: 1px solid #ff3636;
+        }
+        
+        .box4 {
+            background-image: url("../static/timg2.jpg");
+            width: 500px;
+            height: 500px;
+            /* 背景图片会跟随滚动 */
+            background-attachment: fixed;
+            border: 1px solid #ff3636;
+        }
+        
+        .box5 {
+            background-image: url("../static/timg.jpg");
+            width: 1920px;
+            height: 500px;
+            background-repeat: round;
+            border: 1px solid #ff3636;
+            box-sizing: border-box;
+        }
+        
+        .box5 p {
+            color: #ff3636
+        }
+        
+        .box6 {
+            background-image: url("../static/timg.jpg");
+            width: 1920px;
+            height: 500px;
+            background-repeat: space;
+            border: 1px solid #ff3636;
+            box-sizing: border-box;
+        }
+        
+        .box6 p {
+            color: #ff3636
+        }
+        
+        p {
+            height: 800px;
+            color: #ffffff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <p style="height:800px;">设置overflow srcoll后 设置 local 背景图片会跟随内容一起滚动</p>
+    </div>
+    <div class="box2">
+        <p>>设置overflow srcoll后 设置scroll 背景图片不会跟随内容一起滚动</p>
+    </div>
+    <div class="box3">
+        <p>背景图片会跟随滚动 sroll</p>
+    </div>
+    <div class="box4">
+        <p>背景图片不会跟随滚动 fixed</p>
+    </div>
+    <div class="box5">
+        <p>background-repeat: round效果</p>
+    </div>
+    <div class="box6">
+        <p>background-repeat: space效果</p>
+    </div>
+    <span style="height:800px;display:block"></span>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3的过度</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            /* transition 添加过渡效果 过渡效果执行完毕 默认会还原到原始状态
+                1. transition-property : 添加过渡效果的样式属性名称 
+                    all是所有样式 缺点 1.效率低下 它会去查询所有添加的样式  2.所有样式的过度效果是一样的
+                    也可以用 , 设置多个样式  left 0.5s ease 2s,background-color 2s linear 2s
+                2. transition-duration : 过渡效果的耗时 以秒为单位
+                3. transition-timing-function : 设置时间函数---控制运动的速度 
+                    linear 匀速 
+                    ease 从慢到快再到慢
+                    ease-in 规定以慢速开始的过渡效果
+                    ease-out 规定以慢速结束的过渡效果
+                    ease-in-out 规定以慢速开始和结束的过渡效果
+                    cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+                4. transition-delay ：过渡效果的延迟 以秒为单位
+             */
+            transition: left 0.5s ease 2s, background-color 2s linear 2s;
+        }
+        
+        div:active {
+            left: 1000px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
