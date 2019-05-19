@@ -794,18 +794,18 @@
 ```
 ---
 ### css3的过度 transition 
-* 1. transition-property : 添加过渡效果的样式属性名称 
->  all是所有样式 缺点 1.效率低下 它会去查询所有添加的样式  2.所有样式的过度效果是一样的
-> 推荐使用 **,** 分隔 设置多个样式  left 0.5s ease 2s,background-color 2s linear 2s,...
-* 2. transition-duration : 过渡效果的耗时 以秒为单位
-* 3. transition-timing-function : 设置时间函数---控制运动的速度 
-> linear 匀速 
-> ease 从慢到快再到慢
-> ease-in 规定以慢速开始的过渡效果
-> ease-out 规定以慢速结束的过渡效果
-> ease-in-out 规定以慢速开始和结束的过渡效果
-> cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
-* 4. transition-delay ：过渡效果的延迟 以秒为单位
+> 1. transition-property : 添加过渡效果的样式属性名称 
+* all是所有样式 缺点 1.效率低下 它会去查询所有添加的样式  2.所有样式的过度效果是一样的
+* 推荐使用 **,** 分隔 设置多个样式  left 0.5s ease 2s,background-color 2s linear 2s,...
+> 2. transition-duration : 过渡效果的耗时 以秒为单位
+> 3. transition-timing-function : 设置时间函数---控制运动的速度 
+* linear 匀速 
+* ease 从慢到快再到慢
+* ease-in 规定以慢速开始的过渡效果
+* ease-out 规定以慢速结束的过渡效果
+* ease-in-out 规定以慢速开始和结束的过渡效果
+* cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+> 4. transition-delay ：过渡效果的延迟 以秒为单位
 ---
 ```
 <style>
