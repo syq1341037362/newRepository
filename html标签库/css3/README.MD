@@ -794,7 +794,7 @@
 ```
 ---
 ### css3的过度 transition 
-> 1. transition-property : 添加过渡效果的样式属性名称 
+> 1. transition-property : 添加过渡效果的样式属性名称 只能给变化值的属性添加 例如 宽度高度等 从某个值变为某个值这样的 而且不能是auto
 * all是所有样式 缺点 1.效率低下 它会去查询所有添加的样式  2.所有样式的过度效果是一样的
 * 推荐使用 **,** 分隔 设置多个样式  left 0.5s ease 2s,background-color 2s linear 2s,...
 > 2. transition-duration : 过渡效果的耗时 以秒为单位
@@ -845,6 +845,169 @@
 </style>
 <body>
     <div></div>
+</body>
+```
+--- 
+### css3的transiform2d转换 transiform 可以进行 translate移动、 scale缩放、 rotate旋转、skew斜切等操作
+> 1. transiform 的 移动属性 translate() 
+* 有2个参数 X Y 如果写一个默认是X轴移动距离 
+* 移动是参照元素的左上角 
+* 执行完毕后会恢复到默认值
+---
+> 2. transiform 的 缩放属性 scale() 
+* 2个值X Y 如果写一个就代表X Y同时缩放
+* 缩放是参照元素的中心点  大于1就是放大 小于1就是缩小 1就是不缩放
+---
+> 3. transiform 的 旋转属性 rotate()
+* 1个值 角度 正数就是顺时针 负数就是逆时针
+---
+> 4. transiform 的 斜切属性 （改变元素形状） skew()
+* 2个值 X Y的角度 如果写一个代表X方向斜切的角度
+---
+```
+ <style>
+    /* transiform 可以进行 移动 缩放 旋转 斜切等操作 */
+    
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    body {
+        display: flex;
+        justify-content: flex-start;
+        margin: 100px auto;
+    }
+    
+    div {
+        width: 100px;
+        height: 100px;
+        margin-right: 50px;
+    }
+    
+    .box1 {
+        background-color: skyblue;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+    }
+    
+    .box1:active {
+        /* transiform 的 移动属性 translate() 有2个参数 X Y 如果写一个默认是X轴移动距离*/
+        /* 1.移动是参照元素的左上角 2.执行完毕后会恢复到默认值*/
+        transform: translate(40px)
+    }
+    
+    .box2 {
+        background-color: hotpink;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+    }
+    
+    .box2:active {
+        /* transiform 的 缩放属性 scale() 2个值X Y 如果写一个就代表X Y同时缩放 */
+        /* 1.缩放是参照元素的中心点  大于1就是放大 小于1就是缩小 1就是不缩放*/
+        transform: scale(1.5);
+    }
+    
+    .box3 {
+        background-color: limegreen;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+    }
+    
+    .box3:active {
+        /* transiform 的 旋转属性 rotate() 1个值 角度 正数就是顺时针 负数就是逆时针  */
+        transform: rotate(180deg);
+    }
+    
+    .box4 {
+        background-color: aqua;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+    }
+    
+    .box4:active {
+        /* transiform 的 斜切属性 （改变元素形状） skew() 2个值 X Y的角度 如果写一个代表X方向斜切的角度  */
+        transform: skew(45deg, -180deg)
+    }
+</style>
+
+
+<body>
+    <div class="box1">translate的效果</div>
+    <div class="box2">scale效果</div>
+    <div class="box3">rotate效果</div>
+    <div class="box4">skew效果</div>
+    <div class="box5"></div>
+
+</body>
+```
+---
+### transiform的 transform-origin属性 设置旋转轴心点
+> 有2个值 X Y 取值
+> 关键字 top bottom left right 
+> 语法  transform-origin: right top;
+* 下面的示例是一个扑克牌旋转的案例 ![扑克牌图片](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg)
+---
+```
+<style>
+ .k {
+        width: 300px;
+        height: 300px;
+        margin-top: 400px;
+        align-self: flex-end;
+        position: relative;
+    }
+    
+    .k img {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        transition: transform 1.5s ease;
+        transform-origin: right top;
+    }
+    
+    .k:hover>img:nth-of-type(1) {
+        transform: rotate(60deg);
+    }
+    
+    .k:hover>img:nth-of-type(2) {
+        transform: rotate(120deg)
+    }
+    
+    .k:hover>img:nth-of-type(3) {
+        transform: rotate(180deg)
+    }
+    
+    .k:hover>img:nth-of-type(4) {
+        transform: rotate(240deg)
+    }
+    
+    .k:hover>img:nth-of-type(5) {
+        transform: rotate(300deg)
+    }
+    
+    .k:hover>img:nth-of-type(6) {
+        transform: rotate(360deg)
+    }
+</style>
+
+
+<body>
+    <div class="k">
+        <p>炫酷的旋转特效鼠标移上去试一下</p>
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg" alt="">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg" alt="">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg" alt="">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg" alt="">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg" alt="">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558382406870&di=c2c145468b90ebcadc585400dd8d3262&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F18%2F01%2F07%2F121bb2438d09ac46cd9215c1c7555943.jpg" alt="">
+    </div>
+
 </body>
 ```
 ---
