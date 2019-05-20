@@ -849,6 +849,7 @@
 ```
 --- 
 ### css3的transiform2d转换 transiform 可以进行 translate移动、 scale缩放、 rotate旋转、skew斜切等操作
+>> * 设置多个transiform 只需要 空格 再添加下一个transiform就可以 注意 旋转和其他一起使用的时候 要注意旋转会改变坐标轴位置 如果是移动和旋转 要把移动写在前面 否则坐标轴改变 移动的方向也随之改变
 > 1. transiform 的 移动属性 translate() 
 * 有2个参数 X Y 如果写一个默认是X轴移动距离 
 * 移动是参照元素的左上角 
