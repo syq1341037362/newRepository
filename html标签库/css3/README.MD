@@ -921,7 +921,8 @@
     
     .box3:active {
         /* transiform 的 旋转属性 rotate() 1个值 角度 正数就是顺时针 负数就是逆时针  */
-        transform: rotate(180deg);
+        /* 设置多个transiform 只需要 空格 再添加下一个transiform就可以 注意 旋转和其他一起使用的时候 要注意旋转会改变坐标轴位置 如果是移动和旋转 要把移动写在前面 否则坐标轴改变 移动的方向也随之改变 */
+        transform: translate(180px, 500px) rotate(180deg);
     }
     
     .box4 {
