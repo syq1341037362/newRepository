@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3的transiform3D转换</title>
+    <style>
+        /* transiform 可以进行 移动 缩放 旋转 斜切等操作 */
+        
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        body {
+            display: flex;
+            justify-content: flex-start;
+            margin: 100px auto;
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            margin-right: 50px;
+        }
+        
+        .box1 {
+            background-color: skyblue;
+            transition: transform 0.5s ease;
+            text-align: center;
+            color: white;
+        }
+        
+        .box1:active {
+            /* 添加 transiform 的 三维移动---3D移动 属性 translate() 有3个参数 X Y Z 
+            X 水平方向偏移
+            Y 垂直方向偏移
+            Z (因为Z轴和你的显示器垂直所以看不出移动 只有在3D透视的时候在侧面可以看到Z轴移动)
+            必须三个值*/
+            transform: translate3d(400px, 0px, 200px)
+        }
+        
+        .box2 {
+            background-color: hotpink;
+            transition: transform 0.5s ease;
+            text-align: center;
+            color: white;
+        }
+        
+        .box2:active {
+            /* transiform 的 三维缩放属性 scale3d() 3个值X Y Z X方向的缩放 Y方向的缩放 Z方向的缩放*/
+            /*Z (因为Z轴和你的显示器垂直所以看不出移动 只有在3D透视的时候在侧面可以看到Z轴移动)*/
+            transform: scale3d(1.5, 1.5, 1.5);
+        }
+        
+        .box3 {
+            background-color: limegreen;
+            transition: transform 0.5s ease;
+            text-align: center;
+            color: white;
+            /* 设置旋转轴心 */
+            transform-origin: left top;
+        }
+        
+        .box3:active {
+            /* transiform 的 三维旋转属性 rotate3d(x, y, z,angle) 4个值 xyz是坐标轴  angle是同时在三个轴上的旋转值 */
+            /*
+             X 代表 X方向上的一个向量值
+             Y 代表 Y方向上的一个向量值
+             Z 代表 Z方向上的一个向量值
+            
+            */
+            transform: rotate3d(1, 1, 1, 180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">translate3d的效果</div>
+    <div class="box2">scale3d效果</div>
+    <div class="box3">rotate3d效果</div>
+
+</body>
+
+</html>

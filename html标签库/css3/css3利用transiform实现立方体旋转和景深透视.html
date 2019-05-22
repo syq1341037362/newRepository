@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3立方体</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            position: relative;
+            transform: rotate3d(1, 1, 0, 30deg);
+            transform-style: preserve-3d;
+            transition: transform 15s;
+            /* 添加透视景深效果 */
+            perspective: 200px;
+            /* 设置透视的观察角度 */
+            perspective-origin: 0px 0px;
+        }
+        
+        .box:active {
+            transform: rotate3d(1, 1, 0, 360deg);
+        }
+        
+        .box>div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+        
+        .front {
+            background-color: #ff3636;
+            transform: translateZ(100px);
+        }
+        
+        .back {
+            background-color: aqua;
+            transform: translateZ(-100px) rotateY(-180deg);
+        }
+        
+        .left {
+            background-color: skyblue;
+            transform: translateX(-100px) rotateY(90deg)
+        }
+        
+        .right {
+            background-color: hotpink;
+            transform: translateX(100px) rotateY(-90deg)
+        }
+        
+        .top {
+            background-color: #ffb5f8;
+            transform: translateY(-100px) rotateX(90deg)
+        }
+        
+        .bottom {
+            background-color: #ee8957;
+            transform: translateY(100px) rotateX(-90deg)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="front">front</div>
+        <div class="back">back</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="top">top</div>
+        <div class="bottom">bottom</div>
+    </div>
+</body>
+
+</html>

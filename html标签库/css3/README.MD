@@ -1014,3 +1014,178 @@
 </body>
 ```
 ---
+
+### transiform的3d转换 translate3d scale3d rotate3d
+> 1. translate3d 三维移动---3D移动 属性 translate() 有3个参数 X Y Z  X 水平方向偏移 Y 垂直方向偏移 Z (因为Z轴和你的显示器垂直所以看不出移动 只有在3D透视的时候在侧面可以看到Z轴移动)
+> 2. scale3d 三维缩放属性 scale3d() 3个值X Y Z X方向的缩放 Y方向的缩放 Z方向的缩放
+> 3. rotate3d 三维旋转属性 rotate3d(x, y, z,angle) 4个值 xyz是坐标轴  angle是同时在三个轴上的旋转值  X 代表 X方向上的一个向量值  Y 代表 Y方向上的一个向量值 Z 代表 Z方向上的一个向量值
+---
+```
+<style>
+    /* transiform 可以进行 移动 缩放 旋转 斜切等操作 */
+    
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    body {
+        display: flex;
+        justify-content: flex-start;
+        margin: 100px auto;
+    }
+    
+    div {
+        width: 100px;
+        height: 100px;
+        margin-right: 50px;
+    }
+    
+    .box1 {
+        background-color: skyblue;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+    }
+    
+    .box1:active {
+        /* 添加 transiform 的 三维移动---3D移动 属性 translate() 有3个参数 X Y Z 
+        X 水平方向偏移
+        Y 垂直方向偏移
+        Z (因为Z轴和你的显示器垂直所以看不出移动 只有在3D透视的时候在侧面可以看到Z轴移动)
+        必须三个值*/
+        transform: translate3d(400px, 0px, 200px)
+    }
+    
+    .box2 {
+        background-color: hotpink;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+    }
+    
+    .box2:active {
+        /* transiform 的 三维缩放属性 scale3d() 3个值X Y Z X方向的缩放 Y方向的缩放 Z方向的缩放*/
+        /*Z (因为Z轴和你的显示器垂直所以看不出移动 只有在3D透视的时候在侧面可以看到Z轴移动)*/
+        transform: scale3d(1.5, 1.5, 1.5);
+    }
+    
+    .box3 {
+        background-color: limegreen;
+        transition: transform 0.5s ease;
+        text-align: center;
+        color: white;
+        /* 设置旋转轴心 */
+        transform-origin: left top;
+    }
+    
+    .box3:active {
+        /* transiform 的 三维旋转属性 rotate3d(x, y, z,angle) 4个值 xyz是坐标轴  angle是同时在三个轴上的旋转值 */
+        /*
+            X 代表 X方向上的一个向量值
+            Y 代表 Y方向上的一个向量值
+            Z 代表 Z方向上的一个向量值
+        
+        */
+        transform: rotate3d(1, 1, 1, 180deg);
+    }
+</style>
+
+<body>
+    <div class="box1">translate3d的效果</div>
+    <div class="box2">scale3d效果</div>
+    <div class="box3">rotate3d效果</div>
+
+</body>
+```
+---
+
+### css3制作立方体和景深透视 perspective景深透视  perspective-origin观察角度
+![图片演示](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558553643428&di=2c80d4aa722d3497a98e75dcb83bc44f&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2Fa751d2dbccd955603c9b2ddc15816d08.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100)
+> 1. 首先需要6个面 前后左右上下 设置同样的高度和宽度 利用定位将他们放置在一起
+> 2. 将前方向放置到最前也就是 向Y轴移动 100px;
+> 3. 将后方向放置到最后也就是 向Y轴移动 -100px;
+> 4. 将左方向的放置到左面 向X轴移动 -100px 这样还不行因为只是位置移动了 并没有翻上去 所以还需要旋转一下 Y轴 旋转90度 让他垂直于别的页面
+> 5. 将右方向的放置到右面  向X轴移动 100px 这样还不行因为只是位置移动了 并没有翻上去 所以还需要旋转一下 Y轴 旋转-90度 让他垂直于别的页面
+> 6. 将上方向放置到上面  就是 向Y轴移动100px 这样还是不行还需要 旋转90deg
+> 7. 将下方向放置到下面  就是 向Y轴移动-100px 这样还是不行还需要 旋转-90deg
+> 8. perspective: 200px 添加透视景深效果 值的大小 规定了在内部还是外部看这个元素
+> 9.  perspective-origin 设置透视的观察角度 有2个值 X Y 代表X Y 2个值 默认是在元素的中心点
+---
+```
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .box {
+        width: 200px;
+        height: 200px;
+        margin: 100px auto;
+        position: relative;
+        transform: rotate3d(1, 1, 0, 30deg);
+        transform-style: preserve-3d;
+        transition: transform 15s;
+        /* 添加透视景深效果 */
+        perspective: 200px;
+        /* 设置透视的观察角度 */
+        perspective-origin: 0px 0px;
+    }
+    
+    .box:active {
+        transform: rotate3d(1, 1, 0, 360deg);
+    }
+    
+    .box>div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+    
+    .front {
+        background-color: #ff3636;
+        transform: translateZ(100px);
+    }
+    
+    .back {
+        background-color: aqua;
+        transform: translateZ(-100px) rotateY(-180deg);
+    }
+    
+    .left {
+        background-color: skyblue;
+        transform: translateX(-100px) rotateY(90deg)
+    }
+    
+    .right {
+        background-color: hotpink;
+        transform: translateX(100px) rotateY(-90deg)
+    }
+    
+    .top {
+        background-color: #ffb5f8;
+        transform: translateY(-100px) rotateX(90deg)
+    }
+    
+    .bottom {
+        background-color: #ee8957;
+        transform: translateY(100px) rotateX(-90deg)
+    }
+</style>
+
+
+<body>
+    <div class="box">
+        <div class="front">front</div>
+        <div class="back">back</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="top">top</div>
+        <div class="bottom">bottom</div>
+    </div>
+</body>
+
+```
+---
