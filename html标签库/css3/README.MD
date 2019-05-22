@@ -1103,8 +1103,8 @@
 ### css3制作立方体和景深透视 perspective景深透视  perspective-origin观察角度
 ![图片演示](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1558553643428&di=2c80d4aa722d3497a98e75dcb83bc44f&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2Fa751d2dbccd955603c9b2ddc15816d08.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100)
 > 1. 首先需要6个面 前后左右上下 设置同样的高度和宽度 利用定位将他们放置在一起
-> 2. 将前方向放置到最前也就是 向Y轴移动 100px;
-> 3. 将后方向放置到最后也就是 向Y轴移动 -100px;
+> 2. 将前方向放置到最前也就是 向Z轴移动 100px;
+> 3. 将后方向放置到最后也就是 向Z轴移动 -100px;
 > 4. 将左方向的放置到左面 向X轴移动 -100px 这样还不行因为只是位置移动了 并没有翻上去 所以还需要旋转一下 Y轴 旋转90度 让他垂直于别的页面
 > 5. 将右方向的放置到右面  向X轴移动 100px 这样还不行因为只是位置移动了 并没有翻上去 所以还需要旋转一下 Y轴 旋转-90度 让他垂直于别的页面
 > 6. 将上方向放置到上面  就是 向Y轴移动100px 这样还是不行还需要 旋转90deg
