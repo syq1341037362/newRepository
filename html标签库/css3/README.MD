@@ -1189,3 +1189,153 @@
 
 ```
 ---
+### css3的关键帧动画 @keyframes
+* 语法 animation: name duration timing-function delay iteration-count direction fill-mode;
+* 参数
+>1. name 动画名称
+>2. duration 动画耗时 以秒为单位
+>3. timing-function  动画的时间函数 和 transition一样有6个值
+    >> 3.1 linear 匀速 动画从头到尾的速度是相同的。
+    >> 3.2 ease 默认。动画以低速开始，然后加快，在结束前变慢。
+    >> 3.3 ease-in 动画以低速开始
+    >> 3.4 ease-out 动画以低速结束。
+    >> 3.5 ease-in-out 动画以低速开始和结束。
+    >> 3.6 cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值
+>4. delay 动画延迟 以秒为单位
+>5. iteration-count 动画播放次数 默认一次 可以写数字 也可以是 infinite 无限次
+>6. direction 设置动画方向 2个值 
+    >> 6.1 normal 默认值 动画应该正常播放
+    >> 6.2 alternate 来回交替 动画应该轮流反向播放。
+>7. fill-mode 动画结束时的状态 3个值
+    >> 7.1 forwards 保留动画结束时的状态，在有延迟的情况下 并不会立刻进行到动画的初始状态
+    >> 7.2 backwards 不会保留结束时的状态，在添加了动画延迟的前提下，如果有初始状态那么就会立刻进入到初始状态 
+    >> 7.3 both 会保留动画的结束时的状态，在有延迟的情况下也会立刻进入到动画的初始状态
+---
+* @keyframes  百分比是指整个动画的耗时的百分比  form 就是0%  to就是100%
+---
+```
+<style>
+    * {
+        padding: 0px;
+        height: 0px;
+    }
+    
+    .box1 {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        /* 添加动画效果 */
+        /* animation: 
+            name 动画名称
+            duration 动画耗时 以秒为单位
+            timing-function  动画的时间函数 和 transition一样有6个值
+                1.linear 匀速 动画从头到尾的速度是相同的。
+                2.ease 默认。动画以低速开始，然后加快，在结束前变慢。
+                3.ease-in 动画以低速开始
+                4.ease-out 动画以低速结束。
+                5.ease-in-out 动画以低速开始和结束。
+                6.cubic-bezier(n,n,n,n) 在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值
+            delay 动画延迟 以秒为单位
+            iteration-count 动画播放次数 默认一次 可以写数字 也可以是 infinite 无限次
+            direction 设置动画方向 2个值 
+                1.normal 默认值 动画应该正常播放
+                2.alternate 来回交替 动画应该轮流反向播放。
+            fill-mode 动画结束时的状态 3个值
+                1.forwards 保留动画结束时的状态，在有延迟的情况下 并不会立刻进行到动画的初始状态
+                2.backwards 不会保留结束时的状态，在添加了动画延迟的前提下，如果有初始状态那么就会立刻进入到初始状态 
+                3.both 会保留动画的结束时的状态，在有延迟的情况下也会立刻进入到动画的初始状态
+            */
+        animation: moveTest 2s linear 0.5s 1 alternate both;
+        
+    }
+    /* 创建动画 */
+    
+    @keyframes moveTest {
+        /* 百分比是指整个动画的耗时的百分比 */
+        /* form (0%) to(100%)*/
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(500PX, 0);
+        }
+        100% {
+            transform: translate(500px, 600px);
+        }
+    }
+    
+    .loading_box {
+        width: 100px;
+        height: 100px;
+        margin: 15px;
+    }
+    
+    .static {
+        width: 100px;
+        height: 100px;
+        animation: static 3s ease infinite alternate both;
+    }
+    
+    .move {
+        width: 15px;
+        height: 15px;
+        /* transform: translate(-30px, 0px); */
+        animation: move 3s linear infinite normal forwards;
+    }
+    
+    @keyframes static {
+        0% {
+            background-color: aqua;
+            opacity: 0.3;
+        }
+        25% {
+            background-color: skyblue;
+            opacity: 0.3;
+        }
+        50% {
+            background-color: aquamarine;
+            opacity: 0.3;
+        }
+        75% {
+            background-color: seagreen;
+            opacity: 0.3;
+        }
+        100% {
+            background-color: hotpink;
+            opacity: 0.3;
+        }
+    }
+    
+    @keyframes move {
+        0% {
+            transform: translate(-15px, 0px);
+            background-color: aqua;
+        }
+        25% {
+            transform: translate(-15px, -115px);
+            background-color: skyblue;
+        }
+        50% {
+            transform: translate(100px, -115px);
+            background-color: aquamarine;
+        }
+        75% {
+            transform: translate(100px, 0px);
+            background-color: seagreen;
+        }
+        100% {
+            transform: translate(-15px, 0px);
+            background-color: hotpink;
+        }
+    }
+</style>
+
+<body>
+    <div class="box1"></div>
+
+    <div class="loading_box">
+        <div class="static"></div>
+        <div class="move"></div>
+    </div>
+</body>
+```
