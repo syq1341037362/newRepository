@@ -1192,9 +1192,9 @@
 ### css3的关键帧动画 @keyframes
 * 语法 animation: name duration timing-function delay iteration-count direction fill-mode;
 * 参数
->1. name 动画名称
->2. duration 动画耗时 以秒为单位
->3. timing-function  动画的时间函数 和 transition一样有6个值
+> 1.name 动画名称
+> 2.duration 动画耗时 以秒为单位
+> 3.timing-function  动画的时间函数 和 transition一样有6个值
     >> 3.1 linear 匀速 动画从头到尾的速度是相同的。
     >> 3.2 ease 默认。动画以低速开始，然后加快，在结束前变慢。
     >> 3.3 ease-in 动画以低速开始
