@@ -1355,7 +1355,7 @@
 * 5.column-span: all;  设置跨列 2个值 1和all 默认1  all占据整行
 ---
            
-### css3的弹性布局 flex
+### **css3的弹性布局 flex**
 > 1. display:flex 开启flex布局 设置之后盒子里面所有的元素自动变成伸缩项 flex item  当子元素的宽度大于父容器的宽度的时候 子元素会自动平均收缩   
 ---
 >2. justify-content：设置或检索弹性盒子元素在主轴方向上的对齐方式 6个值
