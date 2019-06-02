@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝滚动</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        div {
+            width: 960px;
+            height: 108px;
+            background-color: #dddddd;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        
+        div>ul {
+            list-style: none;
+            width: 200%;
+            animation: move 15s linear infinite;
+        }
+        
+        div>ul>li {
+            width: 192px;
+            height: 108px;
+            float: left;
+        }
+        
+        div>ul>li>img {
+            width: 192px;
+            height: 108px;
+        }
+        
+        div:hover>ul {
+            cursor: pointer;
+            animation-play-state: paused;
+        }
+        /*创建动画*/
+        
+        @keyframes move {
+            from {
+                transform: translateX(0)
+            }
+            to {
+                transform: translateX(-960px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li><img src="../static/1.png" alt=""></li>
+            <li><img src="../static/2.png" alt=""></li>
+            <li><img src="../static/3.jpg" alt=""></li>
+            <li><img src="../static/44.jpg" alt=""></li>
+            <li><img src="../static/bannr.jpg" alt=""></li>
+            <li><img src="../static/1.png" alt=""></li>
+            <li><img src="../static/2.png" alt=""></li>
+            <li><img src="../static/3.jpg" alt=""></li>
+            <li><img src="../static/44.jpg" alt=""></li>
+            <li><img src="../static/bannr.jpg" alt=""></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

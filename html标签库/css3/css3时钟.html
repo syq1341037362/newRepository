@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3时钟</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 15px solid aqua;
+            border-radius: 50%;
+            margin: 150px auto;
+            position: relative;
+        }
+        
+        .item1 {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%) rotate(0);
+            width: 10px;
+            height: 500px;
+            background-color: skyblue;
+        }
+        
+        .item2 {
+            position: absolute;
+            left: 50%;
+            top: 0px;
+            transform: translateX(-50%) rotate(30deg);
+            width: 10px;
+            height: 500px;
+            background-color: skyblue;
+            margin: 0 auto;
+        }
+        
+        .item3 {
+            position: absolute;
+            left: 50%;
+            top: 0px;
+            transform: translateX(-50%) rotate(60deg);
+            width: 10px;
+            height: 500px;
+            background-color: skyblue;
+        }
+        
+        .item4 {
+            position: absolute;
+            left: 50%;
+            top: 0px;
+            transform: translateX(-50%) rotate(90deg);
+            width: 10px;
+            height: 500px;
+            background-color: skyblue;
+        }
+        
+        .item5 {
+            position: absolute;
+            left: 50%;
+            top: 0px;
+            transform: translateX(-50%) rotate(120deg);
+            width: 10px;
+            height: 500px;
+            background-color: skyblue;
+        }
+        
+        .item6 {
+            position: absolute;
+            left: 50%;
+            top: 0px;
+            transform: translateX(-50%) rotate(150deg);
+            width: 10px;
+            height: 500px;
+            background-color: skyblue;
+        }
+        
+        .z {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: relative;
+            z-index: 5;
+            top: 25px;
+            left: 25px;
+        }
+        
+        .clock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            transform-origin: center bottom;
+        }
+        
+        .hour {
+            width: 6px;
+            height: 80px;
+            background-color: teal;
+            animation: clock 43200s linear infinite;
+        }
+        
+        .minute {
+            width: 4px;
+            height: 110px;
+            background-color: salmon;
+            animation: clock 3600s linear infinite;
+        }
+        
+        .second {
+            width: 2px;
+            height: 140px;
+            background-color: lawngreen;
+            animation: clock 60s steps(60) infinite;
+        }
+        
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: aqua;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        /*动画*/
+        
+        @keyframes clock {
+            form {
+                transform: translate(-50%, -100%) rotate(0);
+            }
+            to {
+                transform: translate(-50%, -100%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item1"></div>
+        <div class="item2"></div>
+        <div class="item3"></div>
+        <div class="item4"></div>
+        <div class="item5"></div>
+        <div class="item6"></div>
+        <div class="z">
+            <div class="clock hour" id="h"></div>
+            <div class="clock minute" id="m"></div>
+            <div class="clock second" id="s"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
