@@ -1359,23 +1359,23 @@
 > 1. display:flex 开启flex布局 设置之后盒子里面所有的元素自动变成伸缩项 flex item  当子元素的宽度大于父容器的宽度的时候 子元素会自动平均收缩   
 ---
 >2. justify-content：设置或检索弹性盒子元素在主轴方向上的对齐方式 6个值
- * 2.1 flex-start：让子元素从父元素的起始位置排列 
- * 2.2 flex-end：让子元素从父元素的结束位置排列
- * 2.3 center：让子元素从父元素的中间位置排列
- * 2.4 space-between：左右对齐父容器的开始结束位置 中间平均分布产生相同的间距
- * 2.5 space-around：将多余的空间平均分布在每一个子元素的两边 相当于margin:0 auto; 造成中间的间距是左右两边的间距的2倍
- * 2.6 space-evenly：将多余的空间完全平均分布 每一个子元素的大小和间距都是相同的
+ * flex-start：让子元素从父元素的起始位置排列 
+ * flex-end：让子元素从父元素的结束位置排列
+ * center：让子元素从父元素的中间位置排列
+ * space-between：左右对齐父容器的开始结束位置 中间平均分布产生相同的间距
+ * space-around：将多余的空间平均分布在每一个子元素的两边 相当于margin:0 auto; 造成中间的间距是左右两边的间距的2倍
+ * space-evenly：将多余的空间完全平均分布 每一个子元素的大小和间距都是相同的
  ---
 > 3. flex-flow：是flex-warp（换行方式）和flex-diraction（主轴方向）的综合
  * 3.1 flex-warp：控制子元素是否换行显示 默认不换行
- * 3.1.1 flex-warp：nowarp 不换行 收缩
- * 3.1.2 flex-warp：warp换行
- * 3.1.3 flex-warp：wrap-reverse 翻转原来是从上到下翻转就是从下到上
+ * flex-warp：nowarp 不换行 收缩
+ * flex-warp：warp换行
+ * flex-warp：wrap-reverse 翻转原来是从上到下翻转就是从下到上
  ---
  * 3.2 flex-diraction: 设置子元素的排列方向 就是用来设置主轴方向 默认主轴方向 row(水平方向)
- * 3.2.1 flex-diraction：row 默认 水平方向 从左到右 
- * 3.2.2 flex-diraction：row-reverse 水平方向 从右到左 
- * 3.2.3 flex-diraction：column 垂直方向 从上到下
- * 3.2.4 flex-diraction：colum-reverse 垂直方向 从下到上
+ * flex-diraction：row 默认 水平方向 从左到右 
+ * flex-diraction：row-reverse 水平方向 从右到左 
+ * flex-diraction：column 垂直方向 从上到下
+ * flex-diraction：colum-reverse 垂直方向 从下到上
  ---
             
