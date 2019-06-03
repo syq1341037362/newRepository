@@ -1378,4 +1378,6 @@
  * flex-diraction：column 垂直方向 从上到下
  * flex-diraction：colum-reverse 垂直方向 从下到上
  ---
-            
+> 4.flex-grow 可以扩展子元素的宽度，设置当前元素应该占据剩余空间的比例值 
+* 比例值的计算： 当前空间的flex-grow/所有兄弟元素的flex-grow的和    
+* flex-grow 默认值是0：说明子元素并不会去占据剩余的空间; 

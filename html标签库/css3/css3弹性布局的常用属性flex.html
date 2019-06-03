@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3弹性布局的常用属性 flex</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .box {
+            margin: 0 auto;
+            width: 900px;
+            height: 600px;
+            border: 1px solid red;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .first {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            /* 
+                flex-grow：可以扩展子元素的宽度，设置当前元素应该占据剩余空间的比例值 
+                比例值的计算： 当前空间的flex-grow/所有兄弟元素的flex-grow的和 
+                flex-grow 默认值是0：说明子元素并不会去占据剩余的空间;
+            */
+            flex-grow: 1;
+        }
+        
+        .second {
+            width: 200px;
+            height: 200px;
+            background-color: hotpink;
+            flex-grow: 1;
+        }
+        
+        .third {
+            width: 200px;
+            height: 200px;
+            background-color: mediumseagreen;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="first">1</div>
+        <div class="second">2</div>
+        <div class="third">3</div>
+    </div>
+</body>
+
+</html>
