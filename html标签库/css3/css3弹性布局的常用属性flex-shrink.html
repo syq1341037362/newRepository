@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3弹性布局的常用属性 flex-sheink</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .box {
+            margin: 0 auto;
+            width: 900px;
+            height: 600px;
+            border: 1px solid red;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .first {
+            width: 400px;
+            height: 200px;
+            background-color: aqua;
+            /* 
+                比例值的计算： 当前空间的flex-shrink/所有兄弟元素的flex-shrink的和
+                flex-shrink 默认值是1:如果所有的子元素都是1 则保持默认 每个子元素按照相同的缩放比例缩放
+                如果只有一个子元素设置为1 其余为0 则flex-shrink为1的子元素承担所有的缩放
+                如果全部子元素设置为0 可能会出现子元素溢出的问题
+            */
+            flex-shrink: 1;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+        
+        .second {
+            width: 400px;
+            height: 200px;
+            background-color: hotpink;
+            flex-shrink: 1;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+        
+        .third {
+            width: 400px;
+            height: 200px;
+            background-color: mediumseagreen;
+            flex-shrink: 1;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="first">shrink1</div>
+        <div class="second">shrink2</div>
+        <div class="third">shrink3</div>
+
+    </div>
+</body>
+
+</html>

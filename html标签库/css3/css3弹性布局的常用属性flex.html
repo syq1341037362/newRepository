@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹性布局的flex</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .box {
+            width: 100%;
+            height: 500px;
+            background-color: #ccc;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .left {
+            /*
+                flex属性是 flex-grow、flex-shrink和flex-basis的缩写 默认值是0 1 auto 后面两个属性可选
+                语法 flex:[flex-grow] [flex-shrink] [flex-basis] 大多数情况下没必要使用这个语法 
+                flex:[number] 这个语法指定一个数字 代表了这个伸缩项占据剩余空间的比值
+                flex:auto 属性被设置为auto的伸缩项 会根据主轴自动伸缩以占用所有剩余空间
+
+            */
+            flex: auto;
+            height: 500px;
+            background-color: aqua;
+        }
+        
+        .center {
+            flex: auto;
+            height: 500px;
+            background-color: khaki;
+        }
+        
+        .right {
+            flex: auto;
+            height: 500px;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>
