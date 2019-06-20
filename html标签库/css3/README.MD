@@ -1386,3 +1386,8 @@
 * flex-shrink 默认值是1:如果所有的子元素都是1 则保持默认 每个子元素按照相同的缩放比例缩放
 * 如果只有一个子元素设置为1 其余为0 则flex-shrink为1的子元素承担所有的缩放
 * 如果全部子元素设置为0 可能会出现子元素溢出的问题
+---
+> 5.flex flex属性是 flex-grow、flex-shrink和flex-basis的缩写 默认值是0 1 auto 后面两个属性可选
+* 语法 flex:[flex-grow] [flex-shrink] [flex-basis] 大多数情况下没必要使用这个语法 
+* flex:[number] 这个语法指定一个数字 代表了这个伸缩项占据剩余空间的比值
+* flex:auto 属性被设置为auto的伸缩项 会根据主轴自动伸缩以占用所有剩余空间
