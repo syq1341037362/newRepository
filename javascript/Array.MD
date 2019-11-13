@@ -1,4 +1,4 @@
-# javaSCript数组操作
+# javaScript数组操作
 > JavaScript的Array可以包含任意数据类型，并通过索引来访问每个元素。
 
 ## 一、数组长度 length
